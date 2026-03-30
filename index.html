@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lean &amp; Strong — Optimized 4-Day Routine</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: #f5f4f0;
+    color: #1a1a18;
+    min-height: 100vh;
+    padding: 2rem 1rem;
+  }
+  .container { max-width: 780px; margin: 0 auto; }
+  h1 { font-size: 22px; font-weight: 500; margin-bottom: 4px; }
+  .subtitle { font-size: 14px; color: #5f5e5a; margin-bottom: 28px; }
+
+  .nav { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
+  .nav-btn {
+    padding: 8px 18px; font-size: 13px; font-weight: 500;
+    border: 1px solid #c8c6bc; border-radius: 20px;
+    background: transparent; color: #5f5e5a; cursor: pointer; transition: all .15s;
+  }
+  .nav-btn.active { background: #e6f1fb; color: #185fa5; border-color: #85b7eb; }
+
+  .day-panel { display: none; }
+  .day-panel.active { display: block; }
+
+  .day-header { margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid #e2e0d8; }
+  .day-title { font-size: 20px; font-weight: 500; margin-bottom: 4px; }
+  .day-sub { font-size: 13px; color: #5f5e5a; line-height: 1.5; }
+
+  .meta-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-bottom: 20px; }
+  .meta-card { background: #f1efe8; border-radius: 8px; padding: 10px 12px; }
+  .meta-label { font-size: 11px; color: #888780; margin-bottom: 2px; }
+  .meta-val { font-size: 13px; font-weight: 500; }
+
+  .section-label {
+    font-size: 11px; font-weight: 500; letter-spacing: .06em;
+    color: #888780; text-transform: uppercase; margin: 22px 0 10px;
+  }
+  .rest-bar {
+    background: #f1efe8; border-left: 3px solid #1d9e75;
+    border-radius: 0 8px 8px 0; padding: 8px 12px;
+    margin: 6px 0 12px; font-size: 12px; color: #5f5e5a; line-height: 1.5;
+  }
+  .exercise {
+    background: #fff; border: 1px solid #e2e0d8;
+    border-radius: 12px; padding: 14px 16px; margin-bottom: 8px;
+  }
+  .ex-row { display: flex; align-items: flex-start; gap: 12px; }
+  .ex-num {
+    min-width: 22px; height: 22px; border-radius: 50%;
+    background: #f1efe8; display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 500; color: #5f5e5a; flex-shrink: 0; margin-top: 1px;
+  }
+  .ex-name { font-size: 14px; font-weight: 500; margin-bottom: 5px; }
+  .ex-detail { font-size: 12px; color: #5f5e5a; line-height: 1.6; }
+  .ex-alt { font-size: 11px; color: #888780; margin-top: 6px; font-style: italic; line-height: 1.5; }
+  .ex-why {
+    font-size: 11px; color: #085041; background: #e1f5ee;
+    border-radius: 8px; padding: 5px 9px; margin-top: 7px; line-height: 1.5;
+  }
+  .pill {
+    display: inline-block; padding: 3px 9px; border-radius: 12px;
+    font-size: 11px; font-weight: 500; margin-top: 6px; margin-right: 4px;
+  }
+  .pill-teal { background: #e1f5ee; color: #085041; }
+  .pill-purple { background: #eeedfe; color: #3c3489; }
+  .pill-amber { background: #faeeda; color: #633806; }
+  .pill-gray { background: #f1efe8; color: #444441; }
+
+  @media (max-width: 500px) {
+    .meta-grid { grid-template-columns: 1fr 1fr; }
+    .nav-btn { padding: 7px 13px; font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Lean &amp; Strong — Optimized 4-Day Routine</h1>
+  <p class="subtitle">Tempo-based, decompressive, joint-friendly. Designed to reduce the wide/bulky look, lengthen the silhouette, and build cardiovascular stamina without heavy axial compression.</p>
+
+  <div class="nav">
+    <button class="nav-btn active" onclick="show(0)">Day 1 — Posterior chain</button>
+    <button class="nav-btn" onclick="show(1)">Day 2 — Metabolic core</button>
+    <button class="nav-btn" onclick="show(2)">Day 3 — Stability &amp; push</button>
+    <button class="nav-btn" onclick="show(3)">Day 4 — Flush &amp; reset</button>
+  </div>
+
+  <!-- DAY 1 -->
+  <div class="day-panel active" id="d0">
+    <div class="day-header">
+      <div class="day-title">Day 1 — Posterior chain &amp; length</div>
+      <div class="day-sub">Pull the back flat, decompress the spine, engage the right glute chain. Tempo lifting trains muscle elongation rather than bulk. No heavy axial compression.</div>
+    </div>
+    <div class="meta-grid">
+      <div class="meta-card"><div class="meta-label">Duration</div><div class="meta-val">~60 min</div></div>
+      <div class="meta-card"><div class="meta-label">Lifting tempo</div><div class="meta-val">4-1-1</div></div>
+      <div class="meta-card"><div class="meta-label">Rest</div><div class="meta-val">45 s after each round</div></div>
+    </div>
+
+    <div class="section-label">Warm-up</div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">1</div><div>
+      <div class="ex-name">Incline treadmill walk</div>
+      <div class="ex-detail">10 min — 3.5 mph / 6% incline. Tall posture, no rail grip. Push through the right big toe at each push-off to activate the right glute chain before lifting.</div>
+    </div></div></div>
+
+    <div class="section-label">Cardio block — choose one</div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">2</div><div>
+      <div class="ex-name">Backward sled pull</div>
+      <div class="ex-detail">6 rounds × 20 yards — 60 s rest between rounds. Hips low, long stride, right heel drives into the floor. Hip stays in extension the whole time.</div>
+      <div class="ex-alt">Alt A: Rowing machine — 8 × 1 min hard / 1 min easy. Reach fully forward at the catch to stretch and lengthen the spinal erectors.<br>Alt B: Jump rope — 10 × 45 s active / 15 s rest. Balls of feet, soft knees. Skip if the right Achilles feels reactive.</div>
+    </div></div></div>
+
+    <div class="section-label">Giant set — 4 rounds</div>
+    <div class="rest-bar">Exercises A → B → C → D back-to-back with no rest between them. Rest 45 s after completing all four. Repeat 4 rounds total.</div>
+
+    <div class="exercise"><div class="ex-row"><div class="ex-num">A</div><div>
+      <div class="ex-name">Wide-grip lat pulldown</div>
+      <div class="ex-detail">4 × 15 reps — Tempo 4-1-1. Depress the scapulae first, then bend the elbows. The long eccentric on the way up stretches and gradually elongates the hypertrophied erectors. Light-to-moderate load only.</div>
+      <span class="pill pill-teal">Erector elongation</span><span class="pill pill-teal">Width reduction</span>
+    </div></div></div>
+
+    <div class="exercise"><div class="ex-row"><div class="ex-num">B</div><div>
+      <div class="ex-name">Clamshell (banded)</div>
+      <div class="ex-detail">4 × 20 reps per side — Band above the knee, side-lying. Pelvis absolutely stacked — do not roll back. Right side first each round. 1 s pause at the top.</div>
+      <div class="ex-why">The most direct glute medius exercise available. Strengthening the glute medius pulls the laterally shifted pelvis back into neutral, directly reducing the wide hip appearance.</div>
+      <span class="pill pill-teal">Glute medius</span><span class="pill pill-teal">Pelvic alignment</span>
+    </div></div></div>
+
+    <div class="exercise"><div class="ex-row"><div class="ex-num">C</div><div>
+      <div class="ex-name">Bodyweight glute bridge</div>
+      <div class="ex-detail">4 × 25 reps — Squeeze hard at the top and hold a posterior pelvic tilt for 1 s. Feet hip-width. The posterior tilt directly counteracts anterior pelvic tilt and reduces the flared hip look.</div>
+      <span class="pill pill-teal">Pelvic tilt correction</span><span class="pill pill-teal">Glute activation</span>
+    </div></div></div>
+
+    <div class="exercise"><div class="ex-row"><div class="ex-num">D</div><div>
+      <div class="ex-name">Dead bug</div>
+      <div class="ex-detail">4 × 10 reps per side — Lower back pinned completely flat throughout. Move slowly. Stop the descending leg before 90° if the back lifts. No breath-holding.</div>
+      <span class="pill pill-purple">TVA + multifidus</span><span class="pill pill-purple">Lumbar stability</span>
+    </div></div></div>
+
+    <div class="section-label">Finisher</div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">3</div><div>
+      <div class="ex-name">Dead hang</div>
+      <div class="ex-detail">5 rounds × 30 s on / 30 s off — Shoulders completely passive and relaxed. Consistent dead hangs over 8–12 weeks are one of the most effective tools for reducing the erector-driven "thick back" appearance.</div>
+      <span class="pill pill-gray">Spinal decompression</span>
+    </div></div></div>
+
+    <div class="section-label">Cool-down</div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">4</div><div>
+      <div class="ex-name">90/90 hip stretch + supine figure-4</div>
+      <div class="ex-detail">6 min — 90 s per side in 90/90 (hip capsule), then supine figure-4 piriformis stretch. Right side held 15–20 s longer than left.</div>
+      <span class="pill pill-amber">Hip capsule</span><span class="pill pill-amber">Right-side recovery</span>
+    </div></div></div>
+  </div>
+
+  <!-- DAY 2 -->
+  <div class="day-panel" id="d1">
+    <div class="day-header">
+      <div class="day-title">Day 2 — Metabolic core &amp; waist</div>
+      <div class="day-sub">High-output cardio burn combined with targeted TVA and oblique work. The combination of stomach vacuums, pallof press, and woodchops is the most evidence-supported approach to waist narrowing without adding bulk.</div>
+    </div>
+    <div class="meta-grid">
+      <div class="meta-card"><div class="meta-label">Duration</div><div class="meta-val">~55 min</div></div>
+      <div class="meta-card"><div class="meta-label">Circuit rest</div><div class="meta-val">60 s between rounds</div></div>
+      <div class="meta-card"><div class="meta-label">Finisher rest</div><div class="meta-val">45 s between rounds</div></div>
+    </div>
+
+    <div class="section-label">Warm-up</div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">1</div><div>
+      <div class="ex-name">Brisk flat walk</div>
+      <div class="ex-detail">5 min — Easy pace to elevate heart rate gently. Shoulders back, long stride.</div>
+    </div></div></div>
+
+    <div class="section-label">Cardio block — choose one</div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">2</div><div>
+      <div class="ex-name">Assault / fan bike</div>
+      <div class="ex-detail">10 rounds × 30 s max effort / 30 s easy — Equal arm and leg drive. Right knee tracks over the right toe throughout.</div>
+      <div class="ex-alt">Alt A: Jump rope — 10 × 45 s active / 15 s rest. Balls of feet, soft knees. Highest caloric burn per minute on this list.<br>Alt B: Stairmaster — 12 min at level 8–10, no hands. Drive through the heel, full step.<br>Alt C: Rowing machine — 8 × 45 s hard / 45 s easy at resistance 6–8.</div>
+    </div></div></div>
+
+    <div class="section-label">Metabolic circuit — 5 rounds</div>
+    <div class="rest-bar">A → B → C back-to-back, minimal rest between exercises. 60 s full rest after each complete round.</div>
+
+    <div class="exercise"><div class="ex-row"><div class="ex-num">A</div><div>
+      <div class="ex-name">Incline push-up (on bench)</div>
+      <div class="ex-detail">5 × 20 reps — Hands on bench, body in a rigid plank. Full range of motion. Ribcage pulled in throughout. Elevating the hands reduces pec dominance and avoids over-developing the chest width.</div>
+    </div></div></div>
+
+    <div class="exercise"><div class="ex-row"><div class="ex-num">B</div><div>
+      <div class="ex-name">TRX row</div>
+      <div class="ex-detail">5 × 15 reps — Full stretch at the bottom, hard scapular squeeze at the top. Body stays rigid like a plank. Builds mid-back density that narrows the waist by contrast.</div>
+    </div></div></div>
+
+    <div class="exercise"><div class="ex-row"><div class="ex-num">C</div><div>
+      <div class="ex-name">Tall-kneeling cable woodchop</div>
+      <div class="ex-detail">5 × 12 reps per side — Both knees on the ground, cable anchored high. Rotate through the trunk only, not the hips. Slow and controlled on the return.</div>
+      <div class="ex-why">Trains the obliques through full rotation with the hip joint completely neutralized. Produces high oblique activation with zero joint provocation.</div>
+      <span class="pill pill-purple">Obliques</span><span class="pill pill-purple">Hip-safe</span>
+    </div></div></div>
+
+    <div class="section-label">Waist-cinch finisher — 3 rounds, 45 s rest</div>
+
+    <div class="exercise"><div class="ex-row"><div class="ex-num">3</div><div>
+      <div class="ex-name">Pallof press</div>
+      <div class="ex-detail">3 × 12 reps per side — Cable or band at chest height. Press directly forward, hold 2 s, return slowly. Do not rotate. Trains the TVA and obliques as anti-rotation stabilizers — their primary function.</div>
+      <span class="pill pill-purple">TVA "inner corset"</span>
+    </div></div></div>
+
+    <div class="exercise"><div class="ex-row"><div class="ex-num">4</div><div>
+      <div class="ex-name">Stomach vacuum</div>
+      <div class="ex-detail">3 × 5 reps × 20 s hold — Exhale fully, draw navel to spine, hold without bracing or puffing the chest. Practice making this a postural habit throughout the day — that's where the long-term waist results accumulate.</div>
+      <div class="ex-why">Consistent vacuum training measurably reduces waist circumference over 8–12 weeks by training the TVA to maintain a tighter resting tone.</div>
+      <span class="pill pill-purple">TVA isolation</span>
+    </div></div></div>
+
+    <div class="section-label">Tendon care</div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">5</div><div>
+      <div class="ex-name">Eccentric heel drop</div>
+      <div class="ex-detail">3 × 15 reps per side — Step edge, rise on both feet, lower slowly on one foot over 4 s with heel dropping below step level. Right side priority. Add a small plate to hold as it gets easier.</div>
+      <div class="ex-why">The Alfredson protocol — the most replicated clinical intervention for Achilles tendon remodeling. Particularly important on jump rope days.</div>
+      <span class="pill pill-amber">Achilles remodeling</span>
+    </div></div></div>
+  </div>
+
+  <!-- DAY 3 -->
+  <div class="day-panel" id="d2">
+    <div class="day-header">
+      <div class="day-title">Day 3 — Symmetrical stability &amp; push</div>
+      <div class="day-sub">Correct right-side asymmetry, build tall posture, reinforce the outer hip. The Copenhagen plank trains obliques and adductors simultaneously — a key addition for the lean silhouette goal.</div>
+    </div>
+    <div class="meta-grid">
+      <div class="meta-card"><div class="meta-label">Duration</div><div class="meta-val">~60 min</div></div>
+      <div class="meta-card"><div class="meta-label">Lifting tempo</div><div class="meta-val">4-1-1</div></div>
+      <div class="meta-card"><div class="meta-label">Rest</div><div class="meta-val">45 s after each round</div></div>
+    </div>
+
+    <div class="section-label">Warm-up</div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">1</div><div>
+      <div class="ex-name">Incline treadmill walk</div>
+      <div class="ex-detail">10 min — 3.0 mph / 8% incline. Heel drive, glute engagement, no rail grip. Deliberate glute activation warm-up, not casual cardio.</div>
+    </div></div></div>
+
+    <div class="section-label">Cardio block — choose one</div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">2</div><div>
+      <div class="ex-name">Stairmaster (no hands)</div>
+      <div class="ex-detail">12 min — Level 8–10, steady challenging pace. Full step, drive through the heel. Preferred Day 3 option — pairs well with the hip stability focus and is excellent for glute development.</div>
+      <div class="ex-alt">Alt A: Assault bike — 10 × 40 s on / 20 s off.<br>Alt B: Jump rope — 10 × 45 s active / 15 s rest.<br>Alt C: Sled push (high handles) — 6 × 20 yards, 60 s rest between rounds.</div>
+    </div></div></div>
+
+    <div class="section-label">Giant set — 4 rounds</div>
+    <div class="rest-bar">A → B → C → D back-to-back. Rest 45 s after all four. Repeat 4 rounds total.</div>
+
+    <div class="exercise"><div class="ex-row"><div class="ex-num">A</div><div>
+      <div class="ex-name">Cable face-pull</div>
+      <div class="ex-detail">4 × 20 reps — Rope at eye level. Pull to forehead, elbows high and wide, thumbs back, hard external rotation at end range. The best single exercise for reversing internally rotated shoulders from years of heavy pressing.</div>
+      <span class="pill pill-teal">Shoulder retraction</span><span class="pill pill-teal">Posture</span>
+    </div></div></div>
+
+    <div class="exercise"><div class="ex-row"><div class="ex-num">B</div><div>
+      <div class="ex-name">Side-lying hip abduction (banded)</div>
+      <div class="ex-detail">4 × 20 reps per side — Band above the knee. Slow and controlled, pelvis stays stacked. Right side first. 1 s pause at the top. Progress to a heavier band as this gets easy.</div>
+      <div class="ex-why">Trains the glute medius through abduction with the hip joint completely offloaded. Safest and most targeted outer hip exercise for this profile.</div>
+      <span class="pill pill-teal">Glute medius</span><span class="pill pill-teal">Hip alignment</span>
+    </div></div></div>
+
+    <div class="exercise"><div class="ex-row"><div class="ex-num">C</div><div>
+      <div class="ex-name">Seated scapular depression</div>
+      <div class="ex-detail">4 × 15 reps — Arms straight at sides, pull shoulders down away from ears and hold 2 s. Trains the lower trapezius directly, counteracting upper-trap dominance that creates the thick elevated shoulder look.</div>
+      <span class="pill pill-teal">Lower trap</span><span class="pill pill-teal">Neck elongation</span>
+    </div></div></div>
+
+    <div class="exercise"><div class="ex-row"><div class="ex-num">D</div><div>
+      <div class="ex-name">Copenhagen plank (adductor hold)</div>
+      <div class="ex-detail">4 × 20–30 s per side — Top foot on a bench, bottom leg raised or lightly resting. Hold a side plank position. Build toward 45 s as strength improves. Start with the bottom knee on the floor if needed.</div>
+      <div class="ex-why">Research shows some of the highest combined oblique and adductor activation of any exercise, in a side-lying position with zero hip compression. Also contributes to a leaner inner-thigh appearance over time.</div>
+      <span class="pill pill-purple">Oblique + adductor</span><span class="pill pill-purple">Waist</span>
+    </div></div></div>
+
+    <div class="section-label">Neurological finisher</div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">3</div><div>
+      <div class="ex-name">Single-leg balance — right side focus</div>
+      <div class="ex-detail">5 rounds × 30 s each side — Eyes open on firm ground first. Progress to eyes closed. Then to a folded mat or balance disc. Retrains the proprioceptive deficit running from the Achilles through the lateral meniscus and up to the hip.</div>
+      <span class="pill pill-amber">Right-side neuro rehab</span>
+    </div></div></div>
+
+    <div class="section-label">Cool-down</div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">4</div><div>
+      <div class="ex-name">90/90 stretch + thread-the-needle</div>
+      <div class="ex-detail">6 min — 90 s per side in 90/90, then thread-the-needle thoracic rotation for 60 s per side on all-fours. Opens the thoracic spine, which is typically restricted in heavy lifters and contributes to the blocked, wide posture.</div>
+      <span class="pill pill-amber">Thoracic mobility</span><span class="pill pill-amber">Hip capsule</span>
+    </div></div></div>
+  </div>
+
+  <!-- DAY 4 -->
+  <div class="day-panel" id="d3">
+    <div class="day-header">
+      <div class="day-title">Day 4 — Full-body flush &amp; reset</div>
+      <div class="day-sub">Maximum fat oxidation, nervous system recovery, and spinal decompression. This day has an outsized effect on long-term body composition and how the body looks at rest.</div>
+    </div>
+    <div class="meta-grid">
+      <div class="meta-card"><div class="meta-label">Duration</div><div class="meta-val">~55 min</div></div>
+      <div class="meta-card"><div class="meta-label">Circuit rest</div><div class="meta-val">60 s between rounds</div></div>
+      <div class="meta-card"><div class="meta-label">Finisher rest</div><div class="meta-val">45 s between rounds</div></div>
+    </div>
+
+    <div class="section-label">Warm-up</div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">1</div><div>
+      <div class="ex-name">Brisk walk + cat-cow</div>
+      <div class="ex-detail">5 min walk, then 2 min cat-cow (10 slow reps) on all-fours. Mobilizes the lumbar spine before the circuit and begins the parasympathetic shift.</div>
+    </div></div></div>
+
+    <div class="section-label">"60-second" flush circuit — 5 rounds</div>
+    <div class="rest-bar">A → B → C back-to-back with no rest between. 60 s full rest after all three. This drives sustained aerobic adaptation and fat oxidation.</div>
+
+    <div class="exercise"><div class="ex-row"><div class="ex-num">A</div><div>
+      <div class="ex-name">Assault bike or sled push</div>
+      <div class="ex-detail">5 × 60 s — Maximum sustainable effort. High RPM on the bike. Full glute drive on the sled, high handle position, long spine.</div>
+      <div class="ex-alt">Alt: Rowing machine — 60 s all-out at high resistance. Or jump rope — 60 s continuous at high tempo.</div>
+    </div></div></div>
+
+    <div class="exercise"><div class="ex-row"><div class="ex-num">B</div><div>
+      <div class="ex-name">Backward sled pull or seated cable row</div>
+      <div class="ex-detail">5 × 60 s — Transition directly from A. Long reach at the front of each row stroke, erectors fully stretched. Continuous reps at moderate load.</div>
+      <div class="ex-alt">Alt: Rowing machine — switch to a continuous long-stroke focus for the full 60 s.</div>
+    </div></div></div>
+
+    <div class="exercise"><div class="ex-row"><div class="ex-num">C</div><div>
+      <div class="ex-name">Fast incline walk</div>
+      <div class="ex-detail">5 × 60 s — 4.0 mph / 8% incline. Transition directly from B. Active recovery within the round — keeps heart rate elevated in the fat-burning aerobic zone.</div>
+    </div></div></div>
+
+    <div class="section-label">Core finisher — 3 rounds, 45 s rest</div>
+
+    <div class="exercise"><div class="ex-row"><div class="ex-num">2</div><div>
+      <div class="ex-name">RKC plank</div>
+      <div class="ex-detail">3 × 30 s — Forearm plank, but actively drag elbows toward feet and squeeze glutes and fists as hard as possible. Produces dramatically higher TVA activation than a standard plank.</div>
+      <span class="pill pill-purple">TVA</span><span class="pill pill-purple">Full-body tension</span>
+    </div></div></div>
+
+    <div class="exercise"><div class="ex-row"><div class="ex-num">3</div><div>
+      <div class="ex-name">Bird-dog</div>
+      <div class="ex-detail">3 × 10 reps per side — Opposite arm and leg extend simultaneously. 2 s pause at full extension, reach as long as possible. The pause drives the multifidus and TVA co-activation.</div>
+      <span class="pill pill-purple">Multifidus + TVA</span><span class="pill pill-gray">Spinal stability</span>
+    </div></div></div>
+
+    <div class="exercise"><div class="ex-row"><div class="ex-num">4</div><div>
+      <div class="ex-name">Stomach vacuum (standing)</div>
+      <div class="ex-detail">3 × 5 reps × 20 s hold — Exhale fully, draw navel in, hold without bracing the outer abs. Practice throughout the day whenever you think of it — resting TVA tone is built through frequency.</div>
+      <span class="pill pill-purple">TVA</span>
+    </div></div></div>
+
+    <div class="section-label">Full reset — non-negotiable</div>
+
+    <div class="exercise"><div class="ex-row"><div class="ex-num">5</div><div>
+      <div class="ex-name">Static floor rest</div>
+      <div class="ex-detail">10 min — On your back, knees bent, feet flat. Completely passive. Parasympathetic nervous system recovery. Directly affects cortisol regulation and body composition over time. Do not skip it.</div>
+    </div></div></div>
+
+    <div class="exercise"><div class="ex-row"><div class="ex-num">6</div><div>
+      <div class="ex-name">Cat-cow + child's pose + dead hang</div>
+      <div class="ex-detail">10 min — 10 cat-cow reps, then 60 s child's pose (repeat 3×). Finish with 3 × 30 s dead hangs. Ending the week with spinal traction is the single most consistent habit that, over 12 weeks, reduces the erector-driven wide appearance.</div>
+      <span class="pill pill-gray">Spinal traction</span><span class="pill pill-gray">Decompression</span>
+    </div></div></div>
+  </div>
+
+  <div style="margin-top:32px;padding-top:16px;border-top:1px solid #e2e0d8;font-size:12px;color:#888780;line-height:1.6;">
+    <strong style="font-weight:500;color:#5f5e5a;">Suggested weekly split:</strong> Day 1 Monday · Day 2 Wednesday · Day 3 Friday · Day 4 Saturday. Minimum 48 hours between sessions.
+  </div>
+</div>
+
+<script>
+function show(i) {
+  document.querySelectorAll('.day-panel').forEach(function(p, idx) { p.classList.toggle('active', idx === i); });
+  document.querySelectorAll('.nav-btn').forEach(function(b, idx) { b.classList.toggle('active', idx === i); });
+}
+</script>
+</body>
+</html>
