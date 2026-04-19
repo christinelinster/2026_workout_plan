@@ -3,380 +3,1329 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lean &amp; Strong — Optimized 4-Day Routine</title>
+<title>Lean & Strong — Full Program</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #f7f6f2;
+    --surface: #ffffff;
+    --surface2: #f0ede6;
+    --border: rgba(0,0,0,0.08);
+    --border-mid: rgba(0,0,0,0.14);
+    --text-primary: #1a1916;
+    --text-secondary: #6b6860;
+    --text-tertiary: #9c9a93;
+    --accent: #2d6a4f;
+    --accent-light: #e8f4ee;
+    --accent-text: #1b4332;
+    --purple: #4a3f8a;
+    --purple-light: #eeedfb;
+    --purple-text: #2d2460;
+    --amber: #92400e;
+    --amber-light: #fef3c7;
+    --amber-text: #78350f;
+    --slate: #374151;
+    --slate-light: #f1f2f4;
+    --slate-text: #1f2937;
+    --coral: #9a3412;
+    --coral-light: #fff1ee;
+    --coral-text: #7c2d12;
+    --info: #1e40af;
+    --info-light: #eff6ff;
+    --info-text: #1e3a8a;
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.07), 0 1px 3px rgba(0,0,0,0.05);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
   body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background: #f5f4f0;
-    color: #1a1a18;
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
     min-height: 100vh;
-    padding: 2rem 1rem;
+    font-size: 15px;
+    line-height: 1.6;
   }
-  .container { max-width: 780px; margin: 0 auto; }
-  h1 { font-size: 22px; font-weight: 500; margin-bottom: 4px; }
-  .subtitle { font-size: 14px; color: #5f5e5a; margin-bottom: 28px; }
 
-  .nav { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
-  .nav-btn {
-    padding: 8px 18px; font-size: 13px; font-weight: 500;
-    border: 1px solid #c8c6bc; border-radius: 20px;
-    background: transparent; color: #5f5e5a; cursor: pointer; transition: all .15s;
+  /* ── Layout ── */
+  .page-header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 28px 32px 24px;
   }
-  .nav-btn.active { background: #e6f1fb; color: #185fa5; border-color: #85b7eb; }
+  .page-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+    letter-spacing: -0.3px;
+  }
+  .page-sub {
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-weight: 300;
+    letter-spacing: 0.01em;
+  }
 
-  .day-panel { display: none; }
-  .day-panel.active { display: block; }
+  .main-nav {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0 32px;
+    display: flex;
+    gap: 0;
+  }
+  .main-tab {
+    padding: 14px 20px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-tertiary);
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: 'DM Sans', sans-serif;
+    letter-spacing: 0.01em;
+  }
+  .main-tab:hover { color: var(--text-secondary); }
+  .main-tab.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
 
-  .day-header { margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid #e2e0d8; }
-  .day-title { font-size: 20px; font-weight: 500; margin-bottom: 4px; }
-  .day-sub { font-size: 13px; color: #5f5e5a; line-height: 1.5; }
+  .content-area {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 32px 24px 64px;
+  }
 
-  .meta-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-bottom: 20px; }
-  .meta-card { background: #f1efe8; border-radius: 8px; padding: 10px 12px; }
-  .meta-label { font-size: 11px; color: #888780; margin-bottom: 2px; }
-  .meta-val { font-size: 13px; font-weight: 500; }
+  /* ── Day nav ── */
+  .day-nav {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .day-tab {
+    padding: 7px 16px;
+    font-size: 12px;
+    font-weight: 500;
+    border: 1px solid var(--border-mid);
+    border-radius: 20px;
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: 'DM Sans', sans-serif;
+    letter-spacing: 0.01em;
+  }
+  .day-tab.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
 
+  /* ── Panels ── */
+  .tab-panel, .day-panel { display: none; }
+  .tab-panel.active, .day-panel.active { display: block; }
+
+  /* ── Day header ── */
+  .day-header {
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .day-eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .day-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--text-primary);
+    margin-bottom: 5px;
+    letter-spacing: -0.2px;
+  }
+  .day-sub { font-size: 13px; color: var(--text-secondary); font-weight: 300; line-height: 1.55; }
+
+  /* ── Meta cards ── */
+  .meta-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .meta-card {
+    background: var(--surface2);
+    border-radius: var(--radius-md);
+    padding: 10px 14px;
+    flex: 1;
+    min-width: 110px;
+  }
+  .meta-label { font-size: 10px; font-weight: 500; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 2px; }
+  .meta-val { font-size: 13px; font-weight: 500; color: var(--text-primary); }
+
+  /* ── Section label ── */
   .section-label {
-    font-size: 11px; font-weight: 500; letter-spacing: .06em;
-    color: #888780; text-transform: uppercase; margin: 22px 0 10px;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    margin: 24px 0 10px;
   }
-  .rest-bar {
-    background: #f1efe8; border-left: 3px solid #1d9e75;
-    border-radius: 0 8px 8px 0; padding: 8px 12px;
-    margin: 6px 0 12px; font-size: 12px; color: #5f5e5a; line-height: 1.5;
+
+  /* ── Station badge ── */
+  .station-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 500;
+    background: var(--purple-light);
+    color: var(--purple-text);
+    margin-bottom: 10px;
   }
+  .station-badge::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--purple);
+    flex-shrink: 0;
+  }
+
+  /* ── Info bars ── */
+  .rest-bar, .info-bar, .phase-bar {
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    padding: 9px 13px;
+    margin: 4px 0 12px;
+    font-size: 12px;
+    line-height: 1.55;
+  }
+  .rest-bar { background: var(--accent-light); border-left: 3px solid var(--accent); color: var(--accent-text); }
+  .info-bar { background: var(--info-light); border-left: 3px solid #3b82f6; color: var(--info-text); }
+  .phase-bar { background: var(--amber-light); border-left: 3px solid #d97706; color: var(--amber-text); }
+
+  /* ── Exercise card ── */
   .exercise {
-    background: #fff; border: 1px solid #e2e0d8;
-    border-radius: 12px; padding: 14px 16px; margin-bottom: 8px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 14px 16px;
+    margin-bottom: 8px;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.15s;
   }
+  .exercise:hover { box-shadow: var(--shadow-md); }
   .ex-row { display: flex; align-items: flex-start; gap: 12px; }
   .ex-num {
-    min-width: 22px; height: 22px; border-radius: 50%;
-    background: #f1efe8; display: flex; align-items: center; justify-content: center;
-    font-size: 11px; font-weight: 500; color: #5f5e5a; flex-shrink: 0; margin-top: 1px;
+    min-width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--surface2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    flex-shrink: 0;
+    margin-top: 1px;
+    border: 1px solid var(--border);
   }
-  .ex-name { font-size: 14px; font-weight: 500; margin-bottom: 5px; }
-  .ex-detail { font-size: 12px; color: #5f5e5a; line-height: 1.6; }
-  .ex-alt { font-size: 11px; color: #888780; margin-top: 6px; font-style: italic; line-height: 1.5; }
+  .ex-body { flex: 1; min-width: 0; }
+  .ex-name { font-size: 14px; font-weight: 500; color: var(--text-primary); margin-bottom: 4px; }
+  .ex-detail { font-size: 12px; color: var(--text-secondary); line-height: 1.65; }
+  .ex-alt { font-size: 11px; color: var(--text-tertiary); margin-top: 6px; font-style: italic; line-height: 1.5; }
   .ex-why {
-    font-size: 11px; color: #085041; background: #e1f5ee;
-    border-radius: 8px; padding: 5px 9px; margin-top: 7px; line-height: 1.5;
+    font-size: 11px;
+    color: var(--accent-text);
+    background: var(--accent-light);
+    border-radius: var(--radius-sm);
+    padding: 5px 10px;
+    margin-top: 7px;
+    line-height: 1.5;
   }
-  .pill {
-    display: inline-block; padding: 3px 9px; border-radius: 12px;
-    font-size: 11px; font-weight: 500; margin-top: 6px; margin-right: 4px;
+  .tag-row { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 7px; }
+  .tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 8px;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
   }
-  .pill-teal { background: #e1f5ee; color: #085041; }
-  .pill-purple { background: #eeedfe; color: #3c3489; }
-  .pill-amber { background: #faeeda; color: #633806; }
-  .pill-gray { background: #f1efe8; color: #444441; }
+  .tag-green { background: var(--accent-light); color: var(--accent-text); }
+  .tag-purple { background: var(--purple-light); color: var(--purple-text); }
+  .tag-amber { background: var(--amber-light); color: var(--amber-text); }
+  .tag-slate { background: var(--slate-light); color: var(--slate-text); }
+  .tag-coral { background: var(--coral-light); color: var(--coral-text); }
 
-  @media (max-width: 500px) {
-    .meta-grid { grid-template-columns: 1fr 1fr; }
-    .nav-btn { padding: 7px 13px; font-size: 12px; }
+  /* ── Athletic Primer component ── */
+  .primer-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin-bottom: 8px;
+    box-shadow: var(--shadow-sm);
+  }
+  .primer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 13px 16px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.12s;
+  }
+  .primer-header:hover { background: var(--surface2); }
+  .primer-header-left { display: flex; align-items: center; gap: 10px; }
+  .primer-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: var(--amber-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+  }
+  .primer-title { font-size: 14px; font-weight: 500; color: var(--text-primary); }
+  .primer-subtitle { font-size: 11px; color: var(--text-tertiary); margin-top: 1px; }
+  .primer-chevron {
+    font-size: 11px;
+    color: var(--text-tertiary);
+    transition: transform 0.2s;
+  }
+  .primer-chevron.open { transform: rotate(180deg); }
+
+  .primer-fixed {
+    padding: 0 16px 14px;
+    border-top: 1px solid var(--border);
+  }
+  .primer-fixed-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin: 12px 0 8px;
+  }
+  .primer-step {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .primer-step:last-child { border-bottom: none; }
+  .primer-step-num {
+    min-width: 18px;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--amber);
+    margin-top: 2px;
+  }
+  .primer-step-name { font-size: 13px; font-weight: 500; color: var(--text-primary); margin-bottom: 2px; }
+  .primer-step-detail { font-size: 11px; color: var(--text-secondary); line-height: 1.5; }
+
+  .primer-menu { display: none; padding: 0 16px 14px; }
+  .primer-menu.open { display: block; }
+  .primer-menu-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    margin: 12px 0 8px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--border-mid);
+  }
+  .menu-item {
+    display: grid;
+    grid-template-columns: 160px 90px 1fr;
+    gap: 8px;
+    align-items: start;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 12px;
+  }
+  .menu-item:last-child { border-bottom: none; }
+  .menu-item-name { font-weight: 500; color: var(--text-primary); }
+  .menu-item-dose { color: var(--amber); font-weight: 500; font-size: 11px; padding-top: 1px; }
+  .menu-item-cue { color: var(--text-secondary); font-size: 11px; line-height: 1.45; }
+
+  /* ── Home routine ── */
+  .home-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 16px 18px;
+    margin-bottom: 10px;
+    box-shadow: var(--shadow-sm);
+  }
+  .home-block-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .home-block-num {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+  .home-block-title { font-size: 14px; font-weight: 500; color: var(--text-primary); }
+  .home-block-time { font-size: 11px; color: var(--text-tertiary); margin-left: auto; }
+  .home-ex { display: flex; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--border); }
+  .home-ex:last-child { border-bottom: none; padding-bottom: 0; }
+  .home-ex-num { min-width: 18px; font-size: 11px; font-weight: 500; color: var(--text-tertiary); margin-top: 2px; }
+  .home-ex-name { font-size: 13px; font-weight: 500; color: var(--text-primary); margin-bottom: 2px; }
+  .home-ex-detail { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
+
+  /* ── Divider ── */
+  hr { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    .page-header { padding: 20px 16px 18px; }
+    .main-nav { padding: 0 16px; }
+    .main-tab { padding: 12px 14px; font-size: 12px; }
+    .content-area { padding: 20px 14px 48px; }
+    .menu-item { grid-template-columns: 1fr 80px; }
+    .menu-item-cue { grid-column: 1 / -1; padding-top: 0; padding-bottom: 4px; }
+    .meta-card { min-width: 90px; }
   }
 </style>
 </head>
 <body>
-<div class="container">
-  <h1>Lean &amp; Strong — Optimized 4-Day Routine</h1>
-  <p class="subtitle">Tempo-based, decompressive, joint-friendly. Designed to reduce the wide/bulky look, lengthen the silhouette, and build cardiovascular stamina without heavy axial compression.</p>
 
-  <div class="nav">
-    <button class="nav-btn active" onclick="show(0)">Day 1 — Posterior chain</button>
-    <button class="nav-btn" onclick="show(1)">Day 2 — Metabolic core</button>
-    <button class="nav-btn" onclick="show(2)">Day 3 — Stability &amp; push</button>
-    <button class="nav-btn" onclick="show(3)">Day 4 — Flush &amp; reset</button>
+<div class="page-header">
+  <div class="page-title">Lean &amp; Strong — Full Program</div>
+  <div class="page-sub">Phase 1 · Daily Home Routine · Phase 2 Progression &nbsp;·&nbsp; Mon / Wed / Fri / Sat</div>
+</div>
+
+<nav class="main-nav">
+  <button class="main-tab active" onclick="showTab(0)">Phase 1 — Gym</button>
+  <button class="main-tab" onclick="showTab(1)">Daily Home</button>
+  <button class="main-tab" onclick="showTab(2)">Phase 2 — Progression</button>
+</nav>
+
+<div class="content-area">
+
+<!-- ══════════════════════════════════════════
+     PHASE 1
+══════════════════════════════════════════ -->
+<div class="tab-panel active" id="tab0">
+  <div class="day-nav">
+    <button class="day-tab active" onclick="showDay('p1',0)">Day 1 — Pull &amp; Glutes</button>
+    <button class="day-tab" onclick="showDay('p1',1)">Day 2 — Metabolic Core</button>
+    <button class="day-tab" onclick="showDay('p1',2)">Day 3 — Strength &amp; Symmetry</button>
+    <button class="day-tab" onclick="showDay('p1',3)">Day 4 — Flush &amp; Reset</button>
   </div>
 
-  <!-- DAY 1 -->
-  <div class="day-panel active" id="d0">
+  <!-- ── P1 Day 1 ── -->
+  <div class="day-panel active" id="p1d0">
     <div class="day-header">
-      <div class="day-title">Day 1 — Posterior chain &amp; length</div>
-      <div class="day-sub">Pull the back flat, decompress the spine, engage the right glute chain. Tempo lifting trains muscle elongation rather than bulk. No heavy axial compression.</div>
+      <div class="day-eyebrow">Phase 1 · Day 1 · Monday</div>
+      <div class="day-title">Pull, glutes &amp; decompression</div>
+      <div class="day-sub">Lat pulldown standalone → hip thrust standalone → mat giant set. Three clean blocks, no cross-gym transitions.</div>
     </div>
-    <div class="meta-grid">
+    <div class="meta-row">
       <div class="meta-card"><div class="meta-label">Duration</div><div class="meta-val">~60 min</div></div>
       <div class="meta-card"><div class="meta-label">Lifting tempo</div><div class="meta-val">4-1-1</div></div>
-      <div class="meta-card"><div class="meta-label">Rest</div><div class="meta-val">45 s after each round</div></div>
+      <div class="meta-card"><div class="meta-label">Standalone rest</div><div class="meta-val">60 s between sets</div></div>
+      <div class="meta-card"><div class="meta-label">Giant set rest</div><div class="meta-val">45 s after each round</div></div>
     </div>
 
     <div class="section-label">Warm-up</div>
-    <div class="exercise"><div class="ex-row"><div class="ex-num">1</div><div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">1</div><div class="ex-body">
       <div class="ex-name">Incline treadmill walk</div>
-      <div class="ex-detail">10 min — 3.5 mph / 6% incline. Tall posture, no rail grip. Push through the right big toe at each push-off to activate the right glute chain before lifting.</div>
+      <div class="ex-detail">10 min — 3.5 mph / 6% incline. Tall posture, no rail grip. Push through the right big toe at every push-off to begin activating the right glute chain.</div>
     </div></div></div>
+
+    <div class="section-label">Athletic primer</div>
+    <div class="info-bar">Open floor near the treadmill or stretching area. Full recovery between sets — these are not cardio, they are neurological training.</div>
+
+    <!-- PRIMER COMPONENT D1 P1 -->
+    <div class="primer-wrap">
+      <div class="primer-header" onclick="togglePrimer(this)">
+        <div class="primer-header-left">
+          <div class="primer-icon">&#9889;</div>
+          <div>
+            <div class="primer-title">Athletic primer</div>
+            <div class="primer-subtitle">Fixed recommendation shown &nbsp;·&nbsp; tap to see full menu</div>
+          </div>
+        </div>
+        <div class="primer-chevron">&#9660;</div>
+      </div>
+      <div class="primer-fixed">
+        <div class="primer-fixed-label">Recommended — Day 1</div>
+        <div class="primer-step">
+          <div class="primer-step-num">1</div><div>
+            <div class="primer-step-name">Pogo hops</div>
+            <div class="primer-step-detail">3 × 20 contacts — Ankles only, minimal knee bend. Land as quietly as possible. Full rest between sets.</div>
+          </div>
+        </div>
+        <div class="primer-step">
+          <div class="primer-step-num">2</div><div>
+            <div class="primer-step-name">Box jump (onto box)</div>
+            <div class="primer-step-detail">3 × 5 reps — Low box (12–18"). Full hip extension at the top. Step down, never jump down. Full reset before each rep.</div>
+          </div>
+        </div>
+        <div class="primer-step">
+          <div class="primer-step-num">3</div><div>
+            <div class="primer-step-name">Forward &amp; backward hop</div>
+            <div class="primer-step-detail">2 × 8 contacts per direction — Two-foot hop forward, stick 1 s, hop back, stick 1 s. Builds Achilles loading in the sagittal plane.</div>
+          </div>
+        </div>
+      </div>
+      <div class="primer-menu" id="menu-p1d1">
+        <div class="primer-menu-label">Full primer menu — choose any 2–3</div>
+        <div class="menu-item"><div class="menu-item-name">Pogo hops</div><div class="menu-item-dose">3 × 20 contacts</div><div class="menu-item-cue">Ankles only, minimal knee bend, quiet landings.</div></div>
+        <div class="menu-item"><div class="menu-item-name">Skipping</div><div class="menu-item-dose">3 × 30 s</div><div class="menu-item-cue">Relaxed, rhythmic. Good substitute on reactive days.</div></div>
+        <div class="menu-item"><div class="menu-item-name">Box jump (onto box)</div><div class="menu-item-dose">3 × 5 reps</div><div class="menu-item-cue">Low box. Full hip extension at top. Step down every rep.</div></div>
+        <div class="menu-item"><div class="menu-item-name">Depth drop</div><div class="menu-item-dose">3 × 5 reps</div><div class="menu-item-cue">Step off box, absorb landing with soft knees. No immediate jump yet.</div></div>
+        <div class="menu-item"><div class="menu-item-name">Depth drop → vertical jump</div><div class="menu-item-dose">3 × 5 reps</div><div class="menu-item-cue">Step off, land, immediately jump straight up. Minimal ground contact time.</div></div>
+        <div class="menu-item"><div class="menu-item-name">Vertical jump</div><div class="menu-item-dose">3 × 5 reps</div><div class="menu-item-cue">Standing. Full arm swing. Soft landing, absorb fully before next rep.</div></div>
+        <div class="menu-item"><div class="menu-item-name">Lateral hop + stick</div><div class="menu-item-dose">3 × 5 per side</div><div class="menu-item-cue">Hop laterally, land single-leg, hold 2–3 s still. Right side first.</div></div>
+        <div class="menu-item"><div class="menu-item-name">Forward &amp; backward hop</div><div class="menu-item-dose">2 × 8 contacts/dir</div><div class="menu-item-cue">Two-foot. Hop forward, stick 1 s, hop back, stick 1 s.</div></div>
+      </div>
+    </div>
 
     <div class="section-label">Cardio block — choose one</div>
-    <div class="exercise"><div class="ex-row"><div class="ex-num">2</div><div>
-      <div class="ex-name">Backward sled pull</div>
-      <div class="ex-detail">6 rounds × 20 yards — 60 s rest between rounds. Hips low, long stride, right heel drives into the floor. Hip stays in extension the whole time.</div>
-      <div class="ex-alt">Alt A: Rowing machine — 8 × 1 min hard / 1 min easy. Reach fully forward at the catch to stretch and lengthen the spinal erectors.<br>Alt B: Jump rope — 10 × 45 s active / 15 s rest. Balls of feet, soft knees. Skip if the right Achilles feels reactive.</div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">2</div><div class="ex-body">
+      <div class="ex-name">Sled push &amp; pull</div>
+      <div class="ex-detail">6 rounds × 20 yards out (push) + 20 yards back (pull) — 60 s rest between rounds. Push with high handles, flip, pull back. Same sled, same lane throughout.</div>
+      <div class="ex-alt">Alt A: Rowing machine — 8 × 1 min hard / 1 min easy. Reach fully forward at the catch to stretch the erectors.<br>Alt B: Jump rope — 10 × 45 s active / 15 s rest. Soft knees, balls of feet.</div>
     </div></div></div>
 
-    <div class="section-label">Giant set — 4 rounds</div>
-    <div class="rest-bar">Exercises A → B → C → D back-to-back with no rest between them. Rest 45 s after completing all four. Repeat 4 rounds total.</div>
-
-    <div class="exercise"><div class="ex-row"><div class="ex-num">A</div><div>
+    <div class="section-label">Strength block A — standalone</div>
+    <div class="station-badge">Station: Cable machine</div>
+    <div class="rest-bar">4 working sets. 60 s rest between sets. Full attention — no superset here.</div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">A</div><div class="ex-body">
       <div class="ex-name">Wide-grip lat pulldown</div>
-      <div class="ex-detail">4 × 15 reps — Tempo 4-1-1. Depress the scapulae first, then bend the elbows. The long eccentric on the way up stretches and gradually elongates the hypertrophied erectors. Light-to-moderate load only.</div>
-      <span class="pill pill-teal">Erector elongation</span><span class="pill pill-teal">Width reduction</span>
+      <div class="ex-detail">4 × 12–15 reps — Tempo 4-1-1. Depress the scapulae first, then pull. The long eccentric on the way up is what gradually elongates the hypertrophied erectors. Light-to-moderate load — this is structural work, not a strength competition.</div>
+      <div class="ex-why">Consistent slow eccentrics over 8–12 weeks are the primary driver of reducing the erector-driven wide look. The stretch at the top of each rep matters more than the load.</div>
+      <div class="tag-row"><span class="tag tag-green">Erector elongation</span><span class="tag tag-green">Width reduction</span></div>
     </div></div></div>
 
-    <div class="exercise"><div class="ex-row"><div class="ex-num">B</div><div>
-      <div class="ex-name">Clamshell (banded)</div>
-      <div class="ex-detail">4 × 20 reps per side — Band above the knee, side-lying. Pelvis absolutely stacked — do not roll back. Right side first each round. 1 s pause at the top.</div>
-      <div class="ex-why">The most direct glute medius exercise available. Strengthening the glute medius pulls the laterally shifted pelvis back into neutral, directly reducing the wide hip appearance.</div>
-      <span class="pill pill-teal">Glute medius</span><span class="pill pill-teal">Pelvic alignment</span>
+    <div class="section-label">Strength block B — standalone</div>
+    <div class="station-badge">Station: Hip thrust machine</div>
+    <div class="rest-bar">4 working sets. 60 s rest between sets. Progressive overload — add load when all reps feel fully controlled.</div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">B</div><div class="ex-body">
+      <div class="ex-name">Hip thrust (machine)</div>
+      <div class="ex-detail">4 × 12 reps — Full range, squeeze hard at the top with a posterior pelvic tilt, hold 1 s. Drive through both feet evenly — watch that the right side matches the left output. No spinal compression involved.</div>
+      <div class="ex-why">Direct glute max loading through hip extension. The posterior pelvic tilt at the top directly counteracts anterior pelvic tilt and reduces the flared hip appearance. Safe progressive overload with zero erector bracing demand.</div>
+      <div class="tag-row"><span class="tag tag-green">APT correction</span><span class="tag tag-green">Glute max</span></div>
     </div></div></div>
 
-    <div class="exercise"><div class="ex-row"><div class="ex-num">C</div><div>
-      <div class="ex-name">Bodyweight glute bridge</div>
-      <div class="ex-detail">4 × 25 reps — Squeeze hard at the top and hold a posterior pelvic tilt for 1 s. Feet hip-width. The posterior tilt directly counteracts anterior pelvic tilt and reduces the flared hip look.</div>
-      <span class="pill pill-teal">Pelvic tilt correction</span><span class="pill pill-teal">Glute activation</span>
-    </div></div></div>
-
-    <div class="exercise"><div class="ex-row"><div class="ex-num">D</div><div>
+    <div class="section-label">Giant set — 3 rounds</div>
+    <div class="station-badge">Station: Mat area — floor only, no equipment moves</div>
+    <div class="rest-bar">C → D → E back-to-back with no rest between. Rest 45 s after all three. Repeat 3 rounds.</div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">C</div><div class="ex-body">
       <div class="ex-name">Dead bug</div>
-      <div class="ex-detail">4 × 10 reps per side — Lower back pinned completely flat throughout. Move slowly. Stop the descending leg before 90° if the back lifts. No breath-holding.</div>
-      <span class="pill pill-purple">TVA + multifidus</span><span class="pill pill-purple">Lumbar stability</span>
+      <div class="ex-detail">3 × 10 reps per side — Lower back pinned flat the entire time. Move slowly. Stop the leg before 90° if the back lifts. No breath-holding.</div>
+      <div class="tag-row"><span class="tag tag-purple">TVA + multifidus</span></div>
+    </div></div></div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">D</div><div class="ex-body">
+      <div class="ex-name">Copenhagen plank</div>
+      <div class="ex-detail">3 × 20–30 s per side — Top foot on a low bench or step. Hold a side plank. Start with the bottom knee lightly touching the floor if needed. Build toward 45 s over weeks.</div>
+      <div class="ex-why">High combined oblique and adductor activation with zero hip joint compression. Contributes to a leaner waist and inner-thigh silhouette over time.</div>
+      <div class="tag-row"><span class="tag tag-purple">Oblique + adductor</span></div>
+    </div></div></div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">E</div><div class="ex-body">
+      <div class="ex-name">Bird-dog</div>
+      <div class="ex-detail">3 × 10 reps per side — Opposite arm and leg extend simultaneously. 2 s pause at full extension, maximum length from fingertip to toe.</div>
+      <div class="tag-row"><span class="tag tag-purple">Multifidus + TVA</span></div>
     </div></div></div>
 
     <div class="section-label">Finisher</div>
-    <div class="exercise"><div class="ex-row"><div class="ex-num">3</div><div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">3</div><div class="ex-body">
       <div class="ex-name">Dead hang</div>
-      <div class="ex-detail">5 rounds × 30 s on / 30 s off — Shoulders completely passive and relaxed. Consistent dead hangs over 8–12 weeks are one of the most effective tools for reducing the erector-driven "thick back" appearance.</div>
-      <span class="pill pill-gray">Spinal decompression</span>
-    </div></div></div>
-
-    <div class="section-label">Cool-down</div>
-    <div class="exercise"><div class="ex-row"><div class="ex-num">4</div><div>
-      <div class="ex-name">90/90 hip stretch + supine figure-4</div>
-      <div class="ex-detail">6 min — 90 s per side in 90/90 (hip capsule), then supine figure-4 piriformis stretch. Right side held 15–20 s longer than left.</div>
-      <span class="pill pill-amber">Hip capsule</span><span class="pill pill-amber">Right-side recovery</span>
+      <div class="ex-detail">4 × 30 s on / 30 s off — Pull-up bar. Shoulders fully passive and relaxed. One of the most consistent habits for reducing the erector-driven wide look over 8–12 weeks.</div>
+      <div class="tag-row"><span class="tag tag-slate">Spinal decompression</span></div>
     </div></div></div>
   </div>
 
-  <!-- DAY 2 -->
-  <div class="day-panel" id="d1">
+  <!-- ── P1 Day 2 ── -->
+  <div class="day-panel" id="p1d1">
     <div class="day-header">
-      <div class="day-title">Day 2 — Metabolic core &amp; waist</div>
-      <div class="day-sub">High-output cardio burn combined with targeted TVA and oblique work. The combination of stomach vacuums, pallof press, and woodchops is the most evidence-supported approach to waist narrowing without adding bulk.</div>
+      <div class="day-eyebrow">Phase 1 · Day 2 · Wednesday</div>
+      <div class="day-title">Metabolic core &amp; waist</div>
+      <div class="day-sub">High-output cardio, seated row standalone, oblique circuit, TVA finisher. All circuit work stays at the cable and TRX station.</div>
     </div>
-    <div class="meta-grid">
+    <div class="meta-row">
       <div class="meta-card"><div class="meta-label">Duration</div><div class="meta-val">~55 min</div></div>
       <div class="meta-card"><div class="meta-label">Circuit rest</div><div class="meta-val">60 s between rounds</div></div>
       <div class="meta-card"><div class="meta-label">Finisher rest</div><div class="meta-val">45 s between rounds</div></div>
     </div>
 
     <div class="section-label">Warm-up</div>
-    <div class="exercise"><div class="ex-row"><div class="ex-num">1</div><div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">1</div><div class="ex-body">
       <div class="ex-name">Brisk flat walk</div>
-      <div class="ex-detail">5 min — Easy pace to elevate heart rate gently. Shoulders back, long stride.</div>
+      <div class="ex-detail">5 min — Easy pace, shoulders back, long stride. Arm swing engaged.</div>
     </div></div></div>
+
+    <div class="section-label">Athletic primer</div>
+    <div class="primer-wrap">
+      <div class="primer-header" onclick="togglePrimer(this)">
+        <div class="primer-header-left">
+          <div class="primer-icon">&#9889;</div>
+          <div>
+            <div class="primer-title">Athletic primer</div>
+            <div class="primer-subtitle">Fixed recommendation shown &nbsp;·&nbsp; tap to see full menu</div>
+          </div>
+        </div>
+        <div class="primer-chevron">&#9660;</div>
+      </div>
+      <div class="primer-fixed">
+        <div class="primer-fixed-label">Recommended — Day 2</div>
+        <div class="primer-step">
+          <div class="primer-step-num">1</div><div>
+            <div class="primer-step-name">Lateral hop + stick</div>
+            <div class="primer-step-detail">3 × 5 per side — Hop laterally, land single-leg, hold still for 2–3 s. Right side first. No wobble before releasing.</div>
+          </div>
+        </div>
+        <div class="primer-step">
+          <div class="primer-step-num">2</div><div>
+            <div class="primer-step-name">Depth drop</div>
+            <div class="primer-step-detail">3 × 5 reps — Step off a low box, land with soft knees and full absorption. Focus entirely on landing quality. Full reset between reps.</div>
+          </div>
+        </div>
+      </div>
+      <div class="primer-menu" id="menu-p1d2">
+        <div class="primer-menu-label">Full primer menu — choose any 2–3</div>
+        <div class="menu-item"><div class="menu-item-name">Pogo hops</div><div class="menu-item-dose">3 × 20 contacts</div><div class="menu-item-cue">Ankles only, minimal knee bend, quiet landings.</div></div>
+        <div class="menu-item"><div class="menu-item-name">Skipping</div><div class="menu-item-dose">3 × 30 s</div><div class="menu-item-cue">Relaxed, rhythmic. Good substitute on reactive days.</div></div>
+        <div class="menu-item"><div class="menu-item-name">Box jump (onto box)</div><div class="menu-item-dose">3 × 5 reps</div><div class="menu-item-cue">Low box. Full hip extension at top. Step down every rep.</div></div>
+        <div class="menu-item"><div class="menu-item-name">Depth drop</div><div class="menu-item-dose">3 × 5 reps</div><div class="menu-item-cue">Step off box, absorb landing with soft knees. No immediate jump yet.</div></div>
+        <div class="menu-item"><div class="menu-item-name">Depth drop → vertical jump</div><div class="menu-item-dose">3 × 5 reps</div><div class="menu-item-cue">Step off, land, immediately jump straight up. Minimal ground contact time.</div></div>
+        <div class="menu-item"><div class="menu-item-name">Vertical jump</div><div class="menu-item-dose">3 × 5 reps</div><div class="menu-item-cue">Standing. Full arm swing. Soft landing, absorb fully before next rep.</div></div>
+        <div class="menu-item"><div class="menu-item-name">Lateral hop + stick</div><div class="menu-item-dose">3 × 5 per side</div><div class="menu-item-cue">Hop laterally, land single-leg, hold 2–3 s still. Right side first.</div></div>
+        <div class="menu-item"><div class="menu-item-name">Forward &amp; backward hop</div><div class="menu-item-dose">2 × 8 contacts/dir</div><div class="menu-item-cue">Two-foot. Hop forward, stick 1 s, hop back, stick 1 s.</div></div>
+      </div>
+    </div>
 
     <div class="section-label">Cardio block — choose one</div>
-    <div class="exercise"><div class="ex-row"><div class="ex-num">2</div><div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">2</div><div class="ex-body">
       <div class="ex-name">Assault / fan bike</div>
-      <div class="ex-detail">10 rounds × 30 s max effort / 30 s easy — Equal arm and leg drive. Right knee tracks over the right toe throughout.</div>
-      <div class="ex-alt">Alt A: Jump rope — 10 × 45 s active / 15 s rest. Balls of feet, soft knees. Highest caloric burn per minute on this list.<br>Alt B: Stairmaster — 12 min at level 8–10, no hands. Drive through the heel, full step.<br>Alt C: Rowing machine — 8 × 45 s hard / 45 s easy at resistance 6–8.</div>
+      <div class="ex-detail">10 rounds × 30 s max effort / 30 s easy — Equal arm and leg drive. Right knee tracks over right toe.</div>
+      <div class="ex-alt">Alt A: Jump rope — 10 × 45 s active / 15 s rest. Highest caloric burn per minute on this list.<br>Alt B: Stairmaster — 12 min at level 8–10, no hands. Full step, heel drive.<br>Alt C: Rowing machine — 8 × 45 s hard / 45 s easy at resistance 6–8.</div>
     </div></div></div>
 
-    <div class="section-label">Metabolic circuit — 5 rounds</div>
+    <div class="section-label">Strength block — standalone</div>
+    <div class="station-badge">Station: Cable machine (seated row attachment)</div>
+    <div class="rest-bar">3 working sets. 60 s rest between sets. Keep load light-to-moderate — postural exercise, not a strength movement. Do not grind heavy reps.</div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">A</div><div class="ex-body">
+      <div class="ex-name">Seated cable row</div>
+      <div class="ex-detail">3 × 12–15 reps — Tempo 3-1-1. Full reach forward at the start, hard scapular squeeze at the end. Sit tall, no excessive back lean. Moderate load only.</div>
+      <div class="ex-why">Builds mid-back density that creates visual contrast and makes the waist appear narrower. Keeping load moderate avoids the erector thickening effect of heavy rowing.</div>
+      <div class="tag-row"><span class="tag tag-green">Mid-back</span><span class="tag tag-green">Postural</span></div>
+    </div></div></div>
+
+    <div class="section-label">Metabolic circuit — 4 rounds</div>
+    <div class="station-badge">Station: TRX + bench + cable — all adjacent</div>
     <div class="rest-bar">A → B → C back-to-back, minimal rest between exercises. 60 s full rest after each complete round.</div>
-
-    <div class="exercise"><div class="ex-row"><div class="ex-num">A</div><div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">B</div><div class="ex-body">
       <div class="ex-name">Incline push-up (on bench)</div>
-      <div class="ex-detail">5 × 20 reps — Hands on bench, body in a rigid plank. Full range of motion. Ribcage pulled in throughout. Elevating the hands reduces pec dominance and avoids over-developing the chest width.</div>
+      <div class="ex-detail">4 × 15–20 reps — Hands on bench, rigid plank. Full range of motion. Ribcage pulled in. Reduces pec dominance versus a flat push-up.</div>
     </div></div></div>
-
-    <div class="exercise"><div class="ex-row"><div class="ex-num">B</div><div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">C</div><div class="ex-body">
       <div class="ex-name">TRX row</div>
-      <div class="ex-detail">5 × 15 reps — Full stretch at the bottom, hard scapular squeeze at the top. Body stays rigid like a plank. Builds mid-back density that narrows the waist by contrast.</div>
+      <div class="ex-detail">4 × 12–15 reps — Full stretch at the bottom, hard scapular squeeze at the top. Body stays rigid like a plank throughout. If no TRX, use seated cable row at the same station.</div>
     </div></div></div>
-
-    <div class="exercise"><div class="ex-row"><div class="ex-num">C</div><div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">D</div><div class="ex-body">
       <div class="ex-name">Tall-kneeling cable woodchop</div>
-      <div class="ex-detail">5 × 12 reps per side — Both knees on the ground, cable anchored high. Rotate through the trunk only, not the hips. Slow and controlled on the return.</div>
-      <div class="ex-why">Trains the obliques through full rotation with the hip joint completely neutralized. Produces high oblique activation with zero joint provocation.</div>
-      <span class="pill pill-purple">Obliques</span><span class="pill pill-purple">Hip-safe</span>
+      <div class="ex-detail">4 × 10 reps per side — Both knees on the floor, cable anchored high. Rotate through the trunk only. Slow and controlled on the return. Kneel on a mat at the cable base.</div>
+      <div class="ex-why">Full oblique rotation with the hip joint completely neutralized. High oblique activation, zero joint provocation.</div>
+      <div class="tag-row"><span class="tag tag-purple">Obliques</span></div>
     </div></div></div>
 
-    <div class="section-label">Waist-cinch finisher — 3 rounds, 45 s rest</div>
-
-    <div class="exercise"><div class="ex-row"><div class="ex-num">3</div><div>
+    <div class="section-label">Waist finisher — 2–3 rounds, 45 s rest</div>
+    <div class="station-badge">Station: Same cable machine — change attachment and height only</div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">3</div><div class="ex-body">
       <div class="ex-name">Pallof press</div>
-      <div class="ex-detail">3 × 12 reps per side — Cable or band at chest height. Press directly forward, hold 2 s, return slowly. Do not rotate. Trains the TVA and obliques as anti-rotation stabilizers — their primary function.</div>
-      <span class="pill pill-purple">TVA "inner corset"</span>
-    </div></div></div>
-
-    <div class="exercise"><div class="ex-row"><div class="ex-num">4</div><div>
-      <div class="ex-name">Stomach vacuum</div>
-      <div class="ex-detail">3 × 5 reps × 20 s hold — Exhale fully, draw navel to spine, hold without bracing or puffing the chest. Practice making this a postural habit throughout the day — that's where the long-term waist results accumulate.</div>
-      <div class="ex-why">Consistent vacuum training measurably reduces waist circumference over 8–12 weeks by training the TVA to maintain a tighter resting tone.</div>
-      <span class="pill pill-purple">TVA isolation</span>
+      <div class="ex-detail">2–3 × 10–12 reps per side — Cable at chest height. Press directly forward, hold 2 s, return slowly. Do not rotate. Stand or half-kneel.</div>
+      <div class="tag-row"><span class="tag tag-purple">TVA anti-rotation</span></div>
     </div></div></div>
 
     <div class="section-label">Tendon care</div>
-    <div class="exercise"><div class="ex-row"><div class="ex-num">5</div><div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">4</div><div class="ex-body">
       <div class="ex-name">Eccentric heel drop</div>
-      <div class="ex-detail">3 × 15 reps per side — Step edge, rise on both feet, lower slowly on one foot over 4 s with heel dropping below step level. Right side priority. Add a small plate to hold as it gets easier.</div>
-      <div class="ex-why">The Alfredson protocol — the most replicated clinical intervention for Achilles tendon remodeling. Particularly important on jump rope days.</div>
-      <span class="pill pill-amber">Achilles remodeling</span>
+      <div class="ex-detail">3 × 15 reps per side — Step or plate edge. Rise on both feet, lower slowly on one over 4 s, heel below step level. Right side priority. Add load as it gets easier over weeks.</div>
+      <div class="ex-why">Alfredson protocol. Most important on jump rope days. Drives Achilles tendon collagen synthesis and long-term resilience.</div>
+      <div class="tag-row"><span class="tag tag-amber">Achilles remodeling</span></div>
     </div></div></div>
   </div>
 
-  <!-- DAY 3 -->
-  <div class="day-panel" id="d2">
+  <!-- ── P1 Day 3 ── -->
+  <div class="day-panel" id="p1d2">
     <div class="day-header">
-      <div class="day-title">Day 3 — Symmetrical stability &amp; push</div>
-      <div class="day-sub">Correct right-side asymmetry, build tall posture, reinforce the outer hip. The Copenhagen plank trains obliques and adductors simultaneously — a key addition for the lean silhouette goal.</div>
+      <div class="day-eyebrow">Phase 1 · Day 3 · Friday</div>
+      <div class="day-title">Unilateral strength &amp; symmetry</div>
+      <div class="day-sub">Dumbbell strength standalones, cable giant set, leg curl. Each block has its own station — no cross-gym transitions mid-set.</div>
     </div>
-    <div class="meta-grid">
-      <div class="meta-card"><div class="meta-label">Duration</div><div class="meta-val">~60 min</div></div>
-      <div class="meta-card"><div class="meta-label">Lifting tempo</div><div class="meta-val">4-1-1</div></div>
-      <div class="meta-card"><div class="meta-label">Rest</div><div class="meta-val">45 s after each round</div></div>
+    <div class="meta-row">
+      <div class="meta-card"><div class="meta-label">Duration</div><div class="meta-val">~65 min</div></div>
+      <div class="meta-card"><div class="meta-label">Tempo (strength)</div><div class="meta-val">3-1-1</div></div>
+      <div class="meta-card"><div class="meta-label">Strength rest</div><div class="meta-val">60–75 s between sets</div></div>
     </div>
 
     <div class="section-label">Warm-up</div>
-    <div class="exercise"><div class="ex-row"><div class="ex-num">1</div><div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">1</div><div class="ex-body">
       <div class="ex-name">Incline treadmill walk</div>
       <div class="ex-detail">10 min — 3.0 mph / 8% incline. Heel drive, glute engagement, no rail grip. Deliberate glute activation warm-up, not casual cardio.</div>
     </div></div></div>
 
+    <div class="section-label">Athletic primer</div>
+    <div class="primer-wrap">
+      <div class="primer-header" onclick="togglePrimer(this)">
+        <div class="primer-header-left">
+          <div class="primer-icon">&#9889;</div>
+          <div>
+            <div class="primer-title">Athletic primer</div>
+            <div class="primer-subtitle">Fixed recommendation shown &nbsp;·&nbsp; tap to see full menu</div>
+          </div>
+        </div>
+        <div class="primer-chevron">&#9660;</div>
+      </div>
+      <div class="primer-fixed">
+        <div class="primer-fixed-label">Recommended — Day 3</div>
+        <div class="primer-step">
+          <div class="primer-step-num">1</div><div>
+            <div class="primer-step-name">Depth drop → vertical jump</div>
+            <div class="primer-step-detail">3 × 5 reps — Step off low box, land, immediately jump straight up. Minimal ground contact time. Full reset between reps.</div>
+          </div>
+        </div>
+        <div class="primer-step">
+          <div class="primer-step-num">2</div><div>
+            <div class="primer-step-name">Lateral hop + stick</div>
+            <div class="primer-step-detail">3 × 5 per side — Small lateral hop, stick for 2–3 s completely still. Right side first. No wobble before releasing.</div>
+          </div>
+        </div>
+      </div>
+      <div class="primer-menu" id="menu-p1d3">
+        <div class="primer-menu-label">Full primer menu — choose any 2–3</div>
+        <div class="menu-item"><div class="menu-item-name">Pogo hops</div><div class="menu-item-dose">3 × 20 contacts</div><div class="menu-item-cue">Ankles only, minimal knee bend, quiet landings.</div></div>
+        <div class="menu-item"><div class="menu-item-name">Skipping</div><div class="menu-item-dose">3 × 30 s</div><div class="menu-item-cue">Relaxed, rhythmic. Good substitute on reactive days.</div></div>
+        <div class="menu-item"><div class="menu-item-name">Box jump (onto box)</div><div class="menu-item-dose">3 × 5 reps</div><div class="menu-item-cue">Low box. Full hip extension at top. Step down every rep.</div></div>
+        <div class="menu-item"><div class="menu-item-name">Depth drop</div><div class="menu-item-dose">3 × 5 reps</div><div class="menu-item-cue">Step off box, absorb landing with soft knees. No immediate jump yet.</div></div>
+        <div class="menu-item"><div class="menu-item-name">Depth drop → vertical jump</div><div class="menu-item-dose">3 × 5 reps</div><div class="menu-item-cue">Step off, land, immediately jump straight up. Minimal ground contact time.</div></div>
+        <div class="menu-item"><div class="menu-item-name">Vertical jump</div><div class="menu-item-dose">3 × 5 reps</div><div class="menu-item-cue">Standing. Full arm swing. Soft landing, absorb fully before next rep.</div></div>
+        <div class="menu-item"><div class="menu-item-name">Lateral hop + stick</div><div class="menu-item-dose">3 × 5 per side</div><div class="menu-item-cue">Hop laterally, land single-leg, hold 2–3 s still. Right side first.</div></div>
+        <div class="menu-item"><div class="menu-item-name">Forward &amp; backward hop</div><div class="menu-item-dose">2 × 8 contacts/dir</div><div class="menu-item-cue">Two-foot. Hop forward, stick 1 s, hop back, stick 1 s.</div></div>
+      </div>
+    </div>
+
     <div class="section-label">Cardio block — choose one</div>
-    <div class="exercise"><div class="ex-row"><div class="ex-num">2</div><div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">2</div><div class="ex-body">
       <div class="ex-name">Stairmaster (no hands)</div>
-      <div class="ex-detail">12 min — Level 8–10, steady challenging pace. Full step, drive through the heel. Preferred Day 3 option — pairs well with the hip stability focus and is excellent for glute development.</div>
-      <div class="ex-alt">Alt A: Assault bike — 10 × 40 s on / 20 s off.<br>Alt B: Jump rope — 10 × 45 s active / 15 s rest.<br>Alt C: Sled push (high handles) — 6 × 20 yards, 60 s rest between rounds.</div>
+      <div class="ex-detail">12 min — Level 8–10. Full step, heel drive. Preferred Day 3 option — glute activation primes the strength work that follows.</div>
+      <div class="ex-alt">Alt A: Assault bike — 10 × 40 s on / 20 s off.<br>Alt B: Jump rope — 10 × 45 s active / 15 s rest.<br>Alt C: Sled push &amp; pull — 6 rounds × 20 yards each way, 60 s rest.</div>
     </div></div></div>
 
-    <div class="section-label">Giant set — 4 rounds</div>
-    <div class="rest-bar">A → B → C → D back-to-back. Rest 45 s after all four. Repeat 4 rounds total.</div>
+    <div class="section-label">Strength block A — standalone superset</div>
+    <div class="station-badge">Station: Dumbbell rack + bench beside it</div>
+    <div class="rest-bar">RFESS and single-leg RDL share the same bench and DBs. Do them back-to-back as a superset. 75 s rest between rounds. 4 rounds total.</div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">A</div><div class="ex-body">
+      <div class="ex-name">Rear-foot elevated split squat (DB)</div>
+      <div class="ex-detail">4 × 8–10 reps per side — Tempo 3-1-1. Rear foot on the bench. Right side first. Slight forward torso lean, full depth without hip pinch. Start light — this is harder than it looks.</div>
+      <div class="ex-why">Best standing exercise for anterior pelvic tilt. Stretches the rear hip flexor under load. Reaches muscular failure before any spinal compression occurs.</div>
+      <div class="tag-row"><span class="tag tag-green">APT correction</span><span class="tag tag-green">Unilateral strength</span></div>
+    </div></div></div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">B</div><div class="ex-body">
+      <div class="ex-name">Single-leg RDL (DB)</div>
+      <div class="ex-detail">4 × 8 reps per side — Tempo 3-1-1. Hips square, slight knee bend, DBs hang close to the leg. Right side first. Stop before the back rounds. Use the same DBs from RFESS.</div>
+      <div class="ex-why">Trains the hamstring and glute in the hip hinge pattern needed for athletic movement. Critical for right-side posterior chain symmetry.</div>
+      <div class="tag-row"><span class="tag tag-green">Posterior chain</span><span class="tag tag-green">Hip symmetry</span></div>
+    </div></div></div>
 
-    <div class="exercise"><div class="ex-row"><div class="ex-num">A</div><div>
+    <div class="section-label">Strength block B — superset</div>
+    <div class="station-badge">Station: Cable machine + mat beside it</div>
+    <div class="rest-bar">Face-pull then RKC plank back-to-back. 60 s rest between rounds. 3 rounds.</div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">C</div><div class="ex-body">
       <div class="ex-name">Cable face-pull</div>
-      <div class="ex-detail">4 × 20 reps — Rope at eye level. Pull to forehead, elbows high and wide, thumbs back, hard external rotation at end range. The best single exercise for reversing internally rotated shoulders from years of heavy pressing.</div>
-      <span class="pill pill-teal">Shoulder retraction</span><span class="pill pill-teal">Posture</span>
+      <div class="ex-detail">3 × 15–20 reps — Rope at eye level. Pull to forehead, elbows high and wide, hard external rotation at end range. Thumbs point back at the finish.</div>
+      <div class="ex-why">Best exercise for reversing internally rotated shoulders from years of heavy pressing. Directly reduces the blocked, wide upper-body appearance.</div>
+      <div class="tag-row"><span class="tag tag-green">Shoulder retraction</span><span class="tag tag-green">Posture</span></div>
+    </div></div></div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">D</div><div class="ex-body">
+      <div class="ex-name">RKC plank</div>
+      <div class="ex-detail">3 × 25–30 s — Forearm plank: drag elbows toward feet, squeeze glutes and fists as hard as possible throughout. Far higher TVA activation than a standard plank.</div>
+      <div class="tag-row"><span class="tag tag-purple">TVA</span></div>
     </div></div></div>
 
-    <div class="exercise"><div class="ex-row"><div class="ex-num">B</div><div>
-      <div class="ex-name">Side-lying hip abduction (banded)</div>
-      <div class="ex-detail">4 × 20 reps per side — Band above the knee. Slow and controlled, pelvis stays stacked. Right side first. 1 s pause at the top. Progress to a heavier band as this gets easy.</div>
-      <div class="ex-why">Trains the glute medius through abduction with the hip joint completely offloaded. Safest and most targeted outer hip exercise for this profile.</div>
-      <span class="pill pill-teal">Glute medius</span><span class="pill pill-teal">Hip alignment</span>
+    <div class="section-label">Strength block C — standalone</div>
+    <div class="station-badge">Station: Leg curl machine</div>
+    <div class="rest-bar">3 working sets. 60 s rest between sets.</div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">E</div><div class="ex-body">
+      <div class="ex-name">Leg curl (single-leg preferred)</div>
+      <div class="ex-detail">3 × 10–12 reps per side — Controlled tempo, full range. Right side first. Single-leg is preferred for symmetry. If only bilateral is available, focus on matching effort side-to-side.</div>
+      <div class="ex-why">Trains the hamstring through knee flexion, which the single-leg RDL doesn't cover. Directly supports the knee joint after the lateral meniscus tear.</div>
+      <div class="tag-row"><span class="tag tag-green">Hamstring</span><span class="tag tag-amber">Knee support</span></div>
     </div></div></div>
 
-    <div class="exercise"><div class="ex-row"><div class="ex-num">C</div><div>
-      <div class="ex-name">Seated scapular depression</div>
-      <div class="ex-detail">4 × 15 reps — Arms straight at sides, pull shoulders down away from ears and hold 2 s. Trains the lower trapezius directly, counteracting upper-trap dominance that creates the thick elevated shoulder look.</div>
-      <span class="pill pill-teal">Lower trap</span><span class="pill pill-teal">Neck elongation</span>
-    </div></div></div>
-
-    <div class="exercise"><div class="ex-row"><div class="ex-num">D</div><div>
-      <div class="ex-name">Copenhagen plank (adductor hold)</div>
-      <div class="ex-detail">4 × 20–30 s per side — Top foot on a bench, bottom leg raised or lightly resting. Hold a side plank position. Build toward 45 s as strength improves. Start with the bottom knee on the floor if needed.</div>
-      <div class="ex-why">Research shows some of the highest combined oblique and adductor activation of any exercise, in a side-lying position with zero hip compression. Also contributes to a leaner inner-thigh appearance over time.</div>
-      <span class="pill pill-purple">Oblique + adductor</span><span class="pill pill-purple">Waist</span>
-    </div></div></div>
-
-    <div class="section-label">Neurological finisher</div>
-    <div class="exercise"><div class="ex-row"><div class="ex-num">3</div><div>
-      <div class="ex-name">Single-leg balance — right side focus</div>
-      <div class="ex-detail">5 rounds × 30 s each side — Eyes open on firm ground first. Progress to eyes closed. Then to a folded mat or balance disc. Retrains the proprioceptive deficit running from the Achilles through the lateral meniscus and up to the hip.</div>
-      <span class="pill pill-amber">Right-side neuro rehab</span>
-    </div></div></div>
-
-    <div class="section-label">Cool-down</div>
-    <div class="exercise"><div class="ex-row"><div class="ex-num">4</div><div>
-      <div class="ex-name">90/90 stretch + thread-the-needle</div>
-      <div class="ex-detail">6 min — 90 s per side in 90/90, then thread-the-needle thoracic rotation for 60 s per side on all-fours. Opens the thoracic spine, which is typically restricted in heavy lifters and contributes to the blocked, wide posture.</div>
-      <span class="pill pill-amber">Thoracic mobility</span><span class="pill pill-amber">Hip capsule</span>
+    <div class="section-label">Finisher</div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">3</div><div class="ex-body">
+      <div class="ex-name">Dead hang</div>
+      <div class="ex-detail">4 × 30 s on / 30 s off — Fully passive shoulders. Spinal decompression after the loaded strength work.</div>
+      <div class="tag-row"><span class="tag tag-slate">Spinal decompression</span></div>
     </div></div></div>
   </div>
 
-  <!-- DAY 4 -->
-  <div class="day-panel" id="d3">
+  <!-- ── P1 Day 4 ── -->
+  <div class="day-panel" id="p1d3">
     <div class="day-header">
-      <div class="day-title">Day 4 — Full-body flush &amp; reset</div>
-      <div class="day-sub">Maximum fat oxidation, nervous system recovery, and spinal decompression. This day has an outsized effect on long-term body composition and how the body looks at rest.</div>
+      <div class="day-eyebrow">Phase 1 · Day 4 · Saturday</div>
+      <div class="day-title">Full-body flush &amp; reset</div>
+      <div class="day-sub">Fat oxidation, aerobic base, nervous system recovery. Entire flush circuit done in one spot. Band pull-aparts replace the squat hold for active recovery that directly serves the posture goal.</div>
     </div>
-    <div class="meta-grid">
-      <div class="meta-card"><div class="meta-label">Duration</div><div class="meta-val">~55 min</div></div>
+    <div class="meta-row">
+      <div class="meta-card"><div class="meta-label">Duration</div><div class="meta-val">~50 min</div></div>
       <div class="meta-card"><div class="meta-label">Circuit rest</div><div class="meta-val">60 s between rounds</div></div>
-      <div class="meta-card"><div class="meta-label">Finisher rest</div><div class="meta-val">45 s between rounds</div></div>
+      <div class="meta-card"><div class="meta-label">Core finisher rest</div><div class="meta-val">45 s between rounds</div></div>
     </div>
 
     <div class="section-label">Warm-up</div>
-    <div class="exercise"><div class="ex-row"><div class="ex-num">1</div><div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">1</div><div class="ex-body">
       <div class="ex-name">Brisk walk + cat-cow</div>
-      <div class="ex-detail">5 min walk, then 2 min cat-cow (10 slow reps) on all-fours. Mobilizes the lumbar spine before the circuit and begins the parasympathetic shift.</div>
+      <div class="ex-detail">5 min walk, then 2 min cat-cow (10 slow reps) on a nearby mat. Mobilizes the lumbar spine and begins the parasympathetic shift before the circuit.</div>
+    </div></div></div>
+
+    <div class="section-label">"60-second" flush circuit — 4 rounds</div>
+    <div class="station-badge">Station: Sled lane OR assault bike + floor immediately beside it</div>
+    <div class="rest-bar">A → B → C back-to-back with no rest between exercises. 60 s full rest after all three. Everything stays in the same spot.</div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">A</div><div class="ex-body">
+      <div class="ex-name">Sled push &amp; pull</div>
+      <div class="ex-detail">4 × 60 s — Push 20 yards, flip handles, pull back. Continuous for the full 60 s. High effort throughout.</div>
+      <div class="ex-alt">Alt: Assault bike — 60 s all-out. Or rowing machine — 60 s at high resistance.</div>
+    </div></div></div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">B</div><div class="ex-body">
+      <div class="ex-name">Resistance band pull-apart</div>
+      <div class="ex-detail">4 × 60 s continuous reps — Light resistance band held at shoulder width. Arms straight, pull apart to full extension, return slowly. Can be done standing in the sled lane immediately after A. Aim for 40–50 controlled reps in the 60 s.</div>
+      <div class="ex-why">Trains the rear deltoid, mid-trap, and rhomboids — the exact muscles that pull the shoulders back and reduce the wide, forward-rolled upper-body look. Direct carryover to the dead hang and face-pull goal. Zero equipment transition from the sled.</div>
+      <div class="tag-row"><span class="tag tag-green">Rear delt + mid-trap</span><span class="tag tag-green">Posture</span><span class="tag tag-slate">Active recovery</span></div>
+    </div></div></div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">C</div><div class="ex-body">
+      <div class="ex-name">Jump rope or pogo hops</div>
+      <div class="ex-detail">4 × 60 s — Jump rope if available beside the sled. Otherwise pogo hops in the sled lane. Maintains heart rate and reinforces the elastic Achilles stimulus.</div>
+      <div class="ex-alt">Alt: Assault bike — 60 s moderate pace as the flush-down interval.</div>
+    </div></div></div>
+
+    <div class="section-label">Core finisher — 2–3 rounds, 45 s rest</div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">2</div><div class="ex-body">
+      <div class="ex-name">RKC plank</div>
+      <div class="ex-detail">2–3 × 30 s — Drag elbows toward feet, squeeze glutes and fists maximally. Same cue as Day 3.</div>
+      <div class="tag-row"><span class="tag tag-purple">TVA</span></div>
+    </div></div></div>
+
+    <div class="section-label">Finisher &amp; reset</div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">3</div><div class="ex-body">
+      <div class="ex-name">Dead hang</div>
+      <div class="ex-detail">3 × 30 s on / 30 s off — Fully passive. End-of-week spinal traction. Do not skip this.</div>
+      <div class="tag-row"><span class="tag tag-slate">Spinal traction</span></div>
+    </div></div></div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">4</div><div class="ex-body">
+      <div class="ex-name">Static floor rest</div>
+      <div class="ex-detail">10 min — On your back, knees bent, feet flat. Completely passive. Parasympathetic nervous system recovery. Directly affects cortisol regulation and body composition over time. Do not skip this either.</div>
+      <div class="tag-row"><span class="tag tag-slate">Parasympathetic recovery</span></div>
+    </div></div></div>
+  </div>
+</div><!-- end tab0 -->
+
+<!-- ══════════════════════════════════════════
+     DAILY HOME ROUTINE
+══════════════════════════════════════════ -->
+<div class="tab-panel" id="tab1">
+  <div class="day-header">
+    <div class="day-eyebrow">Every day — gym days and rest days</div>
+    <div class="day-title">Daily home routine</div>
+    <div class="day-sub">~15 minutes. No equipment needed. These exercises compound into major results when done daily — and would waste gym time done there. Order matters: spinal mobility first, hip mobility second, activation third, balance last.</div>
+  </div>
+  <div class="info-bar">If short on time, skip Block 3 before skipping Blocks 1 or 2. The mobility work is the highest-value daily habit for your specific profile. Best done in the morning or before bed.</div>
+
+  <div class="home-block">
+    <div class="home-block-header">
+      <div class="home-block-num">1</div>
+      <div class="home-block-title">Spinal mobility &amp; decompression</div>
+      <div class="home-block-time">~4 min</div>
+    </div>
+    <div class="home-ex"><div class="home-ex-num">1</div><div>
+      <div class="home-ex-name">Cat-cow</div>
+      <div class="home-ex-detail">2 × 10 reps — Slow, full range. Exhale on the arch, inhale on the hollow. Sets the tone for the whole session.</div>
+    </div></div>
+    <div class="home-ex"><div class="home-ex-num">2</div><div>
+      <div class="home-ex-name">Child's pose</div>
+      <div class="home-ex-detail">2 × 45 s — Arms stretched forward, forehead down. Breathe into the lower back. Passive spinal traction.</div>
+    </div></div>
+    <div class="home-ex"><div class="home-ex-num">3</div><div>
+      <div class="home-ex-name">Wall slide (wall angel)</div>
+      <div class="home-ex-detail">2 × 10 reps — Back flat against the wall, arms at 90°. Slowly raise arms overhead while keeping every part of the back and arms in contact with the wall throughout. One of the highest-value exercises in this entire program for the aesthetic goal — directly counteracts erector overdevelopment and forward shoulder posture.</div>
+    </div></div>
+  </div>
+
+  <div class="home-block">
+    <div class="home-block-header">
+      <div class="home-block-num">2</div>
+      <div class="home-block-title">Hip mobility</div>
+      <div class="home-block-time">~4 min</div>
+    </div>
+    <div class="home-ex"><div class="home-ex-num">4</div><div>
+      <div class="home-ex-name">90/90 hip stretch</div>
+      <div class="home-ex-detail">90 s per side — Passive hold, breathe slowly into the hip. Right side 15–20 s longer. Targets the hip capsule directly — the primary restriction driving the impingement symptoms.</div>
+    </div></div>
+    <div class="home-ex"><div class="home-ex-num">5</div><div>
+      <div class="home-ex-name">Supine figure-4 (piriformis stretch)</div>
+      <div class="home-ex-detail">60 s per side — Ankle crossed over opposite knee, gently pull the thigh toward your chest. Right side priority. Breathe slowly.</div>
+    </div></div>
+  </div>
+
+  <div class="home-block">
+    <div class="home-block-header">
+      <div class="home-block-num">3</div>
+      <div class="home-block-title">Activation</div>
+      <div class="home-block-time">~4 min</div>
+    </div>
+    <div class="home-ex"><div class="home-ex-num">6</div><div>
+      <div class="home-ex-name">Superman hold</div>
+      <div class="home-ex-detail">3 × 8 reps × 3 s hold — Face down, arms forward. Lift arms and legs simultaneously, squeeze glutes. Trains the posterior chain in extension — directly opposes the anterior pelvic tilt pattern.</div>
+    </div></div>
+    <div class="home-ex"><div class="home-ex-num">7</div><div>
+      <div class="home-ex-name">Side-lying hip abduction</div>
+      <div class="home-ex-detail">2 × 15 reps per side — No band needed. Slow, pelvis stacked, 1 s pause at the top. Right side first. Add a light band if available.</div>
+    </div></div>
+    <div class="home-ex"><div class="home-ex-num">8</div><div>
+      <div class="home-ex-name">Stomach vacuum</div>
+      <div class="home-ex-detail">3 × 20 s hold — Standing or seated. Exhale fully, draw navel in, hold without bracing the outer abs. Resting TVA tone is built through daily frequency — this is why it lives here and not at the gym.</div>
+    </div></div>
+  </div>
+
+  <div class="home-block">
+    <div class="home-block-header">
+      <div class="home-block-num">4</div>
+      <div class="home-block-title">Balance &amp; posture</div>
+      <div class="home-block-time">~3 min</div>
+    </div>
+    <div class="home-ex"><div class="home-ex-num">9</div><div>
+      <div class="home-ex-name">Single-leg balance — right side focus</div>
+      <div class="home-ex-detail">3 × 30 s per side — Progress weekly: Weeks 1–2 eyes open flat ground → Weeks 3–4 eyes closed → Weeks 5+ on a folded towel or cushion. Right side always first. Retrains the proprioceptive chain from the Achilles through the meniscus to the hip.</div>
+    </div></div>
+    <div class="home-ex"><div class="home-ex-num">10</div><div>
+      <div class="home-ex-name">Seated scapular depression</div>
+      <div class="home-ex-detail">2 × 12 reps — Sit in a chair, arms straight, pull shoulders down away from ears, hold 2 s. Trains the lower trap daily. Small habit with outsized postural payoff over weeks.</div>
+    </div></div>
+  </div>
+</div><!-- end tab1 -->
+
+<!-- ══════════════════════════════════════════
+     PHASE 2
+══════════════════════════════════════════ -->
+<div class="tab-panel" id="tab2">
+  <div class="phase-bar">Move to Phase 2 when all Phase 1 sessions feel controlled with no joint irritation, the primers feel confident and controlled, and the RFESS and single-leg RDL feel strong and balanced side-to-side. Typically 8–12 weeks.</div>
+
+  <div class="day-nav">
+    <button class="day-tab active" onclick="showDay('p2',0)">Day 1 — Pull &amp; Power</button>
+    <button class="day-tab" onclick="showDay('p2',1)">Day 2 — Metabolic Power</button>
+    <button class="day-tab" onclick="showDay('p2',2)">Day 3 — Strength &amp; Reactive</button>
+    <button class="day-tab" onclick="showDay('p2',3)">Day 4 — Athletic Flush</button>
+  </div>
+
+  <!-- ── P2 Day 1 ── -->
+  <div class="day-panel active" id="p2d0">
+    <div class="day-header">
+      <div class="day-eyebrow">Phase 2 · Day 1 · Monday</div>
+      <div class="day-title">Pull, glutes &amp; vertical power</div>
+      <div class="day-sub">Increase lat pulldown and hip thrust loads. Progress primer to box jump sequences. Same station structure as Phase 1.</div>
+    </div>
+    <div class="meta-row">
+      <div class="meta-card"><div class="meta-label">Duration</div><div class="meta-val">~65 min</div></div>
+      <div class="meta-card"><div class="meta-label">Tempo</div><div class="meta-val">4-1-1 / explosive up</div></div>
+      <div class="meta-card"><div class="meta-label">Rest</div><div class="meta-val">60 s standalones</div></div>
+    </div>
+
+    <div class="section-label">Warm-up</div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">1</div><div class="ex-body">
+      <div class="ex-name">Incline treadmill walk</div>
+      <div class="ex-detail">10 min — 3.5 mph / 7% incline. Same cues as Phase 1. Slight incline increase.</div>
+    </div></div></div>
+
+    <div class="section-label">Athletic primer — upgraded</div>
+    <div class="primer-wrap">
+      <div class="primer-header" onclick="togglePrimer(this)">
+        <div class="primer-header-left">
+          <div class="primer-icon">&#9889;</div>
+          <div>
+            <div class="primer-title">Athletic primer</div>
+            <div class="primer-subtitle">Fixed recommendation shown &nbsp;·&nbsp; tap to see full menu</div>
+          </div>
+        </div>
+        <div class="primer-chevron">&#9660;</div>
+      </div>
+      <div class="primer-fixed">
+        <div class="primer-fixed-label">Recommended — Phase 2 Day 1</div>
+        <div class="primer-step">
+          <div class="primer-step-num">1</div><div>
+            <div class="primer-step-name">Pogo hops → box jump sequence</div>
+            <div class="primer-step-detail">Pogos: 3 × 20 contacts. Then immediately: 3 × 5 box jumps. Land softly on top, absorb fully, step down. Progresses SSC into real ground-reaction force.</div>
+          </div>
+        </div>
+        <div class="primer-step">
+          <div class="primer-step-num">2</div><div>
+            <div class="primer-step-name">Forward &amp; backward hop — continuous</div>
+            <div class="primer-step-detail">3 × 10 contacts per direction — Remove the 1 s stick. Hop forward, absorb briefly, hop back continuously. Removes the pause to add reactive demand.</div>
+          </div>
+        </div>
+      </div>
+      <div class="primer-menu" id="menu-p2d1">
+        <div class="primer-menu-label">Full primer menu — choose any 2–3</div>
+        <div class="menu-item"><div class="menu-item-name">Pogo hops</div><div class="menu-item-dose">3 × 25 contacts</div><div class="menu-item-cue">Increase contacts from Phase 1. Maintain quiet landings.</div></div>
+        <div class="menu-item"><div class="menu-item-name">Box jump (higher box)</div><div class="menu-item-dose">4 × 5 reps</div><div class="menu-item-cue">Progress box height. Still step down every rep.</div></div>
+        <div class="menu-item"><div class="menu-item-name">Depth drop → vertical jump</div><div class="menu-item-dose">4 × 5 reps</div><div class="menu-item-cue">Minimal ground contact. This is the key SSC drill.</div></div>
+        <div class="menu-item"><div class="menu-item-name">Vertical jump — approach</div><div class="menu-item-dose">3 × 5 reps</div><div class="menu-item-cue">Two-step approach before jump. More power than standing.</div></div>
+        <div class="menu-item"><div class="menu-item-name">Lateral hop — continuous</div><div class="menu-item-dose">3 × 8 per side</div><div class="menu-item-cue">Remove the stick. Continuous lateral hops, soft and fast.</div></div>
+        <div class="menu-item"><div class="menu-item-name">Forward &amp; backward hop — continuous</div><div class="menu-item-dose">3 × 10 contacts/dir</div><div class="menu-item-cue">No pause between hops. Reactive forward-back pattern.</div></div>
+        <div class="menu-item"><div class="menu-item-name">Skipping — high knees</div><div class="menu-item-dose">3 × 30 s</div><div class="menu-item-cue">Increase knee drive vs. Phase 1 skipping.</div></div>
+      </div>
+    </div>
+
+    <div class="section-label">Cardio block — same options, higher intensity</div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">2</div><div class="ex-body">
+      <div class="ex-name">Sled push &amp; pull / Rowing / Jump rope</div>
+      <div class="ex-detail">Increase intensity vs. Phase 1. Sled load goes up. Jump rope: progress to 12 × 45 s. Rowing: increase pace target.</div>
+    </div></div></div>
+
+    <div class="section-label">Strength block A — standalone (progressed)</div>
+    <div class="station-badge">Station: Cable machine</div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">A</div><div class="ex-body">
+      <div class="ex-name">Wide-grip lat pulldown — heavier</div>
+      <div class="ex-detail">4 × 10–12 reps — Increase load meaningfully vs. Phase 1. Same 4-1-1 tempo. Scapular depression must still initiate every rep. Do not sacrifice form for load.</div>
+      <div class="tag-row"><span class="tag tag-green">Erector elongation</span></div>
+    </div></div></div>
+
+    <div class="section-label">Strength block B — standalone (progressed)</div>
+    <div class="station-badge">Station: Hip thrust machine</div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">B</div><div class="ex-body">
+      <div class="ex-name">Hip thrust — heavier</div>
+      <div class="ex-detail">4 × 10 reps — Increase load. Same posterior tilt squeeze at the top. Progressive overload here is safe and encouraged — no spinal compression involved.</div>
+      <div class="tag-row"><span class="tag tag-green">Glute max</span><span class="tag tag-green">APT correction</span></div>
+    </div></div></div>
+
+    <div class="section-label">Giant set — 3 rounds (progressed)</div>
+    <div class="station-badge">Station: Mat area</div>
+    <div class="rest-bar">C → D → E back-to-back. Rest 45 s after all three.</div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">C</div><div class="ex-body">
+      <div class="ex-name">Dead bug — extended lever</div>
+      <div class="ex-detail">3 × 10 per side — Arms fully extended overhead (not bent). Significantly increases TVA demand vs. Phase 1.</div>
+      <div class="tag-row"><span class="tag tag-purple">TVA progression</span></div>
+    </div></div></div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">D</div><div class="ex-body">
+      <div class="ex-name">Copenhagen plank — elevated</div>
+      <div class="ex-detail">3 × 35–45 s per side — Bottom leg now fully raised off the floor. No assistance from the floor. Build toward 45 s.</div>
+      <div class="tag-row"><span class="tag tag-purple">Oblique + adductor</span></div>
+    </div></div></div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">E</div><div class="ex-body">
+      <div class="ex-name">Bird-dog — weighted</div>
+      <div class="ex-detail">3 × 10 per side — Light ankle weight on the extending leg. Increases the anti-rotation and multifidus demand.</div>
+      <div class="tag-row"><span class="tag tag-purple">Multifidus + TVA</span></div>
+    </div></div></div>
+
+    <div class="section-label">Finisher</div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">3</div><div class="ex-body">
+      <div class="ex-name">Dead hang — weighted or L-sit</div>
+      <div class="ex-detail">4 × 30 s — Light DB between feet, or progress to an L-sit hang (legs raised to 90°) for added core integration.</div>
+      <div class="tag-row"><span class="tag tag-slate">Spinal decompression</span></div>
+    </div></div></div>
+  </div>
+
+  <!-- ── P2 Day 2 ── -->
+  <div class="day-panel" id="p2d1">
+    <div class="day-header">
+      <div class="day-eyebrow">Phase 2 · Day 2 · Wednesday</div>
+      <div class="day-title">Metabolic power &amp; rotation</div>
+      <div class="day-sub">Standing woodchop, 5-round circuit, lateral shuffle primer. Increase row load slightly. Reduce rest between circuit rounds.</div>
+    </div>
+    <div class="meta-row">
+      <div class="meta-card"><div class="meta-label">Duration</div><div class="meta-val">~60 min</div></div>
+      <div class="meta-card"><div class="meta-label">Circuit rest</div><div class="meta-val">45 s between rounds</div></div>
+      <div class="meta-card"><div class="meta-label">Finisher rest</div><div class="meta-val">45 s between rounds</div></div>
+    </div>
+
+    <div class="section-label">Warm-up + Athletic primer</div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">1</div><div class="ex-body">
+      <div class="ex-name">Brisk walk + lateral shuffle</div>
+      <div class="ex-detail">5 min walk, then: 4 × 10 yards per side lateral shuffle — low athletic stance, soft quick feet, head up. Plant and change direction sharply. This is the Day 2 Phase 2 fixed primer.</div>
+      <div class="ex-alt">From the menu: swap for any two Phase 2 primer movements if preferred.</div>
+      <div class="tag-row"><span class="tag tag-amber">Lateral agility</span></div>
+    </div></div></div>
+
+    <div class="section-label">Cardio block — higher intensity</div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">2</div><div class="ex-body">
+      <div class="ex-name">Assault bike or jump rope</div>
+      <div class="ex-detail">Bike: 12 rounds × 30 s max / 30 s easy. Jump rope: 12 × 45 s active / 15 s rest.</div>
+    </div></div></div>
+
+    <div class="section-label">Strength block — standalone (progressed)</div>
+    <div class="station-badge">Station: Cable machine</div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">A</div><div class="ex-body">
+      <div class="ex-name">Seated cable row — slightly heavier</div>
+      <div class="ex-detail">3 × 12 reps — Small load increase from Phase 1. Strict upright posture — no excessive back lean. Still a postural exercise, not a strength movement.</div>
+      <div class="tag-row"><span class="tag tag-green">Mid-back</span></div>
+    </div></div></div>
+
+    <div class="section-label">Metabolic circuit — 5 rounds (volume increase)</div>
+    <div class="station-badge">Station: TRX + bench + cable — all adjacent</div>
+    <div class="rest-bar">A → B → C back-to-back. 45 s rest after each round (reduced from 60 s).</div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">B</div><div class="ex-body">
+      <div class="ex-name">Push-up — feet elevated on bench</div>
+      <div class="ex-detail">5 × 15–20 reps — Feet on bench, hands on floor. Progression from incline push-up. More load and greater scapular demand.</div>
+    </div></div></div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">C</div><div class="ex-body">
+      <div class="ex-name">TRX row — feet elevated</div>
+      <div class="ex-detail">5 × 10–12 reps — Feet on bench, body more horizontal. Significantly harder than Phase 1.</div>
+    </div></div></div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">D</div><div class="ex-body">
+      <div class="ex-name">Standing cable woodchop</div>
+      <div class="ex-detail">5 × 10 reps per side — Progress from tall-kneeling to standing. Rotate through hips and trunk together now. Increases the full kinetic chain demand significantly.</div>
+      <div class="tag-row"><span class="tag tag-purple">Rotational power</span></div>
+    </div></div></div>
+
+    <div class="section-label">Waist finisher — 3 rounds</div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">3</div><div class="ex-body">
+      <div class="ex-name">Pallof press — half-kneeling</div>
+      <div class="ex-detail">3 × 12 per side — One knee on the floor. Increases hip stability demand versus standing.</div>
+      <div class="tag-row"><span class="tag tag-purple">TVA + hip stability</span></div>
+    </div></div></div>
+
+    <div class="section-label">Tendon care — progressed</div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">4</div><div class="ex-body">
+      <div class="ex-name">Eccentric heel drop — loaded</div>
+      <div class="ex-detail">3 × 12 reps per side — Hold a light dumbbell or plate. Same 4 s lowering tempo. Right side priority.</div>
+      <div class="tag-row"><span class="tag tag-amber">Achilles progression</span></div>
+    </div></div></div>
+  </div>
+
+  <!-- ── P2 Day 3 ── -->
+  <div class="day-panel" id="p2d2">
+    <div class="day-header">
+      <div class="day-eyebrow">Phase 2 · Day 3 · Friday</div>
+      <div class="day-title">Strength &amp; reactive power</div>
+      <div class="day-sub">Increase unilateral loads, progress lateral hop to reactive, add loaded leg curl. Same station structure.</div>
+    </div>
+    <div class="meta-row">
+      <div class="meta-card"><div class="meta-label">Duration</div><div class="meta-val">~65 min</div></div>
+      <div class="meta-card"><div class="meta-label">Tempo</div><div class="meta-val">3-1-X (explosive up)</div></div>
+      <div class="meta-card"><div class="meta-label">Rest</div><div class="meta-val">60–75 s between sets</div></div>
+    </div>
+
+    <div class="section-label">Warm-up</div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">1</div><div class="ex-body">
+      <div class="ex-name">Incline treadmill walk</div>
+      <div class="ex-detail">10 min — 3.0 mph / 9% incline. Small incline increase from Phase 1.</div>
+    </div></div></div>
+
+    <div class="section-label">Athletic primer — upgraded</div>
+    <div class="primer-wrap">
+      <div class="primer-header" onclick="togglePrimer(this)">
+        <div class="primer-header-left">
+          <div class="primer-icon">&#9889;</div>
+          <div>
+            <div class="primer-title">Athletic primer</div>
+            <div class="primer-subtitle">Fixed recommendation shown &nbsp;·&nbsp; tap to see full menu</div>
+          </div>
+        </div>
+        <div class="primer-chevron">&#9660;</div>
+      </div>
+      <div class="primer-fixed">
+        <div class="primer-fixed-label">Recommended — Phase 2 Day 3</div>
+        <div class="primer-step">
+          <div class="primer-step-num">1</div><div>
+            <div class="primer-step-name">Depth drop → vertical jump</div>
+            <div class="primer-step-detail">4 × 5 reps — Step off, land, immediately jump. Focus on minimizing ground contact time between the land and the jump.</div>
+          </div>
+        </div>
+        <div class="primer-step">
+          <div class="primer-step-num">2</div><div>
+            <div class="primer-step-name">Lateral hop — continuous</div>
+            <div class="primer-step-detail">3 × 8 per side — Remove the stick from Phase 1. Continuous lateral hops, absorb briefly and go. Trains reactive deceleration.</div>
+          </div>
+        </div>
+        <div class="primer-step">
+          <div class="primer-step-num">3</div><div>
+            <div class="primer-step-name">Forward &amp; backward hop — continuous</div>
+            <div class="primer-step-detail">3 × 10 contacts per direction — No pause. Continuous reactive pattern in the sagittal plane.</div>
+          </div>
+        </div>
+      </div>
+      <div class="primer-menu" id="menu-p2d3">
+        <div class="primer-menu-label">Full primer menu — choose any 2–3</div>
+        <div class="menu-item"><div class="menu-item-name">Pogo hops</div><div class="menu-item-dose">3 × 25 contacts</div><div class="menu-item-cue">Maintain quiet landings at higher contact count.</div></div>
+        <div class="menu-item"><div class="menu-item-name">Box jump (higher box)</div><div class="menu-item-dose">4 × 5 reps</div><div class="menu-item-cue">Progress box height from Phase 1.</div></div>
+        <div class="menu-item"><div class="menu-item-name">Depth drop → vertical jump</div><div class="menu-item-dose">4 × 5 reps</div><div class="menu-item-cue">Minimize ground contact time. This is the key drill.</div></div>
+        <div class="menu-item"><div class="menu-item-name">Vertical jump — approach</div><div class="menu-item-dose">3 × 5 reps</div><div class="menu-item-cue">Two-step approach. More power than standing vertical.</div></div>
+        <div class="menu-item"><div class="menu-item-name">Lateral hop — continuous</div><div class="menu-item-dose">3 × 8 per side</div><div class="menu-item-cue">No stick. Reactive continuous lateral pattern.</div></div>
+        <div class="menu-item"><div class="menu-item-name">Forward &amp; backward hop — continuous</div><div class="menu-item-dose">3 × 10 contacts/dir</div><div class="menu-item-cue">Reactive. No pause between hops.</div></div>
+        <div class="menu-item"><div class="menu-item-name">Skipping — high knees</div><div class="menu-item-dose">3 × 30 s</div><div class="menu-item-cue">Higher knee drive. More athletic stimulus.</div></div>
+      </div>
+    </div>
+
+    <div class="section-label">Cardio block — higher output</div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">2</div><div class="ex-body">
+      <div class="ex-name">Stairmaster or sled push &amp; pull</div>
+      <div class="ex-detail">Stairmaster: 15 min at level 10–12. Sled: 8 rounds × 20 yards each way, 45 s rest between rounds.</div>
+    </div></div></div>
+
+    <div class="section-label">Strength block A — standalone superset (progressed)</div>
+    <div class="station-badge">Station: Dumbbell rack + bench</div>
+    <div class="rest-bar">RFESS + single-leg RDL as superset. 75 s rest between rounds. 4 rounds.</div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">A</div><div class="ex-body">
+      <div class="ex-name">RFESS — heavier DBs</div>
+      <div class="ex-detail">4 × 8–10 per side — Meaningfully heavier than Phase 1. Concentric should feel explosive. Right side first.</div>
+      <div class="tag-row"><span class="tag tag-green">Unilateral strength</span></div>
+    </div></div></div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">B</div><div class="ex-body">
+      <div class="ex-name">Single-leg RDL — heavier or deficit</div>
+      <div class="ex-detail">4 × 10 per side — Increase DB load, or stand on a 1–2" plate to increase range of motion at the bottom of the movement.</div>
+      <div class="tag-row"><span class="tag tag-green">Posterior chain</span></div>
+    </div></div></div>
+
+    <div class="section-label">Strength block B — superset (progressed)</div>
+    <div class="station-badge">Station: Cable machine + mat</div>
+    <div class="rest-bar">Face-pull + RKC plank back-to-back. 60 s rest between rounds. 3 rounds.</div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">C</div><div class="ex-body">
+      <div class="ex-name">Cable face-pull — heavier</div>
+      <div class="ex-detail">3 × 15 reps — Increase resistance vs. Phase 1. Same technique — no compromise for load.</div>
+      <div class="tag-row"><span class="tag tag-green">Posture</span></div>
+    </div></div></div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">D</div><div class="ex-body">
+      <div class="ex-name">RKC plank — extended or single-leg</div>
+      <div class="ex-detail">3 × 40 s — Longer hold, or progress to single-leg RKC plank (one foot raised) for asymmetric demand.</div>
+      <div class="tag-row"><span class="tag tag-purple">TVA</span></div>
+    </div></div></div>
+
+    <div class="section-label">Strength block C — standalone (progressed)</div>
+    <div class="station-badge">Station: Leg curl machine</div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">E</div><div class="ex-body">
+      <div class="ex-name">Single-leg curl — heavier</div>
+      <div class="ex-detail">3 × 10–12 per side — Increase load vs. Phase 1. Controlled tempo throughout. Right side first.</div>
+      <div class="tag-row"><span class="tag tag-green">Hamstring</span><span class="tag tag-amber">Knee support</span></div>
+    </div></div></div>
+
+    <div class="section-label">Finisher</div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">3</div><div class="ex-body">
+      <div class="ex-name">Dead hang — weighted</div>
+      <div class="ex-detail">4 × 30 s — Light DB between the feet. Increases traction and grip demand.</div>
+      <div class="tag-row"><span class="tag tag-slate">Spinal decompression</span></div>
+    </div></div></div>
+  </div>
+
+  <!-- ── P2 Day 4 ── -->
+  <div class="day-panel" id="p2d3">
+    <div class="day-header">
+      <div class="day-eyebrow">Phase 2 · Day 4 · Saturday</div>
+      <div class="day-title">Athletic flush &amp; reset</div>
+      <div class="day-sub">5-round circuit, movement flow block added after the flush. Flow comes last — athletic rhythm as a cool-down, not a primer. This is the session that retrains the nervous system out of its high-tension protective pattern.</div>
+    </div>
+    <div class="meta-row">
+      <div class="meta-card"><div class="meta-label">Duration</div><div class="meta-val">~60 min</div></div>
+      <div class="meta-card"><div class="meta-label">Circuit rest</div><div class="meta-val">60 s between rounds</div></div>
+      <div class="meta-card"><div class="meta-label">Flow block</div><div class="meta-val">After flush — low effort</div></div>
+    </div>
+
+    <div class="section-label">Warm-up</div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">1</div><div class="ex-body">
+      <div class="ex-name">Brisk walk + cat-cow</div>
+      <div class="ex-detail">5 min walk, then 2 min cat-cow on a mat. Same as Phase 1.</div>
     </div></div></div>
 
     <div class="section-label">"60-second" flush circuit — 5 rounds</div>
-    <div class="rest-bar">A → B → C back-to-back with no rest between. 60 s full rest after all three. This drives sustained aerobic adaptation and fat oxidation.</div>
-
-    <div class="exercise"><div class="ex-row"><div class="ex-num">A</div><div>
-      <div class="ex-name">Assault bike or sled push</div>
-      <div class="ex-detail">5 × 60 s — Maximum sustainable effort. High RPM on the bike. Full glute drive on the sled, high handle position, long spine.</div>
-      <div class="ex-alt">Alt: Rowing machine — 60 s all-out at high resistance. Or jump rope — 60 s continuous at high tempo.</div>
+    <div class="station-badge">Station: Sled lane or assault bike + floor beside it</div>
+    <div class="rest-bar">A → B → C back-to-back. 60 s rest after all three. Volume increase from Phase 1 (4 → 5 rounds).</div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">A</div><div class="ex-body">
+      <div class="ex-name">Sled push &amp; pull or assault bike</div>
+      <div class="ex-detail">5 × 60 s — Higher effort target than Phase 1. Sled load goes up.</div>
     </div></div></div>
-
-    <div class="exercise"><div class="ex-row"><div class="ex-num">B</div><div>
-      <div class="ex-name">Backward sled pull or seated cable row</div>
-      <div class="ex-detail">5 × 60 s — Transition directly from A. Long reach at the front of each row stroke, erectors fully stretched. Continuous reps at moderate load.</div>
-      <div class="ex-alt">Alt: Rowing machine — switch to a continuous long-stroke focus for the full 60 s.</div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">B</div><div class="ex-body">
+      <div class="ex-name">Resistance band pull-apart</div>
+      <div class="ex-detail">5 × 60 s — Same as Phase 1 but increase band resistance. Arms straight, full extension on each rep. 40–50 reps in 60 s.</div>
+      <div class="tag-row"><span class="tag tag-green">Rear delt + mid-trap</span><span class="tag tag-slate">Active recovery</span></div>
     </div></div></div>
-
-    <div class="exercise"><div class="ex-row"><div class="ex-num">C</div><div>
-      <div class="ex-name">Fast incline walk</div>
-      <div class="ex-detail">5 × 60 s — 4.0 mph / 8% incline. Transition directly from B. Active recovery within the round — keeps heart rate elevated in the fat-burning aerobic zone.</div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">C</div><div class="ex-body">
+      <div class="ex-name">Jump rope — faster or double-unders</div>
+      <div class="ex-detail">5 × 60 s — Increase tempo or attempt double-unders. More elastic demand per contact.</div>
     </div></div></div>
 
     <div class="section-label">Core finisher — 3 rounds, 45 s rest</div>
-
-    <div class="exercise"><div class="ex-row"><div class="ex-num">2</div><div>
-      <div class="ex-name">RKC plank</div>
-      <div class="ex-detail">3 × 30 s — Forearm plank, but actively drag elbows toward feet and squeeze glutes and fists as hard as possible. Produces dramatically higher TVA activation than a standard plank.</div>
-      <span class="pill pill-purple">TVA</span><span class="pill pill-purple">Full-body tension</span>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">2</div><div class="ex-body">
+      <div class="ex-name">RKC plank — extended</div>
+      <div class="ex-detail">3 × 40 s — Longer hold than Phase 1.</div>
+      <div class="tag-row"><span class="tag tag-purple">TVA</span></div>
     </div></div></div>
 
-    <div class="exercise"><div class="ex-row"><div class="ex-num">3</div><div>
-      <div class="ex-name">Bird-dog</div>
-      <div class="ex-detail">3 × 10 reps per side — Opposite arm and leg extend simultaneously. 2 s pause at full extension, reach as long as possible. The pause drives the multifidus and TVA co-activation.</div>
-      <span class="pill pill-purple">Multifidus + TVA</span><span class="pill pill-gray">Spinal stability</span>
+    <div class="section-label">Movement flow — cool-down (Phase 2 addition)</div>
+    <div class="info-bar">Placed after the flush deliberately — not before. The goal is fluid, coordinated movement as the session winds down. Low effort, low heart rate. Signals the nervous system to exit the high-tension protective pattern built from years of heavy lifting and injury compensation.</div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">3</div><div class="ex-body">
+      <div class="ex-name">Movement flow circuit — 2 rounds</div>
+      <div class="ex-detail">Skipping — 30 s easy. Lateral shuffle — 30 s each direction. Pogo hops — 20 contacts. No intensity target. Move fluidly, stay relaxed. This is the "feel athletic again" block.</div>
+      <div class="tag-row"><span class="tag tag-amber">Athletic flow</span><span class="tag tag-amber">Nervous system reset</span></div>
     </div></div></div>
 
-    <div class="exercise"><div class="ex-row"><div class="ex-num">4</div><div>
-      <div class="ex-name">Stomach vacuum (standing)</div>
-      <div class="ex-detail">3 × 5 reps × 20 s hold — Exhale fully, draw navel in, hold without bracing the outer abs. Practice throughout the day whenever you think of it — resting TVA tone is built through frequency.</div>
-      <span class="pill pill-purple">TVA</span>
-    </div></div></div>
-
-    <div class="section-label">Full reset — non-negotiable</div>
-
-    <div class="exercise"><div class="ex-row"><div class="ex-num">5</div><div>
-      <div class="ex-name">Static floor rest</div>
-      <div class="ex-detail">10 min — On your back, knees bent, feet flat. Completely passive. Parasympathetic nervous system recovery. Directly affects cortisol regulation and body composition over time. Do not skip it.</div>
-    </div></div></div>
-
-    <div class="exercise"><div class="ex-row"><div class="ex-num">6</div><div>
-      <div class="ex-name">Cat-cow + child's pose + dead hang</div>
-      <div class="ex-detail">10 min — 10 cat-cow reps, then 60 s child's pose (repeat 3×). Finish with 3 × 30 s dead hangs. Ending the week with spinal traction is the single most consistent habit that, over 12 weeks, reduces the erector-driven wide appearance.</div>
-      <span class="pill pill-gray">Spinal traction</span><span class="pill pill-gray">Decompression</span>
+    <div class="section-label">Full reset</div>
+    <div class="exercise"><div class="ex-row"><div class="ex-num">4</div><div class="ex-body">
+      <div class="ex-name">Dead hang + static floor rest</div>
+      <div class="ex-detail">3 × 30 s dead hangs, then 10 min floor rest (knees bent, feet flat, fully passive). End every week here without exception.</div>
+      <div class="tag-row"><span class="tag tag-slate">Parasympathetic recovery</span></div>
     </div></div></div>
   </div>
+</div><!-- end tab2 -->
 
-  <div style="margin-top:32px;padding-top:16px;border-top:1px solid #e2e0d8;font-size:12px;color:#888780;line-height:1.6;">
-    <strong style="font-weight:500;color:#5f5e5a;">Suggested weekly split:</strong> Day 1 Monday · Day 2 Wednesday · Day 3 Friday · Day 4 Saturday. Minimum 48 hours between sessions.
-  </div>
-</div>
+</div><!-- content-area -->
 
 <script>
-function show(i) {
-  document.querySelectorAll('.day-panel').forEach(function(p, idx) { p.classList.toggle('active', idx === i); });
-  document.querySelectorAll('.nav-btn').forEach(function(b, idx) { b.classList.toggle('active', idx === i); });
+function showTab(i) {
+  document.querySelectorAll('.tab-panel').forEach(function(p, idx) { p.classList.toggle('active', idx === i); });
+  document.querySelectorAll('.main-tab').forEach(function(b, idx) { b.classList.toggle('active', idx === i); });
+}
+
+function showDay(phase, i) {
+  var tabId = phase === 'p1' ? 'tab0' : 'tab2';
+  var parent = document.getElementById(tabId);
+  parent.querySelectorAll('.day-panel').forEach(function(p, idx) { p.classList.toggle('active', idx === i); });
+  parent.querySelectorAll('.day-tab').forEach(function(b, idx) { b.classList.toggle('active', idx === i); });
+}
+
+function togglePrimer(header) {
+  var wrap = header.closest('.primer-wrap');
+  var chevron = header.querySelector('.primer-chevron');
+  var menus = wrap.querySelectorAll('.primer-menu');
+  var isOpen = menus[0] && menus[0].classList.contains('open');
+  menus.forEach(function(m) { m.classList.toggle('open', !isOpen); });
+  chevron.classList.toggle('open', !isOpen);
 }
 </script>
 </body>
