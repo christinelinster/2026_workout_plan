@@ -63,4 +63,15 @@ describe('GET /api/program', () => {
     const day4 = p1.days[3];
     expect(day4.sections.some((s: { label: string }) => s.label === 'Finisher & reset')).toBe(true);
   });
+
+  it('serves Phase 2 day content and phase bar', async () => {
+    const res = await request(app).get('/api/program');
+    const p2 = res.body.tabs.find((t: { id: string }) => t.id === 'p2');
+    expect(p2.phaseBar).toContain('Move to Phase 2 when all Phase 1 sessions feel controlled');
+    expect(p2.days).toHaveLength(4);
+    const day2 = p2.days[1];
+    expect(day2.title).toBe('Metabolic power & rotation');
+    const movementFlow = p2.days[3].sections.find((s: { label: string }) => s.label === 'Movement flow — cool-down (Phase 2 addition)');
+    expect(movementFlow.info).toContain('Placed after the flush deliberately');
+  });
 });

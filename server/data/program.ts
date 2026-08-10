@@ -535,7 +535,7 @@ export const program: Program = {
       id: 'p2',
       label: 'Phase 2 — Progression',
       kind: 'phase',
-      phaseBar: '',
+      phaseBar: 'Move to Phase 2 when all Phase 1 sessions feel controlled with no joint irritation, the primers feel confident and controlled, and the RFESS and single-leg RDL feel strong and balanced side-to-side. Typically 8–12 weeks.',
       dayTabs: [
         { id: 'p2d0', label: 'Day 1 — Pull & Power' },
         { id: 'p2d1', label: 'Day 2 — Metabolic Power' },
@@ -543,10 +543,422 @@ export const program: Program = {
         { id: 'p2d3', label: 'Day 4 — Athletic Flush' },
       ],
       days: [
-        { id: 'p2d0', eyebrow: '', title: '', sub: '', meta: [], sections: [] },
-        { id: 'p2d1', eyebrow: '', title: '', sub: '', meta: [], sections: [] },
-        { id: 'p2d2', eyebrow: '', title: '', sub: '', meta: [], sections: [] },
-        { id: 'p2d3', eyebrow: '', title: '', sub: '', meta: [], sections: [] },
+        {
+          id: 'p2d0',
+          eyebrow: 'Phase 2 · Day 1 · Monday',
+          title: 'Pull, glutes & vertical power',
+          sub: 'Increase lat pulldown and hip thrust loads. Progress primer to box jump sequences. Same station structure as Phase 1.',
+          meta: [
+            { label: 'Duration', value: '~65 min' },
+            { label: 'Tempo', value: '4-1-1 / explosive up' },
+            { label: 'Rest', value: '60 s standalones' },
+          ],
+          sections: [
+            {
+              label: 'Warm-up',
+              exercises: [
+                {
+                  num: '1',
+                  name: 'Incline treadmill walk',
+                  detail: '10 min — 3.5 mph / 7% incline. Same cues as Phase 1. Slight incline increase.',
+                },
+              ],
+            },
+            {
+              label: 'Athletic primer — upgraded',
+              primer: {
+                recommendedLabel: 'Recommended — Phase 2 Day 1',
+                steps: [
+                  { num: '1', name: 'Pogo hops → box jump sequence', detail: 'Pogos: 3 × 20 contacts. Then immediately: 3 × 5 box jumps. Land softly on top, absorb fully, step down. Progresses SSC into real ground-reaction force.' },
+                  { num: '2', name: 'Forward & backward hop — continuous', detail: '3 × 10 contacts per direction — Remove the 1 s stick. Hop forward, absorb briefly, hop back continuously. Removes the pause to add reactive demand.' },
+                ],
+                menuLabel: 'Full primer menu — choose any 2–3',
+                menuItems: [
+                  { name: 'Pogo hops', dose: '3 × 25 contacts', cue: 'Increase contacts from Phase 1. Maintain quiet landings.' },
+                  { name: 'Box jump (higher box)', dose: '4 × 5 reps', cue: 'Progress box height. Still step down every rep.' },
+                  { name: 'Depth drop → vertical jump', dose: '4 × 5 reps', cue: 'Minimal ground contact. This is the key SSC drill.' },
+                  { name: 'Vertical jump — approach', dose: '3 × 5 reps', cue: 'Two-step approach before jump. More power than standing.' },
+                  { name: 'Lateral hop — continuous', dose: '3 × 8 per side', cue: 'Remove the stick. Continuous lateral hops, soft and fast.' },
+                  { name: 'Forward & backward hop — continuous', dose: '3 × 10 contacts/dir', cue: 'No pause between hops. Reactive forward-back pattern.' },
+                  { name: 'Skipping — high knees', dose: '3 × 30 s', cue: 'Increase knee drive vs. Phase 1 skipping.' },
+                ],
+              },
+            },
+            {
+              label: 'Cardio block — same options, higher intensity',
+              exercises: [
+                {
+                  num: '2',
+                  name: 'Sled push & pull / Rowing / Jump rope',
+                  detail: 'Increase intensity vs. Phase 1. Sled load goes up. Jump rope: progress to 12 × 45 s. Rowing: increase pace target.',
+                },
+              ],
+            },
+            {
+              label: 'Strength block A — standalone (progressed)',
+              station: 'Station: Cable machine',
+              exercises: [
+                {
+                  num: 'A',
+                  name: 'Wide-grip lat pulldown — heavier',
+                  detail: '4 × 10–12 reps — Increase load meaningfully vs. Phase 1. Same 4-1-1 tempo. Scapular depression must still initiate every rep. Do not sacrifice form for load.',
+                  tags: [{ text: 'Erector elongation', tone: 'green' }],
+                },
+              ],
+            },
+            {
+              label: 'Strength block B — standalone (progressed)',
+              station: 'Station: Hip thrust machine',
+              exercises: [
+                {
+                  num: 'B',
+                  name: 'Hip thrust — heavier',
+                  detail: '4 × 10 reps — Increase load. Same posterior tilt squeeze at the top. Progressive overload here is safe and encouraged — no spinal compression involved.',
+                  tags: [
+                    { text: 'Glute max', tone: 'green' },
+                    { text: 'APT correction', tone: 'green' },
+                  ],
+                },
+              ],
+            },
+            {
+              label: 'Giant set — 3 rounds (progressed)',
+              station: 'Station: Mat area',
+              rest: 'C → D → E back-to-back. Rest 45 s after all three.',
+              exercises: [
+                {
+                  num: 'C',
+                  name: 'Dead bug — extended lever',
+                  detail: '3 × 10 per side — Arms fully extended overhead (not bent). Significantly increases TVA demand vs. Phase 1.',
+                  tags: [{ text: 'TVA progression', tone: 'purple' }],
+                },
+                {
+                  num: 'D',
+                  name: 'Copenhagen plank — elevated',
+                  detail: '3 × 35–45 s per side — Bottom leg now fully raised off the floor. No assistance from the floor. Build toward 45 s.',
+                  tags: [{ text: 'Oblique + adductor', tone: 'purple' }],
+                },
+                {
+                  num: 'E',
+                  name: 'Bird-dog — weighted',
+                  detail: '3 × 10 per side — Light ankle weight on the extending leg. Increases the anti-rotation and multifidus demand.',
+                  tags: [{ text: 'Multifidus + TVA', tone: 'purple' }],
+                },
+              ],
+            },
+            {
+              label: 'Finisher',
+              exercises: [
+                {
+                  num: '3',
+                  name: 'Dead hang — weighted or L-sit',
+                  detail: '4 × 30 s — Light DB between feet, or progress to an L-sit hang (legs raised to 90°) for added core integration.',
+                  tags: [{ text: 'Spinal decompression', tone: 'slate' }],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          id: 'p2d1',
+          eyebrow: 'Phase 2 · Day 2 · Wednesday',
+          title: 'Metabolic power & rotation',
+          sub: 'Standing woodchop, 5-round circuit, lateral shuffle primer. Increase row load slightly. Reduce rest between circuit rounds.',
+          meta: [
+            { label: 'Duration', value: '~60 min' },
+            { label: 'Circuit rest', value: '45 s between rounds' },
+            { label: 'Finisher rest', value: '45 s between rounds' },
+          ],
+          sections: [
+            {
+              label: 'Warm-up + Athletic primer',
+              exercises: [
+                {
+                  num: '1',
+                  name: 'Brisk walk + lateral shuffle',
+                  detail: '5 min walk, then: 4 × 10 yards per side lateral shuffle — low athletic stance, soft quick feet, head up. Plant and change direction sharply. This is the Day 2 Phase 2 fixed primer.',
+                  alt: 'From the menu: swap for any two Phase 2 primer movements if preferred.',
+                  tags: [{ text: 'Lateral agility', tone: 'amber' }],
+                },
+              ],
+            },
+            {
+              label: 'Cardio block — higher intensity',
+              exercises: [
+                {
+                  num: '2',
+                  name: 'Assault bike or jump rope',
+                  detail: 'Bike: 12 rounds × 30 s max / 30 s easy. Jump rope: 12 × 45 s active / 15 s rest.',
+                },
+              ],
+            },
+            {
+              label: 'Metabolic circuit — 5 rounds (volume increase)',
+              station: 'Station: Peck deck + Reverse fly machine + Dumbbell rack — all adjacent',
+              rest: 'A → B → C → D back-to-back. 45 s rest after each round (reduced from 60 s).',
+              exercises: [
+                {
+                  num: 'A',
+                  name: 'Peck deck (machine)',
+                  detail: '5 × 10 reps — Sit with back against the pad, grab handles, squeeze pecs together at the center. Control the stretch. Moderate load — strength maintenance, not hypertrophy focus.',
+                  why: 'Targets the pecs with minimal triceps involvement. Creates the upper chest shelf that contributes to a balanced upper-body silhouette.',
+                  tags: [{ text: 'Pecs', tone: 'green' }],
+                },
+                {
+                  num: 'B',
+                  name: 'Reverse fly (machine)',
+                  detail: '5 × 10 reps — Sit facing the machine, grab handles from behind, squeeze rear delts together. Control the stretch, avoid swinging. Moderate load. Same machine as A — go directly to this after A.',
+                  why: 'Adds rear delt density that balances the shoulders visually from behind and from the side. Complements the lateral raise for full shoulder development.',
+                  tags: [
+                    { text: 'Rear delt', tone: 'green' },
+                    { text: 'Posture', tone: 'green' },
+                  ],
+                },
+                {
+                  num: 'C',
+                  name: 'Dumbbell lateral raise',
+                  detail: '5 × 10 reps — Stand with dumbbells at sides, raise arms out to the sides until parallel with the floor. Slight bend in elbows, control the descent. Moderate load — maintain shoulder strength without excessive bulk.',
+                  why: 'Builds lateral deltoid density that creates shoulder roundness and visual V-taper. Directly counteracts the blocked, square upper-body look.',
+                  tags: [{ text: 'Shoulder density', tone: 'green' }],
+                },
+              ],
+            },
+            {
+              label: 'Waist finisher — 3 rounds, 45 s rest',
+              station: 'Station: Cable machine — all exercises at same station',
+              rest: 'A → B back-to-back, minimal rest between exercises. 45 s full rest after each complete round.',
+              exercises: [
+                {
+                  num: 'A',
+                  name: 'Pallof press — half-kneeling',
+                  detail: '3 × 12 per side — One knee on the floor. Increases hip stability demand versus standing.',
+                  tags: [{ text: 'TVA + hip stability', tone: 'purple' }],
+                },
+                {
+                  num: 'B',
+                  name: 'Standing cable woodchop',
+                  detail: '3 × 10 reps per side — Rotate through hips and trunk together. Progress from tall-kneeling. Increases the full kinetic chain demand significantly.',
+                  tags: [{ text: 'Rotational power', tone: 'purple' }],
+                },
+              ],
+            },
+            {
+              label: 'Tendon care — progressed',
+              exercises: [
+                {
+                  num: '4',
+                  name: 'Eccentric heel drop — loaded',
+                  detail: '3 × 12 reps per side — Hold a light dumbbell or plate. Same 4 s lowering tempo. Right side priority.',
+                  tags: [{ text: 'Achilles progression', tone: 'amber' }],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          id: 'p2d2',
+          eyebrow: 'Phase 2 · Day 3 · Friday',
+          title: 'Strength & reactive power',
+          sub: 'Increase unilateral loads, progress lateral hop to reactive, add loaded leg curl. Same station structure.',
+          meta: [
+            { label: 'Duration', value: '~65 min' },
+            { label: 'Tempo', value: '3-1-X (explosive up)' },
+            { label: 'Rest', value: '60–75 s between sets' },
+          ],
+          sections: [
+            {
+              label: 'Warm-up',
+              exercises: [
+                {
+                  num: '1',
+                  name: 'Incline treadmill walk',
+                  detail: '10 min — 3.0 mph / 9% incline. Small incline increase from Phase 1.',
+                },
+              ],
+            },
+            {
+              label: 'Athletic primer — upgraded',
+              primer: {
+                recommendedLabel: 'Recommended — Phase 2 Day 3',
+                steps: [
+                  { num: '1', name: 'Depth drop → vertical jump', detail: '4 × 5 reps — Step off, land, immediately jump. Focus on minimizing ground contact time between the land and the jump.' },
+                  { num: '2', name: 'Lateral hop — continuous', detail: '3 × 8 per side — Remove the stick from Phase 1. Continuous lateral hops, absorb briefly and go. Trains reactive deceleration.' },
+                  { num: '3', name: 'Forward & backward hop — continuous', detail: '3 × 10 contacts per direction — No pause. Continuous reactive pattern in the sagittal plane.' },
+                ],
+                menuLabel: 'Full primer menu — choose any 2–3',
+                menuItems: [
+                  { name: 'Pogo hops', dose: '3 × 25 contacts', cue: 'Maintain quiet landings at higher contact count.' },
+                  { name: 'Box jump (higher box)', dose: '4 × 5 reps', cue: 'Progress box height from Phase 1.' },
+                  { name: 'Depth drop → vertical jump', dose: '4 × 5 reps', cue: 'Minimize ground contact time. This is the key drill.' },
+                  { name: 'Vertical jump — approach', dose: '3 × 5 reps', cue: 'Two-step approach. More power than standing vertical.' },
+                  { name: 'Lateral hop — continuous', dose: '3 × 8 per side', cue: 'No stick. Reactive continuous lateral pattern.' },
+                  { name: 'Forward & backward hop — continuous', dose: '3 × 10 contacts/dir', cue: 'Reactive. No pause between hops.' },
+                  { name: 'Skipping — high knees', dose: '3 × 30 s', cue: 'Higher knee drive. More athletic stimulus.' },
+                ],
+              },
+            },
+            {
+              label: 'Cardio block — higher output',
+              exercises: [
+                {
+                  num: '2',
+                  name: 'Stairmaster or sled push & pull',
+                  detail: 'Stairmaster: 15 min at level 10–12. Sled: 8 rounds × 20 yards each way, 45 s rest between rounds.',
+                },
+              ],
+            },
+            {
+              label: 'Strength block A — standalone superset (progressed)',
+              station: 'Station: Dumbbell rack + bench',
+              rest: 'RFESS + single-leg RDL as superset. 75 s rest between rounds. 4 rounds.',
+              exercises: [
+                {
+                  num: 'A',
+                  name: 'RFESS — heavier DBs',
+                  detail: '4 × 8–10 per side — Meaningfully heavier than Phase 1. Concentric should feel explosive. Right side first.',
+                  tags: [{ text: 'Unilateral strength', tone: 'green' }],
+                },
+                {
+                  num: 'B',
+                  name: 'Single-leg RDL — heavier or deficit',
+                  detail: '4 × 10 per side — Increase DB load, or stand on a 1–2" plate to increase range of motion at the bottom of the movement.',
+                  tags: [{ text: 'Posterior chain', tone: 'green' }],
+                },
+              ],
+            },
+            {
+              label: 'Strength block B — superset (progressed)',
+              station: 'Station: Cable machine + mat',
+              rest: 'Face-pull + RKC plank back-to-back. 60 s rest between rounds. 3 rounds.',
+              exercises: [
+                {
+                  num: 'C',
+                  name: 'Cable face-pull — heavier',
+                  detail: '3 × 15 reps — Increase resistance vs. Phase 1. Same technique — no compromise for load.',
+                  tags: [{ text: 'Posture', tone: 'green' }],
+                },
+                {
+                  num: 'D',
+                  name: 'RKC plank — extended or single-leg',
+                  detail: '3 × 40 s — Longer hold, or progress to single-leg RKC plank (one foot raised) for asymmetric demand.',
+                  tags: [{ text: 'TVA', tone: 'purple' }],
+                },
+              ],
+            },
+            {
+              label: 'Strength block C — standalone (progressed)',
+              station: 'Station: Leg curl machine',
+              exercises: [
+                {
+                  num: 'E',
+                  name: 'Single-leg curl — heavier',
+                  detail: '3 × 10–12 per side — Increase load vs. Phase 1. Controlled tempo throughout. Right side first.',
+                  tags: [
+                    { text: 'Hamstring', tone: 'green' },
+                    { text: 'Knee support', tone: 'amber' },
+                  ],
+                },
+              ],
+            },
+            {
+              label: 'Finisher',
+              exercises: [
+                {
+                  num: '3',
+                  name: 'Dead hang — weighted',
+                  detail: '4 × 30 s — Light DB between the feet. Increases traction and grip demand.',
+                  tags: [{ text: 'Spinal decompression', tone: 'slate' }],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          id: 'p2d3',
+          eyebrow: 'Phase 2 · Day 4 · Saturday',
+          title: 'Athletic flush & reset',
+          sub: '5-round circuit, movement flow block added after the flush. Flow comes last — athletic rhythm as a cool-down, not a primer. This is the session that retrains the nervous system out of its high-tension protective pattern.',
+          meta: [
+            { label: 'Duration', value: '~60 min' },
+            { label: 'Circuit rest', value: '60 s between rounds' },
+            { label: 'Flow block', value: 'After flush — low effort' },
+          ],
+          sections: [
+            {
+              label: 'Warm-up',
+              exercises: [
+                {
+                  num: '1',
+                  name: 'Brisk walk + cat-cow',
+                  detail: '5 min walk, then 2 min cat-cow on a mat. Same as Phase 1.',
+                },
+              ],
+            },
+            {
+              label: '"60-second" flush circuit — 5 rounds',
+              station: 'Station: Sled lane or assault bike + floor beside it',
+              rest: 'A → B → C back-to-back. 60 s rest after all three. Volume increase from Phase 1 (4 → 5 rounds).',
+              exercises: [
+                {
+                  num: 'A',
+                  name: 'Sled push & pull or assault bike',
+                  detail: '5 × 60 s — Higher effort target than Phase 1. Sled load goes up.',
+                },
+                {
+                  num: 'B',
+                  name: 'Resistance band pull-apart',
+                  detail: '5 × 60 s — Same as Phase 1 but increase band resistance. Arms straight, full extension on each rep. 40–50 reps in 60 s.',
+                  tags: [
+                    { text: 'Rear delt + mid-trap', tone: 'green' },
+                    { text: 'Active recovery', tone: 'slate' },
+                  ],
+                },
+                {
+                  num: 'C',
+                  name: 'Jump rope — faster or double-unders',
+                  detail: '5 × 60 s — Increase tempo or attempt double-unders. More elastic demand per contact.',
+                },
+              ],
+            },
+            {
+              label: 'Core finisher — 3 rounds, 45 s rest',
+              exercises: [
+                {
+                  num: '2',
+                  name: 'RKC plank — extended',
+                  detail: '3 × 40 s — Longer hold than Phase 1.',
+                  tags: [{ text: 'TVA', tone: 'purple' }],
+                },
+              ],
+            },
+            {
+              label: 'Movement flow — cool-down (Phase 2 addition)',
+              info: 'Placed after the flush deliberately — not before. The goal is fluid, coordinated movement as the session winds down. Low effort, low heart rate. Signals the nervous system to exit the high-tension protective pattern built from years of heavy lifting and injury compensation.',
+              exercises: [
+                {
+                  num: '3',
+                  name: 'Movement flow circuit — 2 rounds',
+                  detail: 'Skipping — 30 s easy. Lateral shuffle — 30 s each direction. Pogo hops — 20 contacts. No intensity target. Move fluidly, stay relaxed. This is the "feel athletic again" block.',
+                  tags: [
+                    { text: 'Athletic flow', tone: 'amber' },
+                    { text: 'Nervous system reset', tone: 'amber' },
+                  ],
+                },
+              ],
+            },
+            {
+              label: 'Full reset',
+              exercises: [
+                {
+                  num: '4',
+                  name: 'Dead hang + static floor rest',
+                  detail: '3 × 30 s dead hangs, then 10 min floor rest (knees bent, feet flat, fully passive). End every week here without exception.',
+                  tags: [{ text: 'Parasympathetic recovery', tone: 'slate' }],
+                },
+              ],
+            },
+          ],
+        },
       ],
     },
   ],
