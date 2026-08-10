@@ -485,13 +485,49 @@ export const program: Program = {
       home: {
         eyebrow: 'Every day — gym days and rest days',
         title: 'Daily home routine',
-        sub: '',
-        infoBars: [],
+        sub: '~15 minutes. No equipment needed. These exercises compound into major results when done daily — and would waste gym time done there. Order matters: spinal mobility first, hip mobility second, activation third, balance last.',
+        infoBars: [
+          'If short on time, skip Block 3 before skipping Blocks 1 or 2. The mobility work is the highest-value daily habit for your specific profile. Best done in the morning or before bed.',
+        ],
         blocks: [
-          { num: 1, title: 'Spinal mobility & decompression', time: '', exercises: [] },
-          { num: 2, title: 'Hip mobility', time: '', exercises: [] },
-          { num: 3, title: 'Activation', time: '', exercises: [] },
-          { num: 4, title: 'Balance & posture', time: '', exercises: [] },
+          {
+            num: 1,
+            title: 'Spinal mobility & decompression',
+            time: '~4 min',
+            exercises: [
+              { num: 1, name: 'Cat-cow', detail: '2 × 10 reps — Slow, full range. Exhale on the arch, inhale on the hollow. Sets the tone for the whole session.' },
+              { num: 2, name: "Child's pose", detail: '2 × 45 s — Arms stretched forward, forehead down. Breathe into the lower back. Passive spinal traction.' },
+              { num: 3, name: 'Wall slide (wall angel)', detail: '2 × 10 reps — Back flat against the wall, arms at 90°. Slowly raise arms overhead while keeping every part of the back and arms in contact with the wall throughout. One of the highest-value exercises in this entire program for the aesthetic goal — directly counteracts erector overdevelopment and forward shoulder posture.' },
+            ],
+          },
+          {
+            num: 2,
+            title: 'Hip mobility',
+            time: '~4 min',
+            exercises: [
+              { num: 4, name: '90/90 hip stretch', detail: '90 s per side — Passive hold, breathe slowly into the hip. Right side 15–20 s longer. Targets the hip capsule directly — the primary restriction driving the impingement symptoms.' },
+              { num: 5, name: 'Supine figure-4 (piriformis stretch)', detail: '60 s per side — Ankle crossed over opposite knee, gently pull the thigh toward your chest. Right side priority. Breathe slowly.' },
+            ],
+          },
+          {
+            num: 3,
+            title: 'Activation',
+            time: '~4 min',
+            exercises: [
+              { num: 6, name: 'Superman hold', detail: '3 × 8 reps × 3 s hold — Face down, arms forward. Lift arms and legs simultaneously, squeeze glutes. Trains the posterior chain in extension — directly opposes the anterior pelvic tilt pattern.' },
+              { num: 7, name: 'Side-lying hip abduction', detail: '2 × 15 reps per side — No band needed. Slow, pelvis stacked, 1 s pause at the top. Right side first. Add a light band if available.' },
+              { num: 8, name: 'Stomach vacuum', detail: '3 × 20 s hold — Standing or seated. Exhale fully, draw navel in, hold without bracing the outer abs. Resting TVA tone is built through daily frequency — this is why it lives here and not at the gym.' },
+            ],
+          },
+          {
+            num: 4,
+            title: 'Balance & posture',
+            time: '~3 min',
+            exercises: [
+              { num: 9, name: 'Single-leg balance — right side focus', detail: '3 × 30 s per side — Progress weekly: Weeks 1–2 eyes open flat ground → Weeks 3–4 eyes closed → Weeks 5+ on a folded towel or cushion. Right side always first. Retrains the proprioceptive chain from the Achilles through the meniscus to the hip.' },
+              { num: 10, name: 'Seated scapular depression', detail: '2 × 12 reps — Sit in a chair, arms straight, pull shoulders down away from ears, hold 2 s. Trains the lower trap daily. Small habit with outsized postural payoff over weeks.' },
+            ],
+          },
         ],
       },
     },

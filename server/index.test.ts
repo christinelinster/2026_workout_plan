@@ -31,6 +31,16 @@ describe('GET /api/program', () => {
     expect(p2.dayTabs).toHaveLength(4);
   });
 
+  it('serves the home routine content', async () => {
+    const res = await request(app).get('/api/program');
+    const home = res.body.tabs.find((t: { id: string }) => t.id === 'home');
+    expect(home.home.sub).toContain('~15 minutes');
+    expect(home.home.infoBars).toHaveLength(1);
+    expect(home.home.blocks).toHaveLength(4);
+    expect(home.home.blocks[3].exercises).toHaveLength(2);
+    expect(home.home.blocks[0].exercises[2].name).toBe('Wall slide (wall angel)');
+  });
+
   it('returns a home tab with home blocks', async () => {
     const res = await request(app).get('/api/program');
     const home = res.body.tabs.find((t: { id: string }) => t.id === 'home');
