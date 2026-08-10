@@ -38,4 +38,19 @@ describe('GET /api/program', () => {
     expect(home.home.blocks).toHaveLength(4);
     expect(home.home.blocks[0].title).toBe('Spinal mobility & decompression');
   });
+
+  it('serves Phase 1 day content', async () => {
+    const res = await request(app).get('/api/program');
+    const p1 = res.body.tabs.find((t: { id: string }) => t.id === 'p1');
+    const day1 = p1.days[0];
+    expect(day1.title).toBe('Pull, glutes & decompression');
+    expect(day1.sections).toHaveLength(7);
+    const strengthA = day1.sections.find((s: { label: string }) => s.label === 'Strength block A — standalone');
+    expect(strengthA.exercises[0].name).toBe('Wide-grip lat pulldown');
+    expect(strengthA.exercises[0].tags[0].tone).toBe('green');
+    const primerSection = day1.sections.find((s: { primer?: unknown }) => s.primer);
+    expect(primerSection.primer.menuItems).toHaveLength(8);
+    const day4 = p1.days[3];
+    expect(day4.sections.some((s: { label: string }) => s.label === 'Finisher & reset')).toBe(true);
+  });
 });
