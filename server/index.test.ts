@@ -1,6 +1,13 @@
 import { describe, it, expect } from 'vitest';
+import path from 'node:path';
+import fs from 'node:fs';
+import { fileURLToPath } from 'node:url';
 import request from 'supertest';
 import app from './index';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const indexHtml = path.join(__dirname, '..', 'client', 'dist', 'index.html');
+const distExists = fs.existsSync(indexHtml);
 
 describe('GET /api/health', () => {
   it('returns ok', async () => {
@@ -73,5 +80,49 @@ describe('GET /api/program', () => {
     expect(day2.title).toBe('Metabolic power & rotation');
     const movementFlow = p2.days[3].sections.find((s: { label: string }) => s.label === 'Movement flow — cool-down (Phase 2 addition)');
     expect(movementFlow.info).toContain('Placed after the flush deliberately');
+  });
+});
+
+describe('static file serving', () => {
+  it.skipIf(!distExists)('serves index.html at the root path', async () => {
+    const res = await request(app).get('/');
+    expect(res.status).toBe(200);
+    expect(res.headers['content-type']).toMatch(/text\/html/);
+    expect(res.text).toContain('<!DOCTYPE html>');
+  });
+
+  it.skipIf(!distExists)('serves built static assets', async () => {
+    const html = fs.readFileSync(indexHtml, 'utf8');
+    const asset = html.match(/src="([^"]+\.js)"/)?.[1];
+    expect(asset).toBeDefined();
+    const res = await request(app).get(asset as string);
+    expect(res.status).toBe(200);
+    expect(res.headers['content-type']).toMatch(/javascript/);
+  });
+});
+
+describe('SPA fallback', () => {
+  it.skipIf(!distExists)('serves index.html for deep links', async () => {
+    const res = await request(app).get('/p1/day/2');
+    expect(res.status).toBe(200);
+    expect(res.headers['content-type']).toMatch(/text\/html/);
+    expect(res.text).toContain('<!DOCTYPE html>');
+  });
+});
+
+describe('JSON error responses', () => {
+  it('returns a JSON 404 for unknown API routes', async () => {
+    const res = await request(app).get('/api/nonexistent');
+    expect(res.status).toBe(404);
+    expect(res.body).toEqual({ error: 'Not found' });
+  });
+
+  it('returns a JSON 500 when a request throws', async () => {
+    const res = await request(app)
+      .post('/api/health')
+      .set('Content-Type', 'application/json')
+      .send('{"malformed": ');
+    expect(res.status).toBe(500);
+    expect(res.body).toEqual({ error: 'Internal server error' });
   });
 });
