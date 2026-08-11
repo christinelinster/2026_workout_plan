@@ -130,6 +130,21 @@ describe('App', () => {
     await waitFor(() => expect(screen.queryByText('Skipping')).toBeNull());
   });
 
+  it('exposes the primer accordion toggle as an accessible button', async () => {
+    render(<App />);
+    await screen.findByText('Pull, glutes & decompression');
+    const toggle = screen.getByRole('button', { name: /athletic primer/i });
+    expect(toggle.getAttribute('aria-expanded')).toBe('false');
+    expect(toggle.getAttribute('aria-controls')).toBe('primer-menu');
+    fireEvent.click(toggle);
+    await waitFor(() => expect(toggle.getAttribute('aria-expanded')).toBe('true'));
+    const menu = document.getElementById('primer-menu');
+    expect(menu).not.toBeNull();
+    expect(menu?.getAttribute('aria-labelledby')).toBe('primer-menu-label');
+    fireEvent.click(toggle);
+    await waitFor(() => expect(toggle.getAttribute('aria-expanded')).toBe('false'));
+  });
+
   it('switches between the three main tabs', async () => {
     render(<App />);
     await screen.findByText('Pull, glutes & decompression');

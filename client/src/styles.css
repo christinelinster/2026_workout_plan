@@ -284,6 +284,18 @@
     transition: background 0.12s;
   }
   .primer-header:hover { background: var(--surface2); }
+  button.primer-header {
+    width: 100%;
+    background: none;
+    border: none;
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    text-align: left;
+    -webkit-appearance: none;
+    appearance: none;
+  }
   .primer-header-left { display: flex; align-items: center; gap: 10px; }
   .primer-icon {
     width: 28px;

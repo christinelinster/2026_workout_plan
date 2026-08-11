@@ -10,7 +10,13 @@ export default function PrimerAccordion({ primer }: PrimerAccordionProps) {
 
   return (
     <div className="primer-wrap">
-      <div className="primer-header" onClick={() => setOpen((prev) => !prev)}>
+      <button
+        type="button"
+        className="primer-header"
+        onClick={() => setOpen((prev) => !prev)}
+        aria-expanded={open}
+        aria-controls="primer-menu"
+      >
         <div className="primer-header-left">
           <div className="primer-icon">&#9889;</div>
           <div>
@@ -19,7 +25,7 @@ export default function PrimerAccordion({ primer }: PrimerAccordionProps) {
           </div>
         </div>
         <div className={open ? 'primer-chevron open' : 'primer-chevron'}>&#9660;</div>
-      </div>
+      </button>
       <div className="primer-fixed">
         <div className="primer-fixed-label">{primer.recommendedLabel}</div>
         {primer.steps.map((step) => (
@@ -33,8 +39,8 @@ export default function PrimerAccordion({ primer }: PrimerAccordionProps) {
         ))}
       </div>
       {open && (
-        <div className="primer-menu open">
-          <div className="primer-menu-label">{primer.menuLabel}</div>
+        <div className="primer-menu open" id="primer-menu" aria-labelledby="primer-menu-label">
+          <div className="primer-menu-label" id="primer-menu-label">{primer.menuLabel}</div>
           {primer.menuItems.map((item) => (
             <div className="menu-item" key={item.name}>
               <div className="menu-item-name">{item.name}</div>
