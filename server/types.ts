@@ -6,6 +6,8 @@ export type Exercise = {
   num: string;
   name: string;
   detail: string;
+  warmup?: string;
+  cue?: string;
   alt?: string;
   why?: string;
   tags?: Tag[];
@@ -34,6 +36,7 @@ export type Section = {
   label?: string;
   station?: string;
   rest?: string;
+  duration?: string;
   info?: string;
   primer?: Primer;
   exercises?: Exercise[];
@@ -52,6 +55,7 @@ export type HomeExercise = {
   num: number;
   name: string;
   detail: string;
+  cue?: string;
 };
 
 export type HomeBlock = {

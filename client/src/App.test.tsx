@@ -2,6 +2,7 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import App from './App';
+import { program } from '../../server/data/program';
 
 const programFixture = {
   title: 'Lean & Strong — Full Program',
@@ -28,7 +29,7 @@ const programFixture = {
             {
               label: 'Strength block A — standalone',
               station: 'Station: Cable machine',
-              rest: '60 s rest.',
+              rest: '60 s',
               exercises: [
                 {
                   num: 'A',
@@ -108,6 +109,59 @@ afterEach(() => {
 });
 
 describe('App', () => {
+  it('renders the current program through every gym day and the daily home tab', async () => {
+    vi.stubGlobal('fetch', vi.fn(() => Promise.resolve({
+      ok: true,
+      json: () => Promise.resolve(program),
+    })));
+    render(<App />);
+    expect(await screen.findByText(program.title)).toBeTruthy();
+    expect(screen.getAllByText('Dumbbell bench press')).toHaveLength(1);
+    expect(screen.getAllByText('Chest-supported dumbbell row')).toHaveLength(1);
+    const pushBlock = screen.getByRole('heading', { name: 'Strength Block A' }).closest('section');
+    expect(pushBlock?.querySelectorAll('.exercise')).toHaveLength(3);
+    expect(pushBlock?.textContent).toContain('Dumbbell bench press');
+    expect(pushBlock?.textContent).not.toContain('Incline push-up');
+    expect(screen.queryByText('Incline push-up')).toBeNull();
+    expect(pushBlock?.querySelectorAll('.exercise-line')).toHaveLength(3);
+    expect(pushBlock?.querySelector('.workout-block .section-label')).toBeNull();
+    expect(pushBlock?.querySelector('.block-timing')?.textContent).toBe('2-3 min');
+    const benchCopy = screen.getByText('Dumbbell bench press').parentElement;
+    expect(benchCopy?.querySelector('.ex-cue')).not.toBeNull();
+    expect(benchCopy?.querySelector('.ex-alt')).not.toBeNull();
+    const benchDose = screen.getByText('Dumbbell bench press').closest('.exercise')?.querySelector('.ex-dose');
+    expect(benchDose?.querySelector('.ex-warmup')?.textContent).toBe('Warm-up2 × 5-8 reps');
+    expect(benchDose?.querySelector('.ex-detail')?.textContent).toBe('Working3 × 6-10 reps');
+    expect(screen.getByRole('heading', { name: 'Core' })).toBeTruthy();
+    const cardioHeader = screen.getByRole('heading', { name: 'Cardio' }).parentElement;
+    expect(cardioHeader?.querySelector('.block-timing')?.getAttribute('aria-label')).toBe('Duration: 20 min');
+    expect(pushBlock?.querySelector('.block-header .block-timing')?.getAttribute('aria-label')).toBe('Rest: 2-3 min');
+    expect(screen.getByText('Upper • Push')).toBeTruthy();
+    expect(screen.queryByText('Press and row preparation')).toBeNull();
+    for (const tab of program.tabs) {
+      fireEvent.click(screen.getByText(tab.label));
+      if (tab.kind === 'home') {
+        expect(await screen.findByText('90/90 hip switches')).toBeTruthy();
+        expect(document.querySelectorAll('.home-block-num')).toHaveLength(5);
+        expect(document.querySelector('.home-ex .exercise-line')).toBeNull();
+        expect(screen.getAllByText(/1 × 4 reps\/side/)).toHaveLength(2);
+      } else {
+        for (let i = 0; i < tab.dayTabs.length; i++) {
+          fireEvent.click(screen.getByText(tab.dayTabs[i].label));
+          expect(await screen.findByText(tab.days[i].title)).toBeTruthy();
+          expect(screen.getByText('60 min')).toBeTruthy();
+          expect(document.querySelector('.rest-bar')).toBeNull();
+          expect(document.querySelector('.workout-note .info-bar')).not.toBeNull();
+          expect(document.querySelector('.workout-block .info-bar')).toBeNull();
+          expect(document.querySelector('.block-timing')).not.toBeNull();
+          expect(document.querySelector('.phase-bar')).not.toBeNull();
+          expect(document.querySelector('.ex-why, .tag-row')).toBeNull();
+          expect(screen.queryByRole('button', { name: /athletic primer/i })).toBeNull();
+        }
+      }
+    }
+  });
+
   it('loads the program and shows the header title', async () => {
     render(<App />);
     expect(await screen.findByText('Lean & Strong — Full Program')).toBeTruthy();
@@ -117,32 +171,23 @@ describe('App', () => {
     render(<App />);
     expect(await screen.findByText('Pull, glutes & decompression')).toBeTruthy();
     expect(screen.getByText('Wide-grip lat pulldown')).toBeTruthy();
-    expect(screen.getByText('Erector elongation')).toBeTruthy();
+    expect(screen.queryByText('Erector elongation')).toBeNull();
+    expect(screen.getByText('60 s')).toBeTruthy();
+    expect(screen.getByText('A test day.')).toBeTruthy();
   });
 
-  it('toggles the primer accordion', async () => {
+  it('shows selected callouts while keeping exercise rows concise', async () => {
     render(<App />);
     await screen.findByText('Pull, glutes & decompression');
-    expect(screen.queryByText('Skipping')).toBeNull();
-    fireEvent.click(screen.getByText('Athletic primer', { selector: '.primer-title' }));
-    await waitFor(() => expect(screen.getByText('Skipping')).toBeTruthy());
-    fireEvent.click(screen.getByText('Athletic primer', { selector: '.primer-title' }));
-    await waitFor(() => expect(screen.queryByText('Skipping')).toBeNull());
-  });
-
-  it('exposes the primer accordion toggle as an accessible button', async () => {
-    render(<App />);
-    await screen.findByText('Pull, glutes & decompression');
-    const toggle = screen.getByRole('button', { name: /athletic primer/i });
-    expect(toggle.getAttribute('aria-expanded')).toBe('false');
-    expect(toggle.getAttribute('aria-controls')).toBe('primer-menu');
-    fireEvent.click(toggle);
-    await waitFor(() => expect(toggle.getAttribute('aria-expanded')).toBe('true'));
-    const menu = document.getElementById('primer-menu');
-    expect(menu).not.toBeNull();
-    expect(menu?.getAttribute('aria-labelledby')).toBe('primer-menu-label');
-    fireEvent.click(toggle);
-    await waitFor(() => expect(toggle.getAttribute('aria-expanded')).toBe('false'));
+    expect(screen.queryAllByText('Athletic primer')).toHaveLength(0);
+    expect(screen.getByText('Station: Cable machine')).toBeTruthy();
+    fireEvent.click(screen.getByText('Daily Home'));
+    expect(await screen.findByText('Cat-cow')).toBeTruthy();
+    expect(screen.getByText('2 × 10 reps.')).toBeTruthy();
+    expect(screen.getByText('Skip Block 3 first.')).toBeTruthy();
+    expect(screen.getByText('~15 minutes.')).toBeTruthy();
+    fireEvent.click(screen.getByText('Phase 2 — Progression'));
+    expect(screen.getByText('Move to Phase 2 when controlled.')).toBeTruthy();
   });
 
   it('switches between the three main tabs', async () => {

@@ -28,7 +28,7 @@ export default function App() {
     return (
       <div className="content-area">
         <div className="page-header">
-          <div className="page-title">Lean &amp; Strong — Full Program</div>
+          <div className="page-title">Lean &amp; Strong - Upper / Lower</div>
         </div>
         <div className="info-bar">{error}</div>
         <button type="button" className="main-tab" onClick={load}>
@@ -73,7 +73,6 @@ export default function App() {
     <div>
       <div className="page-header">
         <div className="page-title">{program.title}</div>
-        <div className="page-sub">{program.sub}</div>
       </div>
       <TabNav tabs={program.tabs} activeTabId={activeTab.id} onSelect={setActiveTabId} />
       <div className="content-area">{renderContent()}</div>

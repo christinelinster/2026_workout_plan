@@ -1,965 +1,319 @@
-import type { Program } from '../types';
+import type { Day, Exercise, PhaseTab, Program } from '../types';
 
-export const program: Program = {
-  title: 'Lean & Strong — Full Program',
-  sub: 'Phase 1 · Daily Home Routine · Phase 2 Progression · Mon / Wed / Fri / Sat',
-  tabs: [
+const upperA: Day = {
+  id: "p1d0", eyebrow: "Monday | Upper Push", title: "Upper • Push",
+  sub: "Cardio → dumbbells and bench → mat core finisher.",
+  meta: [
+    { label: "Session cap", value: "60 min" },
+    { label: "Strength + warm-up", value: "30 min" },
+    { label: "Core / cardio / buffer", value: "5 / 20 / 5 min" },
+  ],
+  sections: [
     {
-      id: 'p1',
-      label: 'Phase 1 — Gym',
-      kind: 'phase',
-      dayTabs: [
-        { id: 'p1d0', label: 'Day 1 — Pull & Glutes' },
-        { id: 'p1d1', label: 'Day 2 — Metabolic Core' },
-        { id: 'p1d2', label: 'Day 3 — Strength & Symmetry' },
-        { id: 'p1d3', label: 'Day 4 — Flush & Reset' },
-      ],
-      days: [
-        {
-          id: 'p1d0',
-          eyebrow: 'Phase 1 · Day 1 · Monday',
-          title: 'Pull, glutes & decompression',
-          sub: 'Lat pulldown standalone → hip thrust standalone → mat giant set. Three clean blocks, no cross-gym transitions.',
-          meta: [
-            { label: 'Duration', value: '~60 min' },
-            { label: 'Lifting tempo', value: '4-1-1' },
-            { label: 'Standalone rest', value: '60 s between sets' },
-            { label: 'Giant set rest', value: '45 s after each round' },
-          ],
-          sections: [
-            {
-              label: 'Warm-up',
-              exercises: [
-                {
-                  num: '1',
-                  name: 'Incline treadmill walk',
-                  detail: '10 min — 3.5 mph / 6% incline. Tall posture, no rail grip. Push through the right big toe at every push-off to begin activating the right glute chain.',
-                },
-              ],
-            },
-            {
-              label: 'Athletic primer',
-              info: 'Open floor near the treadmill or stretching area. Full recovery between sets — these are not cardio, they are neurological training.',
-              primer: {
-                recommendedLabel: 'Recommended — Day 1',
-                steps: [
-                  { num: '1', name: 'Pogo hops', detail: '3 × 20 contacts — Ankles only, minimal knee bend. Land as quietly as possible. Full rest between sets.' },
-                  { num: '2', name: 'Box jump (onto box)', detail: '3 × 5 reps — Low box (12–18"). Full hip extension at the top. Step down, never jump down. Full reset before each rep.' },
-                  { num: '3', name: 'Forward & backward hop', detail: '2 × 8 contacts per direction — Two-foot hop forward, stick 1 s, hop back, stick 1 s. Builds Achilles loading in the sagittal plane.' },
-                ],
-                menuLabel: 'Full primer menu — choose any 2–3',
-                menuItems: [
-                  { name: 'Pogo hops', dose: '3 × 20 contacts', cue: 'Ankles only, minimal knee bend, quiet landings.' },
-                  { name: 'Skipping', dose: '3 × 30 s', cue: 'Relaxed, rhythmic. Good substitute on reactive days.' },
-                  { name: 'Box jump (onto box)', dose: '3 × 5 reps', cue: 'Low box. Full hip extension at top. Step down every rep.' },
-                  { name: 'Depth drop', dose: '3 × 5 reps', cue: 'Step off box, absorb landing with soft knees. No immediate jump yet.' },
-                  { name: 'Depth drop → vertical jump', dose: '3 × 5 reps', cue: 'Step off, land, immediately jump straight up. Minimal ground contact time.' },
-                  { name: 'Vertical jump', dose: '3 × 5 reps', cue: 'Standing. Full arm swing. Soft landing, absorb fully before next rep.' },
-                  { name: 'Lateral hop + stick', dose: '3 × 5 per side', cue: 'Hop laterally, land single-leg, hold 2–3 s still. Right side first.' },
-                  { name: 'Forward & backward hop', dose: '2 × 8 contacts/dir', cue: 'Two-foot. Hop forward, stick 1 s, hop back, stick 1 s.' },
-                ],
-              },
-            },
-            {
-              label: 'Cardio block — choose one',
-              exercises: [
-                {
-                  num: '2',
-                  name: 'Sled push & pull',
-                  detail: '6 rounds × 20 yards out (push) + 20 yards back (pull) — 60 s rest between rounds. Push with high handles, flip, pull back. Same sled, same lane throughout.',
-                  alt: 'Alt A: Rowing machine — 8 × 1 min hard / 1 min easy. Reach fully forward at the catch to stretch the erectors.\nAlt B: Jump rope — 10 × 45 s active / 15 s rest. Soft knees, balls of feet.',
-                },
-              ],
-            },
-            {
-              label: 'Strength block A — standalone',
-              station: 'Station: Cable machine',
-              rest: '4 working sets. 60 s rest between sets. Full attention — no superset here.',
-              exercises: [
-                {
-                  num: 'A',
-                  name: 'Wide-grip lat pulldown',
-                  detail: '4 × 12–15 reps — Tempo 4-1-1. Depress the scapulae first, then pull. The long eccentric on the way up is what gradually elongates the hypertrophied erectors. Light-to-moderate load — this is structural work, not a strength competition.',
-                  why: 'Consistent slow eccentrics over 8–12 weeks are the primary driver of reducing the erector-driven wide look. The stretch at the top of each rep matters more than the load.',
-                  tags: [
-                    { text: 'Erector elongation', tone: 'green' },
-                    { text: 'Width reduction', tone: 'green' },
-                  ],
-                },
-              ],
-            },
-            {
-              label: 'Strength block B — standalone',
-              station: 'Station: Hip thrust machine',
-              rest: '4 working sets. 60 s rest between sets. Progressive overload — add load when all reps feel fully controlled.',
-              exercises: [
-                {
-                  num: 'B',
-                  name: 'Hip thrust (machine)',
-                  detail: '4 × 12 reps — Full range, squeeze hard at the top with a posterior pelvic tilt, hold 1 s. Drive through both feet evenly — watch that the right side matches the left output. No spinal compression involved.',
-                  why: 'Direct glute max loading through hip extension. The posterior pelvic tilt at the top directly counteracts anterior pelvic tilt and reduces the flared hip appearance. Safe progressive overload with zero erector bracing demand.',
-                  tags: [
-                    { text: 'APT correction', tone: 'green' },
-                    { text: 'Glute max', tone: 'green' },
-                  ],
-                },
-              ],
-            },
-            {
-              label: 'Giant set — 3 rounds',
-              station: 'Station: Mat area — floor only, no equipment moves',
-              rest: 'C → D → E back-to-back with no rest between. Rest 45 s after all three. Repeat 3 rounds.',
-              exercises: [
-                {
-                  num: 'C',
-                  name: 'Dead bug',
-                  detail: '3 × 10 reps per side — Lower back pinned flat the entire time. Move slowly. Stop the leg before 90° if the back lifts. No breath-holding.',
-                  tags: [{ text: 'TVA + multifidus', tone: 'purple' }],
-                },
-                {
-                  num: 'D',
-                  name: 'Copenhagen plank',
-                  detail: '3 × 20–30 s per side — Top foot on a low bench or step. Hold a side plank. Start with the bottom knee lightly touching the floor if needed. Build toward 45 s over weeks.',
-                  why: 'High combined oblique and adductor activation with zero hip joint compression. Contributes to a leaner waist and inner-thigh silhouette over time.',
-                  tags: [{ text: 'Oblique + adductor', tone: 'purple' }],
-                },
-                {
-                  num: 'E',
-                  name: 'Bird-dog',
-                  detail: '3 × 10 reps per side — Opposite arm and leg extend simultaneously. 2 s pause at full extension, maximum length from fingertip to toe.',
-                  tags: [{ text: 'Multifidus + TVA', tone: 'purple' }],
-                },
-              ],
-            },
-            {
-              label: 'Finisher',
-              exercises: [
-                {
-                  num: '3',
-                  name: 'Dead hang',
-                  detail: '4 × 30 s on / 30 s off — Pull-up bar. Shoulders fully passive and relaxed. One of the most consistent habits for reducing the erector-driven wide look over 8–12 weeks.',
-                  tags: [{ text: 'Spinal decompression', tone: 'slate' }],
-                },
-              ],
-            },
-          ],
-        },
-        {
-          id: 'p1d1',
-          eyebrow: 'Phase 1 · Day 2 · Wednesday',
-          title: 'Metabolic core & waist',
-          sub: 'High-output cardio, seated row standalone, oblique circuit, TVA finisher. All circuit work stays at the cable and TRX station.',
-          meta: [
-            { label: 'Duration', value: '~55 min' },
-            { label: 'Circuit rest', value: '60 s between rounds' },
-            { label: 'Finisher rest', value: '45 s between rounds' },
-          ],
-          sections: [
-            {
-              label: 'Warm-up',
-              exercises: [
-                {
-                  num: '1',
-                  name: 'Brisk flat walk',
-                  detail: '5 min — Easy pace, shoulders back, long stride. Arm swing engaged.',
-                },
-              ],
-            },
-            {
-              label: 'Athletic primer',
-              primer: {
-                recommendedLabel: 'Recommended — Day 2',
-                steps: [
-                  { num: '1', name: 'Lateral hop + stick', detail: '3 × 5 per side — Hop laterally, land single-leg, hold still for 2–3 s. Right side first. No wobble before releasing.' },
-                  { num: '2', name: 'Depth drop', detail: '3 × 5 reps — Step off a low box, land with soft knees and full absorption. Focus entirely on landing quality. Full reset between reps.' },
-                ],
-                menuLabel: 'Full primer menu — choose any 2–3',
-                menuItems: [
-                  { name: 'Pogo hops', dose: '3 × 20 contacts', cue: 'Ankles only, minimal knee bend, quiet landings.' },
-                  { name: 'Skipping', dose: '3 × 30 s', cue: 'Relaxed, rhythmic. Good substitute on reactive days.' },
-                  { name: 'Box jump (onto box)', dose: '3 × 5 reps', cue: 'Low box. Full hip extension at top. Step down every rep.' },
-                  { name: 'Depth drop', dose: '3 × 5 reps', cue: 'Step off box, absorb landing with soft knees. No immediate jump yet.' },
-                  { name: 'Depth drop → vertical jump', dose: '3 × 5 reps', cue: 'Step off, land, immediately jump straight up. Minimal ground contact time.' },
-                  { name: 'Vertical jump', dose: '3 × 5 reps', cue: 'Standing. Full arm swing. Soft landing, absorb fully before next rep.' },
-                  { name: 'Lateral hop + stick', dose: '3 × 5 per side', cue: 'Hop laterally, land single-leg, hold 2–3 s still. Right side first.' },
-                  { name: 'Forward & backward hop', dose: '2 × 8 contacts/dir', cue: 'Two-foot. Hop forward, stick 1 s, hop back, stick 1 s.' },
-                ],
-              },
-            },
-            {
-              label: 'Cardio block — choose one',
-              exercises: [
-                {
-                  num: '2',
-                  name: 'Assault / fan bike',
-                  detail: '10 rounds × 30 s max effort / 30 s easy — Equal arm and leg drive. Right knee tracks over right toe.',
-                  alt: 'Alt A: Jump rope — 10 × 45 s active / 15 s rest. Highest caloric burn per minute on this list.\nAlt B: Stairmaster — 12 min at level 8–10, no hands. Full step, heel drive.\nAlt C: Rowing machine — 8 × 45 s hard / 45 s easy at resistance 6–8.',
-                },
-              ],
-            },
-            {
-              label: 'Metabolic circuit — 4 rounds',
-              station: 'Station: Peck deck + Dumbbell rack + Reverse fly machine — all adjacent',
-              rest: 'A → B → C → D back-to-back, minimal rest between exercises. 60 s full rest after each complete round.',
-              exercises: [
-                {
-                  num: 'A',
-                  name: 'Peck deck (machine)',
-                  detail: '4 × 10 reps — Sit with back against the pad, grab handles, squeeze pecs together at the center. Control the stretch. Moderate load — strength maintenance, not hypertrophy focus.',
-                  why: 'Targets the pecs with minimal triceps involvement. Creates the upper chest shelf that contributes to a balanced upper-body silhouette.',
-                  tags: [{ text: 'Pecs', tone: 'green' }],
-                },
-                {
-                  num: 'B',
-                  name: 'Reverse fly (machine)',
-                  detail: '4 × 10 reps — Sit facing the machine, grab handles from behind, squeeze rear delts together. Control the stretch, avoid swinging. Moderate load. Same machine as A — go directly to this after A.',
-                  why: 'Adds rear delt density that balances the shoulders visually from behind and from the side. Complements the lateral raise for full shoulder development.',
-                  tags: [
-                    { text: 'Rear delt', tone: 'green' },
-                    { text: 'Posture', tone: 'green' },
-                  ],
-                },
-                {
-                  num: 'C',
-                  name: 'Dumbbell lateral raise',
-                  detail: '4 × 10 reps — Stand with dumbbells at sides, raise arms out to the sides until parallel with the floor. Slight bend in elbows, control the descent. Moderate load — maintain shoulder strength without excessive bulk.',
-                  why: 'Builds lateral deltoid density that creates shoulder roundness and visual V-taper. Directly counteracts the blocked, square upper-body look.',
-                  tags: [{ text: 'Shoulder density', tone: 'green' }],
-                },
-              ],
-            },
-            {
-              label: 'Waist finisher — 2–3 rounds, 45 s rest',
-              station: 'Station: Cable machine — all exercises at same station',
-              rest: 'A → B back-to-back, minimal rest between exercises. 45 s full rest after each complete round.',
-              exercises: [
-                {
-                  num: 'A',
-                  name: 'Pallof press',
-                  detail: '2–3 × 10–12 reps per side — Cable at chest height. Press directly forward, hold 2 s, return slowly. Do not rotate. Stand or half-kneel.',
-                  tags: [{ text: 'TVA anti-rotation', tone: 'purple' }],
-                },
-                {
-                  num: 'B',
-                  name: 'Tall-kneeling cable woodchop',
-                  detail: '2–3 × 10 reps per side — Both knees on the floor, cable anchored high. Rotate through the trunk only. Slow and controlled on the return. Kneel on a mat at the cable base.',
-                  why: 'Full oblique rotation with the hip joint completely neutralized. High oblique activation, zero joint provocation.',
-                  tags: [{ text: 'Obliques', tone: 'purple' }],
-                },
-              ],
-            },
-            {
-              label: 'Tendon care',
-              exercises: [
-                {
-                  num: '4',
-                  name: 'Eccentric heel drop',
-                  detail: '3 × 15 reps per side — Step or plate edge. Rise on both feet, lower slowly on one over 4 s, heel below step level. Right side priority. Add load as it gets easier over weeks.',
-                  why: 'Alfredson protocol. Most important on jump rope days. Drives Achilles tendon collagen synthesis and long-term resilience.',
-                  tags: [{ text: 'Achilles remodeling', tone: 'amber' }],
-                },
-              ],
-            },
-          ],
-        },
-        {
-          id: 'p1d2',
-          eyebrow: 'Phase 1 · Day 3 · Friday',
-          title: 'Unilateral strength & symmetry',
-          sub: 'Dumbbell strength standalones, cable giant set, leg curl. Each block has its own station — no cross-gym transitions mid-set.',
-          meta: [
-            { label: 'Duration', value: '~65 min' },
-            { label: 'Tempo (strength)', value: '3-1-1' },
-            { label: 'Strength rest', value: '60–75 s between sets' },
-          ],
-          sections: [
-            {
-              label: 'Warm-up',
-              exercises: [
-                {
-                  num: '1',
-                  name: 'Incline treadmill walk',
-                  detail: '10 min — 3.0 mph / 8% incline. Heel drive, glute engagement, no rail grip. Deliberate glute activation warm-up, not casual cardio.',
-                },
-              ],
-            },
-            {
-              label: 'Athletic primer',
-              primer: {
-                recommendedLabel: 'Recommended — Day 3',
-                steps: [
-                  { num: '1', name: 'Depth drop → vertical jump', detail: '3 × 5 reps — Step off low box, land, immediately jump straight up. Minimal ground contact time. Full reset between reps.' },
-                  { num: '2', name: 'Lateral hop + stick', detail: '3 × 5 per side — Small lateral hop, stick for 2–3 s completely still. Right side first. No wobble before releasing.' },
-                ],
-                menuLabel: 'Full primer menu — choose any 2–3',
-                menuItems: [
-                  { name: 'Pogo hops', dose: '3 × 20 contacts', cue: 'Ankles only, minimal knee bend, quiet landings.' },
-                  { name: 'Skipping', dose: '3 × 30 s', cue: 'Relaxed, rhythmic. Good substitute on reactive days.' },
-                  { name: 'Box jump (onto box)', dose: '3 × 5 reps', cue: 'Low box. Full hip extension at top. Step down every rep.' },
-                  { name: 'Depth drop', dose: '3 × 5 reps', cue: 'Step off box, absorb landing with soft knees. No immediate jump yet.' },
-                  { name: 'Depth drop → vertical jump', dose: '3 × 5 reps', cue: 'Step off, land, immediately jump straight up. Minimal ground contact time.' },
-                  { name: 'Vertical jump', dose: '3 × 5 reps', cue: 'Standing. Full arm swing. Soft landing, absorb fully before next rep.' },
-                  { name: 'Lateral hop + stick', dose: '3 × 5 per side', cue: 'Hop laterally, land single-leg, hold 2–3 s still. Right side first.' },
-                  { name: 'Forward & backward hop', dose: '2 × 8 contacts/dir', cue: 'Two-foot. Hop forward, stick 1 s, hop back, stick 1 s.' },
-                ],
-              },
-            },
-            {
-              label: 'Cardio block — choose one',
-              exercises: [
-                {
-                  num: '2',
-                  name: 'Stairmaster (no hands)',
-                  detail: '12 min — Level 8–10. Full step, heel drive. Preferred Day 3 option — glute activation primes the strength work that follows.',
-                  alt: 'Alt A: Assault bike — 10 × 40 s on / 20 s off.\nAlt B: Jump rope — 10 × 45 s active / 15 s rest.\nAlt C: Sled push & pull — 6 rounds × 20 yards each way, 60 s rest.',
-                },
-              ],
-            },
-            {
-              label: 'Strength block A — standalone superset',
-              station: 'Station: Dumbbell rack + bench beside it',
-              rest: 'RFESS and single-leg RDL share the same bench and DBs. Do them back-to-back as a superset. 75 s rest between rounds. 4 rounds total.',
-              exercises: [
-                {
-                  num: 'A',
-                  name: 'Rear-foot elevated split squat (DB)',
-                  detail: '4 × 8–10 reps per side — Tempo 3-1-1. Rear foot on the bench. Right side first. Slight forward torso lean, full depth without hip pinch. Start light — this is harder than it looks.',
-                  why: 'Best standing exercise for anterior pelvic tilt. Stretches the rear hip flexor under load. Reaches muscular failure before any spinal compression occurs.',
-                  tags: [
-                    { text: 'APT correction', tone: 'green' },
-                    { text: 'Unilateral strength', tone: 'green' },
-                  ],
-                },
-                {
-                  num: 'B',
-                  name: 'Single-leg RDL (DB)',
-                  detail: '4 × 8 reps per side — Tempo 3-1-1. Hips square, slight knee bend, DBs hang close to the leg. Right side first. Stop before the back rounds. Use the same DBs from RFESS.',
-                  why: 'Trains the hamstring and glute in the hip hinge pattern needed for athletic movement. Critical for right-side posterior chain symmetry.',
-                  tags: [
-                    { text: 'Posterior chain', tone: 'green' },
-                    { text: 'Hip symmetry', tone: 'green' },
-                  ],
-                },
-              ],
-            },
-            {
-              label: 'Strength block B — superset',
-              station: 'Station: Cable machine + mat beside it',
-              rest: 'Face-pull then RKC plank back-to-back. 60 s rest between rounds. 3 rounds.',
-              exercises: [
-                {
-                  num: 'C',
-                  name: 'Cable face-pull',
-                  detail: '3 × 15–20 reps — Rope at eye level. Pull to forehead, elbows high and wide, hard external rotation at end range. Thumbs point back at the finish.',
-                  why: 'Best exercise for reversing internally rotated shoulders from years of heavy pressing. Directly reduces the blocked, wide upper-body appearance.',
-                  tags: [
-                    { text: 'Shoulder retraction', tone: 'green' },
-                    { text: 'Posture', tone: 'green' },
-                  ],
-                },
-                {
-                  num: 'D',
-                  name: 'RKC plank',
-                  detail: '3 × 25–30 s — Forearm plank: drag elbows toward feet, squeeze glutes and fists as hard as possible throughout. Far higher TVA activation than a standard plank.',
-                  tags: [{ text: 'TVA', tone: 'purple' }],
-                },
-              ],
-            },
-            {
-              label: 'Strength block C — standalone',
-              station: 'Station: Leg curl machine',
-              rest: '3 working sets. 60 s rest between sets.',
-              exercises: [
-                {
-                  num: 'E',
-                  name: 'Leg curl (single-leg preferred)',
-                  detail: '3 × 10–12 reps per side — Controlled tempo, full range. Right side first. Single-leg is preferred for symmetry. If only bilateral is available, focus on matching effort side-to-side.',
-                  why: 'Trains the hamstring through knee flexion, which the single-leg RDL doesn\'t cover. Directly supports the knee joint after the lateral meniscus tear.',
-                  tags: [
-                    { text: 'Hamstring', tone: 'green' },
-                    { text: 'Knee support', tone: 'amber' },
-                  ],
-                },
-              ],
-            },
-            {
-              label: 'Finisher',
-              exercises: [
-                {
-                  num: '3',
-                  name: 'Dead hang',
-                  detail: '4 × 30 s on / 30 s off — Fully passive shoulders. Spinal decompression after the loaded strength work.',
-                  tags: [{ text: 'Spinal decompression', tone: 'slate' }],
-                },
-              ],
-            },
-          ],
-        },
-        {
-          id: 'p1d3',
-          eyebrow: 'Phase 1 · Day 4 · Saturday',
-          title: 'Full-body flush & reset',
-          sub: 'Fat oxidation, aerobic base, nervous system recovery. Entire flush circuit done in one spot. Band pull-aparts replace the squat hold for active recovery that directly serves the posture goal.',
-          meta: [
-            { label: 'Duration', value: '~50 min' },
-            { label: 'Circuit rest', value: '60 s between rounds' },
-            { label: 'Core finisher rest', value: '45 s between rounds' },
-          ],
-          sections: [
-            {
-              label: 'Warm-up',
-              exercises: [
-                {
-                  num: '1',
-                  name: 'Brisk walk + cat-cow',
-                  detail: '5 min walk, then 2 min cat-cow (10 slow reps) on a nearby mat. Mobilizes the lumbar spine and begins the parasympathetic shift before the circuit.',
-                },
-              ],
-            },
-            {
-              label: '"60-second" flush circuit — 4 rounds',
-              station: 'Station: Sled lane OR assault bike + floor immediately beside it',
-              rest: 'A → B → C back-to-back with no rest between exercises. 60 s full rest after all three. Everything stays in the same spot.',
-              exercises: [
-                {
-                  num: 'A',
-                  name: 'Sled push & pull',
-                  detail: '4 × 60 s — Push 20 yards, flip handles, pull back. Continuous for the full 60 s. High effort throughout.',
-                  alt: 'Alt: Assault bike — 60 s all-out. Or rowing machine — 60 s at high resistance.',
-                },
-                {
-                  num: 'B',
-                  name: 'Resistance band pull-apart',
-                  detail: '4 × 60 s continuous reps — Light resistance band held at shoulder width. Arms straight, pull apart to full extension, return slowly. Can be done standing in the sled lane immediately after A. Aim for 40–50 controlled reps in the 60 s.',
-                  why: 'Trains the rear deltoid, mid-trap, and rhomboids — the exact muscles that pull the shoulders back and reduce the wide, forward-rolled upper-body look. Direct carryover to the dead hang and face-pull goal. Zero equipment transition from the sled.',
-                  tags: [
-                    { text: 'Rear delt + mid-trap', tone: 'green' },
-                    { text: 'Posture', tone: 'green' },
-                    { text: 'Active recovery', tone: 'slate' },
-                  ],
-                },
-                {
-                  num: 'C',
-                  name: 'Jump rope or pogo hops',
-                  detail: '4 × 60 s — Jump rope if available beside the sled. Otherwise pogo hops in the sled lane. Maintains heart rate and reinforces the elastic Achilles stimulus.',
-                  alt: 'Alt: Assault bike — 60 s moderate pace as the flush-down interval.',
-                },
-              ],
-            },
-            {
-              label: 'Core finisher — 2–3 rounds, 45 s rest',
-              exercises: [
-                {
-                  num: '2',
-                  name: 'RKC plank',
-                  detail: '2–3 × 30 s — Drag elbows toward feet, squeeze glutes and fists maximally. Same cue as Day 3.',
-                  tags: [{ text: 'TVA', tone: 'purple' }],
-                },
-              ],
-            },
-            {
-              label: 'Finisher & reset',
-              exercises: [
-                {
-                  num: '3',
-                  name: 'Dead hang',
-                  detail: '3 × 30 s on / 30 s off — Fully passive. End-of-week spinal traction. Do not skip this.',
-                  tags: [{ text: 'Spinal traction', tone: 'slate' }],
-                },
-                {
-                  num: '4',
-                  name: 'Static floor rest',
-                  detail: '10 min — On your back, knees bent, feet flat. Completely passive. Parasympathetic nervous system recovery. Directly affects cortisol regulation and body composition over time. Do not skip this either.',
-                  tags: [{ text: 'Parasympathetic recovery', tone: 'slate' }],
-                },
-              ],
-            },
-          ],
-        },
+      label: "Cardio",
+      station: "Cardio area",
+      duration: "20 min",
+      info: "20 minutes at a conversational pace, including an easy start and finish. Choose 15 minutes on an easier day. Start flat; use low incline only if comfortable during and the next day.",
+      exercises: [
+        { num: "1", name: "Treadmill walking", detail: "1 × 20 min", alt: "Alternative: low-incline treadmill (comfortable, no limp) or rowing (hip/back comfortable), 1 × 20 min" },
       ],
     },
     {
-      id: 'home',
-      label: 'Daily Home',
-      kind: 'home',
+      label: "Strength Block A",
+      station: "Dumbbells + adjustable bench",
+      rest: "2-3 min",
+      info: "Complete each exercise before moving on. Use the same bench: flat for chest presses, upright for shoulder presses, inclined for rows. Warm-up sets get gradually heavier without fatigue; add a short ramp-up set if needed before heavy work.",
+      exercises: [
+        { num: "A", name: "Dumbbell bench press", detail: "3 × 6-10 reps", alt: "Alternative: neutral-grip dumbbell bench press, 3 × 6-10 reps", warmup: "2 × 5-8 reps", cue: "Keep feet planted and wrists over elbows. Lower with control." },
+        { num: "D", name: "Seated dumbbell shoulder press", detail: "2 × 8-10 reps", alt: "Alternative: neutral-grip dumbbell shoulder press, 2 × 8-10 reps", warmup: "1 × 8 reps", cue: "Use the backrest and keep ribs down. Press through a comfortable overhead range without leaning back." },
+        { num: "B", name: "Chest-supported dumbbell row", detail: "2 × 8-12 reps", alt: "Alternative: bench-supported one-arm dumbbell row, 2 × 8-12 reps/side", warmup: "1 × 10 reps", cue: "Keep your chest on the inclined bench; pull without lifting your torso." },
+      ],
+    },
+    {
+      label: "Core",
+      station: "Grass / mat area",
+      rest: "45 s",
+      info: "Superset · 2 rounds: dead bug → side plank on both sides. Rest after each pair.",
+      exercises: [
+        { num: "C1", name: "Dead bug", detail: "2 × 6 reps/side", alt: undefined, cue: "Shorten the reach if your back arches or your hip grips." },
+        { num: "C2", name: "Side plank from knees", detail: "2 × 15-25 sec/side", alt: "Alternative: wall side plank, 2 × 15-25 sec/side", cue: "Keep knees bent and lift hips without holding your breath." },
+      ],
+    },
+  ],
+};
+
+const lowerA: Day = {
+  id: "p1d1", eyebrow: "Wednesday | Lower Quads", title: "Lower • Quads",
+  sub: "Easy cardio → leg machines → supported free-weight strength.",
+  meta: [
+    { label: "Session cap", value: "60 min" },
+    { label: "Warm-up / strength", value: "10 / 43 min" },
+    { label: "Buffer", value: "7 min" },
+  ],
+  sections: [
+    {
+      label: "Cardio",
+      station: "Cardio area",
+      duration: "5 min",
+      info: "Easy treadmill walk, then move to the leg machines.",
+      exercises: [
+        { num: "1", name: "Treadmill walking", detail: "1 × 5 min", alt: undefined },
+      ],
+    },
+    {
+      label: "Strength Block A",
+      station: "Leg machine area",
+      rest: "60 s - 3 min",
+      info: "Straight sets: complete each exercise before moving on. Rest 2-3 min for hack squats and 60 s - 1 min 30 s for accessories, after both sides where applicable.",
+      exercises: [
+        { num: "A", name: "Hack squat", detail: "3 × 8-10 reps", alt: "Alternative: leg press, 3 × 8-10 reps", warmup: "2 × 5-8 reps", cue: "Keep heels down and pressure even. Use a depth without hip pinching; choose leg press if you shift away from the right leg." },
+        { num: "C", name: "Seated hamstring curl (Single-leg)", detail: "2 × 10-12 reps/side", alt: "Alternative: seated leg curl (both legs), 2 × 10-12 reps", cue: "Keep hips against the pad. Start on the right and match controlled reps on the left." },
+        { num: "D", name: "Leg extension (Single-leg)", detail: "2 × 10-12 reps/side", alt: "Alternative: bilateral leg extension, 2 × 10-12 reps", cue: "Start right and match controlled reps on the left. Keep hips against the pad and lower smoothly." },
+      ],
+    },
+    {
+      label: "Strength Block B",
+      station: "Dumbbells + bench + sturdy support",
+      rest: "1 min 30 s - 2 min",
+      info: "Use a low bench for the rear foot and hand support for balance. Rest after both sides for split squats. Calf raises stay on flat ground; stop when heel height drops. Use both legs for the calf warm-up.",
+      exercises: [
+        { num: "B", name: "Supported Bulgarian split squat", detail: "3 × 8-10 reps/side", alt: "Alternative: supported low step-up, 3 × 8-10 reps/side", warmup: "1 × 5 reps/side", cue: "Use a low rear-foot support and keep pressure through the front foot. Keep the rear foot on the floor if elevation restricts your hip. For step-ups, use a low stable platform and avoid pushing off the trailing leg." },
+        { num: "E", name: "Supported calf raise (Single-leg)", detail: "3 × 5 reps/side", alt: "Alternative: assisted calf raise (Single-leg), 3 × 5 reps/side", warmup: "1 × 5 reps", cue: "Start with bodyweight on flat ground and hand support for balance. Use your 3 × 5 baseline; stop or assist before heel height drops. Lower slowly and match controlled reps on the left." },
+      ],
+    },
+  ],
+};
+
+const upperB: Day = {
+  id: "p1d2", eyebrow: "Friday | Upper Pull", title: "Upper • Pull",
+  sub: "Cardio → cable strength and core → grass / mat superset.",
+  meta: [
+    { label: "Session cap", value: "60 min" },
+    { label: "Cardio / strength + warm-up", value: "20 / 30 min" },
+    { label: "Core / buffer", value: "5 / 5 min" },
+  ],
+  sections: [
+    {
+      label: "Cardio",
+      station: "Cardio area",
+      duration: "20 min",
+      info: "20 minutes at a conversational pace, including an easy start and finish. Choose 15 minutes on an easier day. Start flat; use low incline only if comfortable during and the next day.",
+      exercises: [
+        { num: "1", name: "Treadmill walking", detail: "1 × 20 min", alt: "Alternative: low-incline treadmill (comfortable, no limp) or rowing (hip/back comfortable), 1 × 20 min" },
+      ],
+    },
+    {
+      label: "Strength Block A",
+      station: "Cable area",
+      rest: "30 s - 3 min",
+      info: "Straight sets: complete each exercise before moving on. Rest 2-3 min for rows and pulldowns, 60 s for face pulls and 30-45 s for Pallof presses. Warm-up sets should prepare you without fatigue.",
+      exercises: [
+        { num: "A", name: "Neutral-grip lat pulldown", detail: "3 × 6-10 reps", alt: "Alternative: close-grip cable pulldown, 3 × 6-10 reps", warmup: "2 × 5-8 reps", cue: "Keep your torso steady and pull the handles toward your upper chest." },
+        { num: "B", name: "Seated cable row", detail: "2 × 8-12 reps", alt: "Alternative: standing cable row, 2 × 8-12 reps", warmup: "1 × 10 reps", cue: "Keep your torso still; pull toward the lower ribs without rocking." },
+        { num: "D", name: "Face pull", detail: "2 × 12-15 reps", alt: "Alternative: cable reverse fly, 2 × 12-15 reps", cue: "Set the rope near eye level. Pull toward your face without leaning back or shrugging; keep the load controlled." },
+        { num: "C1", name: "Pallof press", detail: "2 × 8 reps/side", alt: undefined, cue: "Press forward at chest height without twisting." },
+      ],
+    },
+    {
+      label: "Strength Block B",
+      station: "Grass / mat area",
+      rest: "1 min 30 s",
+      info: "Superset · 2 rounds: incline push-up → bird-dog on both sides. Rest after each pair.",
+      exercises: [
+        { num: "C", name: "Incline push-up", detail: "2 × 6-12 reps", alt: "Alternative: kneeling push-up, 2 × 6-12 reps", cue: "Use a sturdy raised surface and keep your body in one line." },
+        { num: "C2", name: "Bird-dog", detail: "2 × 5 reps/side", alt: undefined, cue: "Keep hips level; use a short reach if your lower back tightens." },
+      ],
+    },
+  ],
+};
+
+const lowerB: Day = {
+  id: "p1d3", eyebrow: "Saturday | Lower Hamstrings & Glutes", title: "Lower • Hamstrings & Glutes",
+  sub: "Easy cardio → hip thrust, curl and abduction machines → dumbbells and bench.",
+  meta: [
+    { label: "Session cap", value: "60 min" },
+    { label: "Warm-up / strength", value: "10 / 43 min" },
+    { label: "Buffer", value: "7 min" },
+  ],
+  sections: [
+    {
+      label: "Cardio",
+      station: "Cardio area",
+      duration: "5 min",
+      info: "Easy treadmill walk, then move to the lower-body machines.",
+      exercises: [
+        { num: "1", name: "Treadmill walking", detail: "1 × 5 min", alt: undefined },
+      ],
+    },
+    {
+      label: "Strength Block A",
+      station: "Lower-body machine area",
+      rest: "1 min 30 s - 3 min",
+      info: "Straight sets: complete each exercise before moving on. Rest 2-3 min for hip thrusts, 1 min 30 s after both sides for curls and 60 s for abduction. If substituting back extensions for RDLs, complete them in this area before moving to calves.",
+      exercises: [
+        { num: "A", name: "Hip thrust machine", detail: "3 × 8-12 reps", alt: "Alternative: Smith machine hip thrust, 3 × 8-12 reps", warmup: "2 × 5-8 reps", cue: "Keep ribs down and finish by extending your hips without arching your back." },
+        { num: "C", name: "Seated hamstring curl (Single-leg)", detail: "3 × 10-12 reps/side", alt: "Alternative: seated leg curl (both legs), 3 × 10-12 reps", cue: "Keep hips against the pad and avoid pulling at the outside of the knee." },
+        { num: "E", name: "Hip abductor machine", detail: "2 × 12-15 reps", alt: "Alternative: seated band hip abduction, 2 × 12-15 reps", cue: "Keep your pelvis still and avoid bouncing the weight." },
+      ],
+    },
+    {
+      label: "Strength Block B",
+      station: "Dumbbells + bench",
+      rest: "1 min 30 s - 3 min",
+      info: "Rest 2-3 min for RDLs and 1 min 30 s after both sides for calves. Keep dumbbells near the bench for RDLs and seated calf raises; rest after both sides for calves. Keep the forefoot on the floor for calves.",
+      exercises: [
+        { num: "B", name: "Dumbbell Romanian deadlift", detail: "3 × 8-10 reps", alt: "Alternative: 45-degree back extension, 3 × 10-12 reps", warmup: "2 × 5-8 reps", cue: "Push hips back with soft knees. Stop before your back rounds or hip pinches. For back extensions, hinge at the hips and finish in line with your legs without arching backward." },
+        { num: "D", name: "Seated calf raise (Single-leg)", detail: "3 × 10-12 reps/side", alt: "Alternative: seated dumbbell calf raise (both legs), 3 × 10-12 reps", warmup: "1 × 8 reps", cue: "Keep the forefoot on the floor; start unweighted and lower slowly." },
+      ],
+    },
+  ],
+};
+
+const baseDays = [upperA, lowerA, upperB, lowerB];
+const dayLabels = ['Mon - Push', 'Wed - Quads', 'Fri - Pull', 'Sat - Hamstrings & Glutes'];
+
+// Keep the main lifts comparable across phases; change selected rep ranges and skills explicitly.
+const progressionExercises: Record<string, Partial<Exercise>> = {
+  'p1d0:A': {
+    detail: '3 × 5-8 reps',
+    alt: 'Alternative: neutral-grip dumbbell bench press, 3 × 5-8 reps',
+  },
+  'p1d0:C1': {
+    cue: 'Extend the leg farther than in Phase 1 while keeping your back and pelvis still. Shorten the reach if your hip grips.',
+  },
+  'p1d0:C2': {
+    name: 'Side plank', detail: '2 × 20-30 sec/side',
+    alt: 'Alternative: side plank from knees, 2 × 20-30 sec/side',
+    cue: 'Progress to straight legs only when both Phase 1 sets reach 25 seconds without sagging. Otherwise retain the knee version.',
+  },
+  'p1d1:A': {
+    detail: '3 × 6-8 reps', alt: 'Alternative: leg press, 3 × 6-8 reps',
+  },
+  'p1d1:B': {
+    detail: '3 × 6-8 reps/side',
+    alt: 'Alternative: supported low step-up, 3 × 8-10 reps/side',
+    cue: 'Pause for 1 second at the bottom without relaxing or forcing depth. Establish control at the Phase 1 load before increasing weight. Retain the rear foot on the floor if elevation restricts your hip.',
+  },
+  'p1d1:E': {
+    detail: '3 × 5-8 reps/side', alt: 'Alternative: assisted calf raise (Single-leg), 3 × 5-8 reps/side',
+    cue: 'Keep hand support. Build from 3 × 5 toward 3 × 8 with consistent heel height and slow lowering. After two successful sessions with no next-day symptoms, add a small load and return to 5 reps. Do not add load and reps together.',
+  },
+  'p1d2:A': {
+    detail: '3 × 5-8 reps', alt: 'Alternative: close-grip cable pulldown, 3 × 5-8 reps',
+  },
+  'p1d2:C1': {
+    cue: 'Hold each press at full reach for 3 seconds without twisting. Keep the Phase 1 load initially; increase it only after both sets stay controlled.',
+  },
+  'p1d2:C': {
+    name: 'Push-up', detail: '2 × 6-10 reps',
+    alt: 'Alternative: incline push-up, 2 × 6-12 reps',
+    cue: 'Move to the floor after two sessions of 2 × 12 clean incline reps. If needed, lower the hand support gradually instead. Keep your whole body in one line.',
+  },
+  'p1d2:C2': {
+    cue: 'Hold each reach for 5 seconds without tilting your pelvis or arching your back. Keep the Phase 1 reach if the longer hold changes your form.',
+  },
+  'p1d3:A': {
+    detail: '3 × 6-10 reps', alt: 'Alternative: Smith machine hip thrust, 3 × 6-10 reps',
+    cue: 'Pause for 2 seconds at the top without arching your back. Establish the pause before adding weight; keep the ribs down.',
+  },
+  'p1d3:B': {
+    detail: '3 × 6-8 reps', alt: 'Alternative: 45-degree back extension, 3 × 10-12 reps',
+    cue: 'Use the same controlled hip hinge with a heavier strength range. Increase load only after all sets meet the target; do not chase extra depth. For back extensions, hinge at the hips and stop in line with the legs.',
+  },
+};
+
+function makePhase(id: 'p1' | 'p2'): PhaseTab {
+  const progressed = id === 'p2';
+  return {
+    id,
+    label: progressed ? 'Phase 2 - Progression' : 'Phase 1 - Strength Base',
+    kind: 'phase',
+    phaseBar: progressed
+      ? 'Four-week progression cycle. Week 1: establish the new rep ranges and variations with 2 reps in reserve. Weeks 2-3: build reps, then load, leaving 1-2 reps in reserve. Week 4: recovery week - reduce 3 sets to 2 and 2 sets to 1, use 10-15% less load and leave 4 reps in reserve. For bodyweight work, use an easier variation if needed. Then repeat the cycle.'
+      : 'Weeks 1-4: strength base for an experienced lifter. Week 1: establish challenging loads with 2 good reps in reserve. Weeks 2-3: build reps before load. Week 4: review performance and recovery. Enter Phase 2 when the current movements are controlled and tolerated; retain individual Phase 1 variations when needed.',
+    dayTabs: dayLabels.map((label, i) => ({ id: `${id}d${i}`, label })),
+    days: baseDays.map((day, i) => ({
+      ...day, id: `${id}d${i}`,
+      sections: [{
+        label: 'Session notes',
+        info: i % 2 === 0
+          ? 'Push/pull emphasis with a little overlap. Main lift: 3 working sets; supporting upper-body exercises: 2. This keeps strength work challenging with moderate upper-body volume. Allow the full rest; session times are estimates.'
+          : 'Start unilateral work on the right and match controlled reps on the left. Log load, reps and assistance, plus calf heel height. Mild side-to-side tightness does not require forcing equal depth. Progress with stable control and no new pain or next-day limp. Allow full rests between working sets.',
+      }, ...day.sections.map((section) => ({
+        ...section,
+        info: progressed && i === 1 && section.label === 'Strength Block B'
+          ? 'Use the same dumbbells, low bench and sturdy support for split squats and calf raises. Rest 1 min 30 s - 2 min after both sides. Warm up calves with both legs; keep all calf work on flat ground.'
+          : progressed && i === 2 && section.label === 'Strength Block B'
+          ? 'Superset · 2 rounds: push-up → bird-dog on both sides. Rest after each pair. During recovery week, do 1 round.'
+          : progressed && section.label === 'Core'
+            ? 'Superset · 2 rounds: dead bug → side plank on both sides. Rest after each pair. During recovery week, do 1 round.'
+            : section.info,
+        exercises: section.exercises?.map((exercise) => ({
+          ...exercise,
+          ...(progressed ? progressionExercises[`${day.id}:${exercise.num}`] : {}),
+        })),
+      }))],
+    })),
+  };
+}
+
+export const program: Program = {
+  title: 'Lean & Strong - Upper / Lower',
+  sub: 'Mon / Wed / Fri / Sat · 60-minute gym cap after dynamic stretching · Daily home routine',
+  tabs: [
+    makePhase('p1'),
+    {
+      id: 'home', label: 'Daily Home', kind: 'home',
       home: {
-        eyebrow: 'Every day — gym days and rest days',
+        eyebrow: 'Every day | Gentle movement, not another workout',
         title: 'Daily home routine',
-        sub: '~15 minutes. No equipment needed. These exercises compound into major results when done daily — and would waste gym time done there. Order matters: spinal mobility first, hip mobility second, activation third, balance last.',
+        sub: '~12 minutes · One gentle round · Mat, chair and wall · Up to 2-3 times daily',
         infoBars: [
-          'If short on time, skip Block 3 before skipping Blocks 1 or 2. The mobility work is the highest-value daily habit for your specific profile. Best done in the morning or before bed.',
+          'Use these as comfortable movement breaks. One full round daily is enough to start; repeat up to 2-3 times if it leaves you feeling better, not fatigued. You can repeat just the desk and shoulder blocks between longer rounds. Use no weights or bands.',
+          'Every 30-60 minutes, change position and stand or walk briefly. Support your feet and forearms, keep the screen near eye level and avoid a low seat that crowds your hips. You do not need to hold one rigid upright posture all day.',
+          'Keep stretches mild. Do not push through front-of-hip pinching or force the right hip to match the left. 90/90s and the lunge stretch are optional if uncomfortable. Persistent pain or worsening restriction deserves a physiotherapy review.',
         ],
         blocks: [
           {
-            num: 1,
-            title: 'Spinal mobility & decompression',
-            time: '~4 min',
+            num: 1, title: 'Neck & upper back', time: '~2 min',
             exercises: [
-              { num: 1, name: 'Cat-cow', detail: '2 × 10 reps — Slow, full range. Exhale on the arch, inhale on the hollow. Sets the tone for the whole session.' },
-              { num: 2, name: "Child's pose", detail: '2 × 45 s — Arms stretched forward, forehead down. Breathe into the lower back. Passive spinal traction.' },
-              { num: 3, name: 'Wall slide (wall angel)', detail: '2 × 10 reps — Back flat against the wall, arms at 90°. Slowly raise arms overhead while keeping every part of the back and arms in contact with the wall throughout. One of the highest-value exercises in this entire program for the aesthetic goal — directly counteracts erector overdevelopment and forward shoulder posture.' },
+              { num: 1, name: 'Seated chin tuck', detail: '1 × 5 reps', cue: 'Gently glide your head backward while looking level. Hold 3 seconds; avoid tipping your chin down or forcing the movement.' },
+              { num: 2, name: 'Seated thoracic extension', detail: '1 × 5 reps', cue: 'Use a stable chair with a back below your shoulder blades. Gently extend your upper back over it with arms crossed; keep your neck comfortable and avoid arching the lower back.' },
             ],
           },
           {
-            num: 2,
-            title: 'Hip mobility',
-            time: '~4 min',
+            num: 2, title: 'Hip mobility', time: '~3 min',
             exercises: [
-              { num: 4, name: '90/90 hip stretch', detail: '90 s per side — Passive hold, breathe slowly into the hip. Right side 15–20 s longer. Targets the hip capsule directly — the primary restriction driving the impingement symptoms.' },
-              { num: 5, name: 'Supine figure-4 (piriformis stretch)', detail: '60 s per side — Ankle crossed over opposite knee, gently pull the thigh toward your chest. Right side priority. Breathe slowly.' },
+              { num: 3, name: 'Half-kneeling hip-flexor stretch', detail: '1 × 30 sec/side', cue: 'Pad the back knee. Gently tuck the pelvis and squeeze the rear glute, then shift slightly forward without arching your back. A mild front-of-thigh stretch is enough. Use a standing split stance if kneeling is uncomfortable.' },
+              { num: 4, name: '90/90 hip switches', detail: '1 × 4 reps/side', cue: 'Support yourself with hands behind you and use cushions as needed. Switch within your available range; do not force either knee down. Skip if the front of the hip pinches.' },
+              { num: 5, name: "World's greatest stretch", detail: '1 × 2 reps/side', cue: 'Keep the back knee on padding and support your hand on a block or sturdy chair. Use a shallow lunge and gently turn your chest. No need to reach an elbow to the floor; skip if this pinches.' },
             ],
           },
           {
-            num: 3,
-            title: 'Activation',
-            time: '~4 min',
+            num: 3, title: 'Spine & trunk', time: '~2 min',
             exercises: [
-              { num: 6, name: 'Superman hold', detail: '3 × 8 reps × 3 s hold — Face down, arms forward. Lift arms and legs simultaneously, squeeze glutes. Trains the posterior chain in extension — directly opposes the anterior pelvic tilt pattern.' },
-              { num: 7, name: 'Side-lying hip abduction', detail: '2 × 15 reps per side — No band needed. Slow, pelvis stacked, 1 s pause at the top. Right side first. Add a light band if available.' },
-              { num: 8, name: 'Stomach vacuum', detail: '3 × 20 s hold — Standing or seated. Exhale fully, draw navel in, hold without bracing the outer abs. Resting TVA tone is built through daily frequency — this is why it lives here and not at the gym.' },
+              { num: 6, name: 'Cat-cow', detail: '1 × 6 reps', cue: 'Move slowly through a comfortable range and breathe naturally.' },
+              { num: 7, name: 'Bird dog', detail: '1 × 4 reps/side', cue: 'Keep hips level. Reach without arching your lower back, pause briefly and return. Keep this easier than gym core work.' },
             ],
           },
           {
-            num: 4,
-            title: 'Balance & posture',
-            time: '~3 min',
+            num: 4, title: 'Hip control', time: '~2 min',
             exercises: [
-              { num: 9, name: 'Single-leg balance — right side focus', detail: '3 × 30 s per side — Progress weekly: Weeks 1–2 eyes open flat ground → Weeks 3–4 eyes closed → Weeks 5+ on a folded towel or cushion. Right side always first. Retrains the proprioceptive chain from the Achilles through the meniscus to the hip.' },
-              { num: 10, name: 'Seated scapular depression', detail: '2 × 12 reps — Sit in a chair, arms straight, pull shoulders down away from ears, hold 2 s. Trains the lower trap daily. Small habit with outsized postural payoff over weeks.' },
+              { num: 8, name: 'Clamshell', detail: '1 × 6 reps/side', cue: 'Lie on your side with knees bent and feet together. Open the top knee without rolling your pelvis back. No band; stop well before fatigue.' },
+              { num: 9, name: 'Side-lying glute raise', detail: '1 × 6 reps/side', cue: 'Keep the top leg straight and pelvis stacked. Lift a little without turning toes upward. Start right and match reps on the left.' },
+            ],
+          },
+          {
+            num: 5, title: 'Chest & shoulders', time: '~3 min',
+            exercises: [
+              { num: 10, name: 'Doorway chest stretch', detail: '1 × 30 sec/side', cue: 'Place one forearm against the frame slightly below shoulder height. Turn away gently until you feel a mild chest stretch; avoid pressure at the front of the shoulder.' },
+              { num: 11, name: 'Wall slides', detail: '1 × 6 reps', cue: 'Slide your arms upward within a comfortable range. Keep ribs relaxed; do not force your back or wrists against the wall.' },
+              { num: 12, name: 'Standing Y, T, W', detail: '1 × 3 reps', cue: 'Each rep: gently reach into Y, T, then W. Use no weights, keep shoulders relaxed and avoid arching your back. Skip this move on a repeat round if shoulders feel tired.' },
             ],
           },
         ],
       },
     },
-    {
-      id: 'p2',
-      label: 'Phase 2 — Progression',
-      kind: 'phase',
-      phaseBar: 'Move to Phase 2 when all Phase 1 sessions feel controlled with no joint irritation, the primers feel confident and controlled, and the RFESS and single-leg RDL feel strong and balanced side-to-side. Typically 8–12 weeks.',
-      dayTabs: [
-        { id: 'p2d0', label: 'Day 1 — Pull & Power' },
-        { id: 'p2d1', label: 'Day 2 — Metabolic Power' },
-        { id: 'p2d2', label: 'Day 3 — Strength & Reactive' },
-        { id: 'p2d3', label: 'Day 4 — Athletic Flush' },
-      ],
-      days: [
-        {
-          id: 'p2d0',
-          eyebrow: 'Phase 2 · Day 1 · Monday',
-          title: 'Pull, glutes & vertical power',
-          sub: 'Increase lat pulldown and hip thrust loads. Progress primer to box jump sequences. Same station structure as Phase 1.',
-          meta: [
-            { label: 'Duration', value: '~65 min' },
-            { label: 'Tempo', value: '4-1-1 / explosive up' },
-            { label: 'Rest', value: '60 s standalones' },
-          ],
-          sections: [
-            {
-              label: 'Warm-up',
-              exercises: [
-                {
-                  num: '1',
-                  name: 'Incline treadmill walk',
-                  detail: '10 min — 3.5 mph / 7% incline. Same cues as Phase 1. Slight incline increase.',
-                },
-              ],
-            },
-            {
-              label: 'Athletic primer — upgraded',
-              primer: {
-                recommendedLabel: 'Recommended — Phase 2 Day 1',
-                steps: [
-                  { num: '1', name: 'Pogo hops → box jump sequence', detail: 'Pogos: 3 × 20 contacts. Then immediately: 3 × 5 box jumps. Land softly on top, absorb fully, step down. Progresses SSC into real ground-reaction force.' },
-                  { num: '2', name: 'Forward & backward hop — continuous', detail: '3 × 10 contacts per direction — Remove the 1 s stick. Hop forward, absorb briefly, hop back continuously. Removes the pause to add reactive demand.' },
-                ],
-                menuLabel: 'Full primer menu — choose any 2–3',
-                menuItems: [
-                  { name: 'Pogo hops', dose: '3 × 25 contacts', cue: 'Increase contacts from Phase 1. Maintain quiet landings.' },
-                  { name: 'Box jump (higher box)', dose: '4 × 5 reps', cue: 'Progress box height. Still step down every rep.' },
-                  { name: 'Depth drop → vertical jump', dose: '4 × 5 reps', cue: 'Minimal ground contact. This is the key SSC drill.' },
-                  { name: 'Vertical jump — approach', dose: '3 × 5 reps', cue: 'Two-step approach before jump. More power than standing.' },
-                  { name: 'Lateral hop — continuous', dose: '3 × 8 per side', cue: 'Remove the stick. Continuous lateral hops, soft and fast.' },
-                  { name: 'Forward & backward hop — continuous', dose: '3 × 10 contacts/dir', cue: 'No pause between hops. Reactive forward-back pattern.' },
-                  { name: 'Skipping — high knees', dose: '3 × 30 s', cue: 'Increase knee drive vs. Phase 1 skipping.' },
-                ],
-              },
-            },
-            {
-              label: 'Cardio block — same options, higher intensity',
-              exercises: [
-                {
-                  num: '2',
-                  name: 'Sled push & pull / Rowing / Jump rope',
-                  detail: 'Increase intensity vs. Phase 1. Sled load goes up. Jump rope: progress to 12 × 45 s. Rowing: increase pace target.',
-                },
-              ],
-            },
-            {
-              label: 'Strength block A — standalone (progressed)',
-              station: 'Station: Cable machine',
-              exercises: [
-                {
-                  num: 'A',
-                  name: 'Wide-grip lat pulldown — heavier',
-                  detail: '4 × 10–12 reps — Increase load meaningfully vs. Phase 1. Same 4-1-1 tempo. Scapular depression must still initiate every rep. Do not sacrifice form for load.',
-                  tags: [{ text: 'Erector elongation', tone: 'green' }],
-                },
-              ],
-            },
-            {
-              label: 'Strength block B — standalone (progressed)',
-              station: 'Station: Hip thrust machine',
-              exercises: [
-                {
-                  num: 'B',
-                  name: 'Hip thrust — heavier',
-                  detail: '4 × 10 reps — Increase load. Same posterior tilt squeeze at the top. Progressive overload here is safe and encouraged — no spinal compression involved.',
-                  tags: [
-                    { text: 'Glute max', tone: 'green' },
-                    { text: 'APT correction', tone: 'green' },
-                  ],
-                },
-              ],
-            },
-            {
-              label: 'Giant set — 3 rounds (progressed)',
-              station: 'Station: Mat area',
-              rest: 'C → D → E back-to-back. Rest 45 s after all three.',
-              exercises: [
-                {
-                  num: 'C',
-                  name: 'Dead bug — extended lever',
-                  detail: '3 × 10 per side — Arms fully extended overhead (not bent). Significantly increases TVA demand vs. Phase 1.',
-                  tags: [{ text: 'TVA progression', tone: 'purple' }],
-                },
-                {
-                  num: 'D',
-                  name: 'Copenhagen plank — elevated',
-                  detail: '3 × 35–45 s per side — Bottom leg now fully raised off the floor. No assistance from the floor. Build toward 45 s.',
-                  tags: [{ text: 'Oblique + adductor', tone: 'purple' }],
-                },
-                {
-                  num: 'E',
-                  name: 'Bird-dog — weighted',
-                  detail: '3 × 10 per side — Light ankle weight on the extending leg. Increases the anti-rotation and multifidus demand.',
-                  tags: [{ text: 'Multifidus + TVA', tone: 'purple' }],
-                },
-              ],
-            },
-            {
-              label: 'Finisher',
-              exercises: [
-                {
-                  num: '3',
-                  name: 'Dead hang — weighted or L-sit',
-                  detail: '4 × 30 s — Light DB between feet, or progress to an L-sit hang (legs raised to 90°) for added core integration.',
-                  tags: [{ text: 'Spinal decompression', tone: 'slate' }],
-                },
-              ],
-            },
-          ],
-        },
-        {
-          id: 'p2d1',
-          eyebrow: 'Phase 2 · Day 2 · Wednesday',
-          title: 'Metabolic power & rotation',
-          sub: 'Standing woodchop, 5-round circuit, lateral shuffle primer. Increase row load slightly. Reduce rest between circuit rounds.',
-          meta: [
-            { label: 'Duration', value: '~60 min' },
-            { label: 'Circuit rest', value: '45 s between rounds' },
-            { label: 'Finisher rest', value: '45 s between rounds' },
-          ],
-          sections: [
-            {
-              label: 'Warm-up + Athletic primer',
-              exercises: [
-                {
-                  num: '1',
-                  name: 'Brisk walk + lateral shuffle',
-                  detail: '5 min walk, then: 4 × 10 yards per side lateral shuffle — low athletic stance, soft quick feet, head up. Plant and change direction sharply. This is the Day 2 Phase 2 fixed primer.',
-                  alt: 'From the menu: swap for any two Phase 2 primer movements if preferred.',
-                  tags: [{ text: 'Lateral agility', tone: 'amber' }],
-                },
-              ],
-            },
-            {
-              label: 'Cardio block — higher intensity',
-              exercises: [
-                {
-                  num: '2',
-                  name: 'Assault bike or jump rope',
-                  detail: 'Bike: 12 rounds × 30 s max / 30 s easy. Jump rope: 12 × 45 s active / 15 s rest.',
-                },
-              ],
-            },
-            {
-              label: 'Metabolic circuit — 5 rounds (volume increase)',
-              station: 'Station: Peck deck + Reverse fly machine + Dumbbell rack — all adjacent',
-              rest: 'A → B → C → D back-to-back. 45 s rest after each round (reduced from 60 s).',
-              exercises: [
-                {
-                  num: 'A',
-                  name: 'Peck deck (machine)',
-                  detail: '5 × 10 reps — Sit with back against the pad, grab handles, squeeze pecs together at the center. Control the stretch. Moderate load — strength maintenance, not hypertrophy focus.',
-                  why: 'Targets the pecs with minimal triceps involvement. Creates the upper chest shelf that contributes to a balanced upper-body silhouette.',
-                  tags: [{ text: 'Pecs', tone: 'green' }],
-                },
-                {
-                  num: 'B',
-                  name: 'Reverse fly (machine)',
-                  detail: '5 × 10 reps — Sit facing the machine, grab handles from behind, squeeze rear delts together. Control the stretch, avoid swinging. Moderate load. Same machine as A — go directly to this after A.',
-                  why: 'Adds rear delt density that balances the shoulders visually from behind and from the side. Complements the lateral raise for full shoulder development.',
-                  tags: [
-                    { text: 'Rear delt', tone: 'green' },
-                    { text: 'Posture', tone: 'green' },
-                  ],
-                },
-                {
-                  num: 'C',
-                  name: 'Dumbbell lateral raise',
-                  detail: '5 × 10 reps — Stand with dumbbells at sides, raise arms out to the sides until parallel with the floor. Slight bend in elbows, control the descent. Moderate load — maintain shoulder strength without excessive bulk.',
-                  why: 'Builds lateral deltoid density that creates shoulder roundness and visual V-taper. Directly counteracts the blocked, square upper-body look.',
-                  tags: [{ text: 'Shoulder density', tone: 'green' }],
-                },
-              ],
-            },
-            {
-              label: 'Waist finisher — 3 rounds, 45 s rest',
-              station: 'Station: Cable machine — all exercises at same station',
-              rest: 'A → B back-to-back, minimal rest between exercises. 45 s full rest after each complete round.',
-              exercises: [
-                {
-                  num: 'A',
-                  name: 'Pallof press — half-kneeling',
-                  detail: '3 × 12 per side — One knee on the floor. Increases hip stability demand versus standing.',
-                  tags: [{ text: 'TVA + hip stability', tone: 'purple' }],
-                },
-                {
-                  num: 'B',
-                  name: 'Standing cable woodchop',
-                  detail: '3 × 10 reps per side — Rotate through hips and trunk together. Progress from tall-kneeling. Increases the full kinetic chain demand significantly.',
-                  tags: [{ text: 'Rotational power', tone: 'purple' }],
-                },
-              ],
-            },
-            {
-              label: 'Tendon care — progressed',
-              exercises: [
-                {
-                  num: '4',
-                  name: 'Eccentric heel drop — loaded',
-                  detail: '3 × 12 reps per side — Hold a light dumbbell or plate. Same 4 s lowering tempo. Right side priority.',
-                  tags: [{ text: 'Achilles progression', tone: 'amber' }],
-                },
-              ],
-            },
-          ],
-        },
-        {
-          id: 'p2d2',
-          eyebrow: 'Phase 2 · Day 3 · Friday',
-          title: 'Strength & reactive power',
-          sub: 'Increase unilateral loads, progress lateral hop to reactive, add loaded leg curl. Same station structure.',
-          meta: [
-            { label: 'Duration', value: '~65 min' },
-            { label: 'Tempo', value: '3-1-X (explosive up)' },
-            { label: 'Rest', value: '60–75 s between sets' },
-          ],
-          sections: [
-            {
-              label: 'Warm-up',
-              exercises: [
-                {
-                  num: '1',
-                  name: 'Incline treadmill walk',
-                  detail: '10 min — 3.0 mph / 9% incline. Small incline increase from Phase 1.',
-                },
-              ],
-            },
-            {
-              label: 'Athletic primer — upgraded',
-              primer: {
-                recommendedLabel: 'Recommended — Phase 2 Day 3',
-                steps: [
-                  { num: '1', name: 'Depth drop → vertical jump', detail: '4 × 5 reps — Step off, land, immediately jump. Focus on minimizing ground contact time between the land and the jump.' },
-                  { num: '2', name: 'Lateral hop — continuous', detail: '3 × 8 per side — Remove the stick from Phase 1. Continuous lateral hops, absorb briefly and go. Trains reactive deceleration.' },
-                  { num: '3', name: 'Forward & backward hop — continuous', detail: '3 × 10 contacts per direction — No pause. Continuous reactive pattern in the sagittal plane.' },
-                ],
-                menuLabel: 'Full primer menu — choose any 2–3',
-                menuItems: [
-                  { name: 'Pogo hops', dose: '3 × 25 contacts', cue: 'Maintain quiet landings at higher contact count.' },
-                  { name: 'Box jump (higher box)', dose: '4 × 5 reps', cue: 'Progress box height from Phase 1.' },
-                  { name: 'Depth drop → vertical jump', dose: '4 × 5 reps', cue: 'Minimize ground contact time. This is the key drill.' },
-                  { name: 'Vertical jump — approach', dose: '3 × 5 reps', cue: 'Two-step approach. More power than standing vertical.' },
-                  { name: 'Lateral hop — continuous', dose: '3 × 8 per side', cue: 'No stick. Reactive continuous lateral pattern.' },
-                  { name: 'Forward & backward hop — continuous', dose: '3 × 10 contacts/dir', cue: 'Reactive. No pause between hops.' },
-                  { name: 'Skipping — high knees', dose: '3 × 30 s', cue: 'Higher knee drive. More athletic stimulus.' },
-                ],
-              },
-            },
-            {
-              label: 'Cardio block — higher output',
-              exercises: [
-                {
-                  num: '2',
-                  name: 'Stairmaster or sled push & pull',
-                  detail: 'Stairmaster: 15 min at level 10–12. Sled: 8 rounds × 20 yards each way, 45 s rest between rounds.',
-                },
-              ],
-            },
-            {
-              label: 'Strength block A — standalone superset (progressed)',
-              station: 'Station: Dumbbell rack + bench',
-              rest: 'RFESS + single-leg RDL as superset. 75 s rest between rounds. 4 rounds.',
-              exercises: [
-                {
-                  num: 'A',
-                  name: 'RFESS — heavier DBs',
-                  detail: '4 × 8–10 per side — Meaningfully heavier than Phase 1. Concentric should feel explosive. Right side first.',
-                  tags: [{ text: 'Unilateral strength', tone: 'green' }],
-                },
-                {
-                  num: 'B',
-                  name: 'Single-leg RDL — heavier or deficit',
-                  detail: '4 × 10 per side — Increase DB load, or stand on a 1–2" plate to increase range of motion at the bottom of the movement.',
-                  tags: [{ text: 'Posterior chain', tone: 'green' }],
-                },
-              ],
-            },
-            {
-              label: 'Strength block B — superset (progressed)',
-              station: 'Station: Cable machine + mat',
-              rest: 'Face-pull + RKC plank back-to-back. 60 s rest between rounds. 3 rounds.',
-              exercises: [
-                {
-                  num: 'C',
-                  name: 'Cable face-pull — heavier',
-                  detail: '3 × 15 reps — Increase resistance vs. Phase 1. Same technique — no compromise for load.',
-                  tags: [{ text: 'Posture', tone: 'green' }],
-                },
-                {
-                  num: 'D',
-                  name: 'RKC plank — extended or single-leg',
-                  detail: '3 × 40 s — Longer hold, or progress to single-leg RKC plank (one foot raised) for asymmetric demand.',
-                  tags: [{ text: 'TVA', tone: 'purple' }],
-                },
-              ],
-            },
-            {
-              label: 'Strength block C — standalone (progressed)',
-              station: 'Station: Leg curl machine',
-              exercises: [
-                {
-                  num: 'E',
-                  name: 'Single-leg curl — heavier',
-                  detail: '3 × 10–12 per side — Increase load vs. Phase 1. Controlled tempo throughout. Right side first.',
-                  tags: [
-                    { text: 'Hamstring', tone: 'green' },
-                    { text: 'Knee support', tone: 'amber' },
-                  ],
-                },
-              ],
-            },
-            {
-              label: 'Finisher',
-              exercises: [
-                {
-                  num: '3',
-                  name: 'Dead hang — weighted',
-                  detail: '4 × 30 s — Light DB between the feet. Increases traction and grip demand.',
-                  tags: [{ text: 'Spinal decompression', tone: 'slate' }],
-                },
-              ],
-            },
-          ],
-        },
-        {
-          id: 'p2d3',
-          eyebrow: 'Phase 2 · Day 4 · Saturday',
-          title: 'Athletic flush & reset',
-          sub: '5-round circuit, movement flow block added after the flush. Flow comes last — athletic rhythm as a cool-down, not a primer. This is the session that retrains the nervous system out of its high-tension protective pattern.',
-          meta: [
-            { label: 'Duration', value: '~60 min' },
-            { label: 'Circuit rest', value: '60 s between rounds' },
-            { label: 'Flow block', value: 'After flush — low effort' },
-          ],
-          sections: [
-            {
-              label: 'Warm-up',
-              exercises: [
-                {
-                  num: '1',
-                  name: 'Brisk walk + cat-cow',
-                  detail: '5 min walk, then 2 min cat-cow on a mat. Same as Phase 1.',
-                },
-              ],
-            },
-            {
-              label: '"60-second" flush circuit — 5 rounds',
-              station: 'Station: Sled lane or assault bike + floor beside it',
-              rest: 'A → B → C back-to-back. 60 s rest after all three. Volume increase from Phase 1 (4 → 5 rounds).',
-              exercises: [
-                {
-                  num: 'A',
-                  name: 'Sled push & pull or assault bike',
-                  detail: '5 × 60 s — Higher effort target than Phase 1. Sled load goes up.',
-                },
-                {
-                  num: 'B',
-                  name: 'Resistance band pull-apart',
-                  detail: '5 × 60 s — Same as Phase 1 but increase band resistance. Arms straight, full extension on each rep. 40–50 reps in 60 s.',
-                  tags: [
-                    { text: 'Rear delt + mid-trap', tone: 'green' },
-                    { text: 'Active recovery', tone: 'slate' },
-                  ],
-                },
-                {
-                  num: 'C',
-                  name: 'Jump rope — faster or double-unders',
-                  detail: '5 × 60 s — Increase tempo or attempt double-unders. More elastic demand per contact.',
-                },
-              ],
-            },
-            {
-              label: 'Core finisher — 3 rounds, 45 s rest',
-              exercises: [
-                {
-                  num: '2',
-                  name: 'RKC plank — extended',
-                  detail: '3 × 40 s — Longer hold than Phase 1.',
-                  tags: [{ text: 'TVA', tone: 'purple' }],
-                },
-              ],
-            },
-            {
-              label: 'Movement flow — cool-down (Phase 2 addition)',
-              info: 'Placed after the flush deliberately — not before. The goal is fluid, coordinated movement as the session winds down. Low effort, low heart rate. Signals the nervous system to exit the high-tension protective pattern built from years of heavy lifting and injury compensation.',
-              exercises: [
-                {
-                  num: '3',
-                  name: 'Movement flow circuit — 2 rounds',
-                  detail: 'Skipping — 30 s easy. Lateral shuffle — 30 s each direction. Pogo hops — 20 contacts. No intensity target. Move fluidly, stay relaxed. This is the "feel athletic again" block.',
-                  tags: [
-                    { text: 'Athletic flow', tone: 'amber' },
-                    { text: 'Nervous system reset', tone: 'amber' },
-                  ],
-                },
-              ],
-            },
-            {
-              label: 'Full reset',
-              exercises: [
-                {
-                  num: '4',
-                  name: 'Dead hang + static floor rest',
-                  detail: '3 × 30 s dead hangs, then 10 min floor rest (knees bent, feet flat, fully passive). End every week here without exception.',
-                  tags: [{ text: 'Parasympathetic recovery', tone: 'slate' }],
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    },
+    makePhase('p2'),
   ],
 };
