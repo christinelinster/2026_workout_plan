@@ -106,9 +106,24 @@ beforeEach(() => {
 
 afterEach(() => {
   vi.unstubAllGlobals();
+  vi.unstubAllEnvs();
 });
 
 describe('App', () => {
+  it('loads the Pages build without an API and navigates its bundled program', async () => {
+    vi.stubEnv('MODE', 'pages');
+    const fetch = vi.fn(() => Promise.reject(new Error('No API on GitHub Pages')));
+    vi.stubGlobal('fetch', fetch);
+    render(<App />);
+    expect(await screen.findByText(program.title)).toBeTruthy();
+    expect(screen.getByText('Dumbbell bench press')).toBeTruthy();
+    fireEvent.click(screen.getByText('Daily Home'));
+    expect(screen.getByText('Half-kneeling hip-flexor stretch')).toBeTruthy();
+    fireEvent.click(screen.getByText('Phase 2 - Progression'));
+    expect(screen.getByText('Side plank')).toBeTruthy();
+    expect(fetch).not.toHaveBeenCalled();
+  });
+
   it('renders the current program through every gym day and the daily home tab', async () => {
     vi.stubGlobal('fetch', vi.fn(() => Promise.resolve({
       ok: true,
