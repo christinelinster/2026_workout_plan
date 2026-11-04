@@ -1,4 +1,5 @@
 import type { Day, Exercise, PhaseTab, Program } from '../types';
+import { calisthenics } from './calisthenics';
 
 const upperA: Day = {
   id: "p1d0", eyebrow: "Monday | Upper Push", title: "Upper • Push",
@@ -315,5 +316,6 @@ export const program: Program = {
       },
     },
     makePhase('p2'),
+    calisthenics,
   ],
 };

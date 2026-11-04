@@ -23,7 +23,36 @@ describe('GET /api/program', () => {
     const res = await request(app).get('/api/program');
     expect(res.status).toBe(200);
     expect(res.body.title).toBe('Lean & Strong - Upper / Lower');
-    expect(res.body.tabs.map((tab: { id: string }) => tab.id)).toEqual(['p1', 'home', 'p2']);
+    expect(res.body.tabs.map((tab: { id: string }) => tab.id)).toEqual(['p1', 'home', 'p2', 'calisthenics']);
+  });
+
+  it('serves four hybrid days with separate timing, progressions and injury-aware notes', async () => {
+    const res = await request(app).get('/api/program');
+    const program: Program = res.body;
+    const tab = program.tabs.find((tab) => tab.id === 'calisthenics');
+    expect(tab?.kind).toBe('calisthenics');
+    if (!tab || tab.kind === 'home') throw new Error('Missing calisthenics routine');
+    expect(tab.days).toHaveLength(4);
+    expect(tab.dayTabs.map((day) => day.id)).toEqual(tab.days.map((day) => day.id));
+    expect(new Set(tab.days.map((day) => day.id)).size).toBe(4);
+    for (const day of tab.days) {
+      expect(day.meta).toContainEqual({ label: 'Workout', value: '35-45 min' });
+      expect(day.meta).toContainEqual({ label: 'Optional cardio', value: '15-20 min' });
+      const labels = day.sections.map((section) => section.label);
+      expect(labels).toEqual(expect.arrayContaining(['Warm-up', 'Mobility', 'Optional cardio', 'Injury-aware notes']));
+      expect(labels.indexOf('Optional cardio')).toBeGreaterThan(labels.indexOf('Mobility'));
+      expect(day.sections.find((section) => section.label === 'Optional cardio')?.duration).toBe('15-20 min');
+      const notes = day.sections.find((section) => section.label === 'Injury-aware notes')?.info;
+      expect(notes).toMatch(/Achilles/);
+      expect(notes).toMatch(/meniscus/);
+      expect(notes).toMatch(/groin\/adductor/i);
+    }
+    const skills = tab.days.flatMap((day) => day.sections).filter((section) => section.label === 'Skill progression');
+    expect(skills).toHaveLength(2);
+    expect(skills.map((section) => section.info).join(' ')).toMatch(/freestanding handstand/);
+    expect(skills.map((section) => section.info).join(' ')).toMatch(/full L-sit/);
+    expect(skills.map((section) => section.info).join(' ')).toMatch(/weighted pull-up/);
+    expect(skills.map((section) => section.info).join(' ')).toMatch(/tuck planche/);
   });
 
   it('keeps four upper/lower days navigable in each phase with a 60-minute cap', async () => {
@@ -62,6 +91,7 @@ describe('GET /api/program', () => {
           }
         }
       }
+      if (tab.kind !== 'phase') continue;
       for (const index of [0, 2]) {
         const sections = tab.days[index].sections;
         expect(sections.flatMap((section) => section.exercises ?? []).filter((exercise) => /^C[12]$/.test(exercise.num))).toHaveLength(2);
@@ -83,7 +113,7 @@ describe('GET /api/program', () => {
         'Seated calf raise (Single-leg)', 'Hip abductor machine',
       ]));
     }
-    expect(JSON.stringify(program)).not.toMatch(/bike|cycling|jump rope|stairmaster/i);
+    expect(JSON.stringify(program.tabs.filter((tab) => tab.kind !== 'calisthenics'))).not.toMatch(/bike|cycling|jump rope|stairmaster/i);
   });
 
   it('groups exercises in equipment order without returning to an earlier area', async () => {

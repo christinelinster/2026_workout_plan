@@ -110,6 +110,38 @@ afterEach(() => {
 });
 
 describe('App', () => {
+  it.each(['api', 'pages'])('navigates Calisthenics and preserves independent day selection in %s mode', async (mode) => {
+    if (mode === 'pages') vi.stubEnv('MODE', 'pages');
+    vi.stubGlobal('fetch', vi.fn(() => Promise.resolve({
+      ok: true, json: () => Promise.resolve(program),
+    })));
+    render(<App />);
+    await screen.findByText(program.title);
+    expect(screen.getByText('Dumbbell bench press')).toBeTruthy();
+    fireEvent.click(screen.getByRole('button', { name: 'Calisthenics' }));
+    expect(screen.getByText('Upper A - Handstand + pushing')).toBeTruthy();
+    expect(screen.getByText('Elevated pike hold or wall handstand')).toBeTruthy();
+    for (const [label, title, exercise] of [
+      ['Lower A', 'Lower A - Quads + unilateral stability', 'Hack squat or leg press'],
+      ['Upper B', 'Upper B - Pull-ups + L-sit + planche preparation', 'Tuck L-sit on parallettes'],
+      ['Lower B', 'Lower B - Glutes + posterior chain', 'Hip thrust'],
+    ]) {
+      fireEvent.click(screen.getByRole('button', { name: new RegExp(label) }));
+      expect(screen.getByText(title)).toBeTruthy();
+      expect(screen.getByText(exercise)).toBeTruthy();
+      expect(screen.getByRole('heading', { name: 'Optional cardio' })).toBeTruthy();
+      expect(screen.getByRole('heading', { name: 'Mobility' })).toBeTruthy();
+    }
+    fireEvent.click(screen.getByRole('button', { name: 'Daily Home' }));
+    expect(screen.getByText('Half-kneeling hip-flexor stretch')).toBeTruthy();
+    fireEvent.click(screen.getByRole('button', { name: 'Phase 2 - Progression' }));
+    expect(screen.getByText('Dumbbell bench press')).toBeTruthy();
+    fireEvent.click(screen.getByRole('button', { name: 'Calisthenics' }));
+    expect(screen.getByText('Lower B - Glutes + posterior chain')).toBeTruthy();
+    fireEvent.click(screen.getByRole('button', { name: 'Phase 1 - Strength Base' }));
+    expect(screen.getByText('Upper • Push')).toBeTruthy();
+  });
+
   it('loads the Pages build without an API and navigates its bundled program', async () => {
     vi.stubEnv('MODE', 'pages');
     const fetch = vi.fn(() => Promise.reject(new Error('No API on GitHub Pages')));
@@ -164,7 +196,7 @@ describe('App', () => {
         for (let i = 0; i < tab.dayTabs.length; i++) {
           fireEvent.click(screen.getByText(tab.dayTabs[i].label));
           expect(await screen.findByText(tab.days[i].title)).toBeTruthy();
-          expect(screen.getByText('60 min')).toBeTruthy();
+          expect(screen.getByText(tab.kind === 'calisthenics' ? '35-45 min' : '60 min')).toBeTruthy();
           expect(document.querySelector('.rest-bar')).toBeNull();
           expect(document.querySelector('.workout-note .info-bar')).not.toBeNull();
           expect(document.querySelector('.workout-block .info-bar')).toBeNull();

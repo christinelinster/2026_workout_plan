@@ -500,7 +500,7 @@
   /* ── Responsive ── */
   @media (max-width: 600px) {
     .page-header { padding: 14px 16px 12px; }
-    .main-nav { padding: 0 16px; }
+    .main-nav { padding: 0 16px; flex-wrap: wrap; }
     .main-tab { padding: 12px 14px; font-size: 12px; }
     .content-area { padding: 14px 12px 32px; }
     .exercise-line { gap: 8px; }

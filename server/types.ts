@@ -89,7 +89,9 @@ export type HomeTab = {
   home: HomeRoutine;
 };
 
-export type Tab = PhaseTab | HomeTab;
+export type CalisthenicsTab = Omit<PhaseTab, 'kind'> & { kind: 'calisthenics' };
+
+export type Tab = PhaseTab | HomeTab | CalisthenicsTab;
 
 export type Program = {
   title: string;
