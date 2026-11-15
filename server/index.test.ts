@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 import request from 'supertest';
 import app from './index';
 import type { Program } from './types';
+import { program } from './data/program';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const indexHtml = path.join(__dirname, '..', 'client', 'dist', 'index.html');
@@ -23,36 +24,7 @@ describe('GET /api/program', () => {
     const res = await request(app).get('/api/program');
     expect(res.status).toBe(200);
     expect(res.body.title).toBe('Lean & Strong - Upper / Lower');
-    expect(res.body.tabs.map((tab: { id: string }) => tab.id)).toEqual(['p1', 'home', 'p2', 'calisthenics']);
-  });
-
-  it('serves four hybrid days with separate timing, progressions and injury-aware notes', async () => {
-    const res = await request(app).get('/api/program');
-    const program: Program = res.body;
-    const tab = program.tabs.find((tab) => tab.id === 'calisthenics');
-    expect(tab?.kind).toBe('calisthenics');
-    if (!tab || tab.kind === 'home') throw new Error('Missing calisthenics routine');
-    expect(tab.days).toHaveLength(4);
-    expect(tab.dayTabs.map((day) => day.id)).toEqual(tab.days.map((day) => day.id));
-    expect(new Set(tab.days.map((day) => day.id)).size).toBe(4);
-    for (const day of tab.days) {
-      expect(day.meta).toContainEqual({ label: 'Workout', value: '35-45 min' });
-      expect(day.meta).toContainEqual({ label: 'Optional cardio', value: '15-20 min' });
-      const labels = day.sections.map((section) => section.label);
-      expect(labels).toEqual(expect.arrayContaining(['Warm-up', 'Mobility', 'Optional cardio', 'Injury-aware notes']));
-      expect(labels.indexOf('Optional cardio')).toBeGreaterThan(labels.indexOf('Mobility'));
-      expect(day.sections.find((section) => section.label === 'Optional cardio')?.duration).toBe('15-20 min');
-      const notes = day.sections.find((section) => section.label === 'Injury-aware notes')?.info;
-      expect(notes).toMatch(/Achilles/);
-      expect(notes).toMatch(/meniscus/);
-      expect(notes).toMatch(/groin\/adductor/i);
-    }
-    const skills = tab.days.flatMap((day) => day.sections).filter((section) => section.label === 'Skill progression');
-    expect(skills).toHaveLength(2);
-    expect(skills.map((section) => section.info).join(' ')).toMatch(/freestanding handstand/);
-    expect(skills.map((section) => section.info).join(' ')).toMatch(/full L-sit/);
-    expect(skills.map((section) => section.info).join(' ')).toMatch(/weighted pull-up/);
-    expect(skills.map((section) => section.info).join(' ')).toMatch(/tuck planche/);
+    expect(res.body.tabs.map((tab: { id: string }) => tab.id)).toEqual(['calisthenics', 'p1', 'home', 'p2']);
   });
 
   it('keeps four upper/lower days navigable in each phase with a 60-minute cap', async () => {
@@ -172,6 +144,38 @@ describe('GET /api/program', () => {
   });
 });
 
+describe('workout data', () => {
+  it('pairs upper-body skills with accessories and lower-body power with strength', () => {
+    const [tab] = program.tabs;
+    if (tab.kind !== 'calisthenics') throw new Error('Missing four-day routine');
+    expect(tab.days).toHaveLength(4);
+    expect(tab.dayTabs.map((day) => day.id)).toEqual(tab.days.map((day) => day.id));
+    const expectedDays = [
+      ['Planche lean (toes down)', 'Pike push-up', 'Dumbbell lateral raise', 'Hollow-body hold', 'Stationary bike intervals'],
+      ['Side-to-side jump progression', 'Reverse lunge', 'Dumbbell step-up', 'Bent-knee single-leg calf raise', 'Side plank'],
+      ['L-sit hold', 'Pull-up', 'Negative pull-up', 'Face pull', 'Stationary bike intervals'],
+      ['Single-leg hop progression', 'Hip thrust', 'Single-leg Romanian deadlift', 'Seated leg curl', 'Straight-knee single-leg calf raise', 'Pallof press'],
+    ];
+    const dose = /^\d+ × \d+(?:-\d+)? (?:reps|sec|min)(?:\/side)?$/;
+    for (const [index, day] of tab.days.entries()) {
+      expect(day.sections[0].label).toBe('Warm-up');
+      expect(day.sections.every((section) => Boolean(section.station))).toBe(true);
+      for (const section of day.sections) {
+        expect(section.exercises?.map((exercise) => exercise.num)).toEqual(section.exercises?.map((_, i) => String(i + 1)));
+      }
+      const exercises = day.sections.flatMap((section) => section.exercises ?? []);
+      expect(exercises.map((exercise) => exercise.name)).toEqual(expect.arrayContaining(expectedDays[index]));
+      for (const exercise of exercises) expect(exercise.detail).toMatch(dose);
+    }
+    expect(tab.days[0].sections[0].station).toBe('Mat area');
+    expect(tab.days[0].sections.find((section) => section.label === 'Planche skill')?.exercises?.[0].detail).toBe('3 × 5-8 sec');
+    expect(tab.days[0].sections.find((section) => section.label === 'Core · L-sit practice')?.info).toMatch(/Superset/);
+    expect(tab.days[1].sections.find((section) => section.label === 'Core · Side plank')?.exercises?.map((exercise) => exercise.name)).toEqual(['Side plank']);
+    for (const index of [0, 2]) expect(tab.days[index].sections.at(-1)?.label).toBe('Optional conditioning finisher');
+    expect(JSON.stringify(tab)).not.toMatch(/landmine|leg extension|Session notes|Injury-aware notes/i);
+  });
+});
+
 describe('static file serving', () => {
   it.skipIf(!distExists)('serves index.html at the root path', async () => {
     const res = await request(app).get('/');
@@ -180,13 +184,12 @@ describe('static file serving', () => {
     expect(res.text).toContain('<!DOCTYPE html>');
   });
 
-  it.skipIf(!distExists)('serves built static assets', async () => {
-    const html = fs.readFileSync(indexHtml, 'utf8');
-    const asset = html.match(/src="([^"]+\.js)"/)?.[1];
-    expect(asset).toBeDefined();
-    const res = await request(app).get(asset as string);
-    expect(res.status).toBe(200);
-    expect(res.headers['content-type']).toMatch(/javascript/);
+  it.skipIf(!distExists)('serves the workout page with inline styles and navigation', async () => {
+    const res = await request(app).get('/');
+    expect(res.text).toContain('<style>');
+    expect(res.text).toContain('lean-and-strong.workout-view');
+    expect(res.text).toContain('data-day-panel="training-push"');
+    expect(res.text).not.toMatch(/<script[^>]+src=/);
   });
 });
 

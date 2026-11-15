@@ -1,16 +1,3116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Lean &amp; Strong - Upper / Lower</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
-  <script type="module" crossorigin src="/2026_workout_plan/workout-assets/index-CCKuMrrk.js"></script>
-  <link rel="stylesheet" crossorigin href="/2026_workout_plan/workout-assets/index-0mWw9one.css">
+  <style>
+  :root {
+    --bg: #f7f6f2;
+    --surface: #ffffff;
+    --surface2: #f0ede6;
+    --border: rgba(0,0,0,0.08);
+    --border-mid: rgba(0,0,0,0.14);
+    --text-primary: #1a1916;
+    --text-secondary: #6b6860;
+    --text-tertiary: #9c9a93;
+    --accent: #2d6a4f;
+    --accent-light: #e8f4ee;
+    --accent-text: #1b4332;
+    --purple: #4a3f8a;
+    --purple-light: #eeedfb;
+    --purple-text: #2d2460;
+    --amber: #92400e;
+    --amber-light: #fef3c7;
+    --amber-text: #78350f;
+    --slate: #374151;
+    --slate-light: #f1f2f4;
+    --slate-text: #1f2937;
+    --coral: #9a3412;
+    --coral-light: #fff1ee;
+    --coral-text: #7c2d12;
+    --info: #1e40af;
+    --info-light: #eff6ff;
+    --info-text: #1e3a8a;
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.07), 0 1px 3px rgba(0,0,0,0.05);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    min-height: 100vh;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* ── Layout ── */
+  .page-header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 18px 32px 14px;
+  }
+  .page-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+    letter-spacing: -0.3px;
+  }
+  .page-sub {
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-weight: 300;
+    letter-spacing: 0.01em;
+  }
+
+  .main-nav {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0 32px;
+    display: flex;
+    gap: 0;
+  }
+  .main-tab {
+    padding: 14px 20px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-tertiary);
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: 'DM Sans', sans-serif;
+    letter-spacing: 0.01em;
+  }
+  .main-tab:hover { color: var(--text-secondary); }
+  .main-tab.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  .content-area {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 20px 24px 40px;
+  }
+
+  /* ── Day nav ── */
+  .day-nav {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .day-tab {
+    padding: 7px 16px;
+    font-size: 12px;
+    font-weight: 500;
+    border: 1px solid var(--border-mid);
+    border-radius: 20px;
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: 'DM Sans', sans-serif;
+    letter-spacing: 0.01em;
+  }
+  .day-tab.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+
+  /* ── Panels ── */
+  .tab-panel, .day-panel { display: none; }
+  .tab-panel.active, .day-panel.active { display: block; }
+
+  /* ── Day header ── */
+  .day-header {
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .day-eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .day-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--text-primary);
+    margin-bottom: 5px;
+    letter-spacing: -0.2px;
+  }
+  .day-sub { font-size: 13px; color: var(--text-secondary); font-weight: 300; line-height: 1.55; }
+
+  /* ── Meta cards ── */
+  .meta-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .meta-card {
+    background: var(--surface2);
+    border-radius: var(--radius-md);
+    padding: 10px 14px;
+    flex: 1;
+    min-width: 110px;
+  }
+  .meta-label { font-size: 10px; font-weight: 500; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 2px; }
+  .meta-val { font-size: 13px; font-weight: 500; color: var(--text-primary); }
+
+  /* ── Section label ── */
+  .section-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    margin: 14px 0 6px;
+  }
+
+  /* ── Station badge ── */
+  .station-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 500;
+    background: var(--purple-light);
+    color: var(--purple-text);
+    margin-bottom: 10px;
+  }
+  .station-badge::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--purple);
+    flex-shrink: 0;
+  }
+
+  /* ── Info bars ── */
+  .rest-bar, .info-bar, .phase-bar {
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    padding: 9px 13px;
+    margin: 4px 0 12px;
+    font-size: 12px;
+    line-height: 1.55;
+  }
+  .phase-bar { margin-bottom: 14px; }
+  .rest-bar { background: var(--accent-light); border-left: 3px solid var(--accent); color: var(--accent-text); }
+  .info-bar { background: var(--info-light); border-left: 3px solid #3b82f6; color: var(--info-text); }
+  .phase-bar { background: var(--amber-light); border-left: 3px solid #d97706; color: var(--amber-text); }
+
+  /* ── Exercise card ── */
+  .exercise {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 9px 12px;
+    margin-bottom: 5px;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.15s;
+  }
+  .exercise:hover { box-shadow: var(--shadow-md); }
+  .ex-row { display: flex; align-items: flex-start; gap: 8px; }
+  .ex-num {
+    min-width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--surface2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    flex-shrink: 0;
+    margin-top: 1px;
+    border: 1px solid var(--border);
+  }
+  .ex-body { flex: 1; min-width: 0; }
+  .exercise-line {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) max-content;
+    align-items: baseline;
+    gap: 12px;
+    flex: 1;
+    min-width: 0;
+  }
+  .exercise-line > :first-child { overflow-wrap: anywhere; }
+  .ex-body .exercise-line { align-items: start; }
+  .ex-copy { min-width: 0; }
+  .ex-detail {
+    text-align: right;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+  .ex-name { font-size: 14px; font-weight: 500; color: var(--text-primary); line-height: 1.45; }
+  .ex-detail { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
+  .ex-dose { text-align: right; font-size: 12px; line-height: 1.5; }
+  .ex-warmup {
+    width: fit-content;
+    margin-left: auto;
+    color: var(--amber-text);
+    background: var(--amber-light);
+    border-radius: var(--radius-sm);
+    padding: 2px 6px;
+    margin-bottom: 4px;
+    white-space: nowrap;
+  }
+  .dose-label { display: inline-block; margin-right: 6px; font-size: 10px; font-weight: 500; }
+  .ex-cue { margin-top: 2px; font-size: 12px; line-height: 1.5; color: var(--text-secondary); }
+  @media (max-width: 420px) {
+    .ex-dose .dose-label { display: block; margin-right: 0; }
+  }
+  .ex-alt { font-size: 12px; color: var(--text-secondary); margin-top: 2px; line-height: 1.45; }
+  .ex-why {
+    font-size: 11px;
+    color: var(--accent-text);
+    background: var(--accent-light);
+    border-radius: var(--radius-sm);
+    padding: 5px 10px;
+    margin-top: 7px;
+    line-height: 1.5;
+  }
+  .tag-row { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 7px; }
+  .tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 8px;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+  .tag-green { background: var(--accent-light); color: var(--accent-text); }
+  .tag-purple { background: var(--purple-light); color: var(--purple-text); }
+  .tag-amber { background: var(--amber-light); color: var(--amber-text); }
+  .tag-slate { background: var(--slate-light); color: var(--slate-text); }
+  .tag-coral { background: var(--coral-light); color: var(--coral-text); }
+
+  .workout-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 12px;
+    margin-bottom: 12px;
+    box-shadow: var(--shadow-sm);
+  }
+  .block-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 16px 2px 6px;
+  }
+  .block-timing {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    flex-shrink: 0;
+    margin-left: auto;
+    font-size: 11px;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+  .block-note {
+    margin: 4px 0 8px;
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--text-secondary);
+  }
+  .block-header > .section-label {
+    margin: 0;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+  .workout-block .exercise {
+    padding: 10px 0;
+    margin: 0;
+    border: none;
+    border-bottom: 1px solid var(--border);
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .workout-block .exercise:last-child { border-bottom: none; padding-bottom: 2px; }
+
+  /* ── Athletic Primer component ── */
+  .primer-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin-bottom: 8px;
+    box-shadow: var(--shadow-sm);
+  }
+  .primer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 13px 16px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.12s;
+  }
+  .primer-header:hover { background: var(--surface2); }
+  button.primer-header {
+    width: 100%;
+    background: none;
+    border: none;
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    text-align: left;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .primer-header-left { display: flex; align-items: center; gap: 10px; }
+  .primer-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: var(--amber-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+  }
+  .primer-title { font-size: 14px; font-weight: 500; color: var(--text-primary); }
+  .primer-subtitle { font-size: 11px; color: var(--text-tertiary); margin-top: 1px; }
+  .primer-chevron {
+    font-size: 11px;
+    color: var(--text-tertiary);
+    transition: transform 0.2s;
+  }
+  .primer-chevron.open { transform: rotate(180deg); }
+
+  .primer-fixed {
+    padding: 0 16px 14px;
+    border-top: 1px solid var(--border);
+  }
+  .primer-fixed-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin: 12px 0 8px;
+  }
+  .primer-step {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .primer-step:last-child { border-bottom: none; }
+  .primer-step-num {
+    min-width: 18px;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--amber);
+    margin-top: 2px;
+  }
+  .primer-step-name { font-size: 13px; font-weight: 500; color: var(--text-primary); margin-bottom: 2px; }
+  .primer-step-detail { font-size: 11px; color: var(--text-secondary); line-height: 1.5; }
+
+  .primer-menu { display: none; padding: 0 16px 14px; }
+  .primer-menu.open { display: block; }
+  .primer-menu-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    margin: 12px 0 8px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--border-mid);
+  }
+  .menu-item {
+    display: grid;
+    grid-template-columns: 160px 90px 1fr;
+    gap: 8px;
+    align-items: start;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 12px;
+  }
+  .menu-item:last-child { border-bottom: none; }
+  .menu-item-name { font-weight: 500; color: var(--text-primary); }
+  .menu-item-dose { color: var(--amber); font-weight: 500; font-size: 11px; padding-top: 1px; }
+  .menu-item-cue { color: var(--text-secondary); font-size: 11px; line-height: 1.45; }
+
+  /* ── Home routine ── */
+  .home-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    box-shadow: var(--shadow-sm);
+  }
+  .home-block-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+  }
+  .home-block-num {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+  .home-block-title { font-size: 14px; font-weight: 500; color: var(--text-primary); }
+  .home-block-time { font-size: 11px; color: var(--text-tertiary); margin-left: auto; }
+  .home-ex { display: flex; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--border); }
+  .home-ex:last-child { border-bottom: none; }
+  .home-ex-num { min-width: 18px; font-size: 11px; font-weight: 500; color: var(--text-tertiary); margin-top: 2px; }
+  .home-ex-copy { min-width: 0; }
+  .home-ex-name { font-size: 13px; font-weight: 500; color: var(--text-primary); line-height: 1.45; }
+  .home-ex-detail { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
+
+  /* ── Divider ── */
+  hr { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    .page-header { padding: 14px 16px 12px; }
+    .main-nav { padding: 0 16px; flex-wrap: wrap; }
+    .main-tab { padding: 12px 14px; font-size: 12px; }
+    .content-area { padding: 14px 12px 32px; }
+    .exercise-line { gap: 8px; }
+    .exercise { padding: 8px 10px; }
+    .menu-item { grid-template-columns: 1fr 80px; }
+    .menu-item-cue { grid-column: 1 / -1; padding-top: 0; padding-bottom: 4px; }
+    .meta-card { min-width: 90px; }
+  }
+
+    [hidden] { display: none !important; }
+  </style>
 </head>
 <body>
-  <div id="root"></div>
+  <header class="page-header"><h1 class="page-title">Lean &amp; Strong - Upper / Lower</h1></header>
+  <nav class="main-nav" aria-label="Workout plan">
+    <button type="button" class="main-tab active" aria-pressed="true" data-tab="calisthenics">Calisthenics and Conditioning</button><button type="button" class="main-tab" aria-pressed="false" data-tab="p1">Phase 1 - Strength Base</button><button type="button" class="main-tab" aria-pressed="false" data-tab="home">Daily Home</button><button type="button" class="main-tab" aria-pressed="false" data-tab="p2">Phase 2 - Progression</button>
+  </nav>
+  <main class="content-area"><div data-panel="calisthenics">
+
+    <nav class="day-nav" aria-label="Workout day">
+      <button type="button" class="day-tab active" aria-pressed="true" data-day="training-push">Day 1 · Upper Push</button><button type="button" class="day-tab" aria-pressed="false" data-day="training-lateral">Day 2 · Lower Lateral</button><button type="button" class="day-tab" aria-pressed="false" data-day="training-pull">Day 3 · Upper Pull</button><button type="button" class="day-tab" aria-pressed="false" data-day="training-vertical">Day 4 · Lower Vertical</button>
+    </nav>
+
+    <div data-day-panel="training-push">
+      <header class="day-header">
+        <h2 class="day-title">Upper push · Planche + pike</h2>
+        <p class="day-sub">Planche practice, bodyweight pressing and shoulder accessories.</p>
+      </header>
+      <div class="meta-row">
+        <div class="meta-card">
+          <div class="meta-label">Workout</div><div class="meta-val">40-50 min</div>
+        </div>
+      </div>
+
+    <section class="workout-section">
+      <div class="block-header">
+        <h2 class="section-label">Warm-up</h2>
+        <span class="block-timing" aria-label="Duration: 5 min">5 min</span>
+      </div>
+      <div class="workout-block">
+        <div class="station-badge">Mat area</div>
+
+
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">1</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Wrist rocks</div>
+              <div class="ex-cue">Shift pressure from fingertips to palms and back.</div>
+
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">1 × 8-10 reps</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">2</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Scapular push-up</div>
+              <div class="ex-cue">Keep elbows straight and push the floor away.</div>
+
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">1 × 8-10 reps</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">3</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Arm circles</div>
+              <div class="ex-cue">Gradually widen the circles. Change direction halfway through.</div>
+
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">1 × 8-10 reps</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </section>
+    <section class="workout-section">
+      <div class="block-header">
+        <h2 class="section-label">Planche skill</h2>
+        <span class="block-timing" aria-label="Rest: 60-90 s">60-90 s</span>
+      </div>
+      <div class="workout-block">
+        <div class="station-badge">Mat area</div>
+
+
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">1</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Planche lean (toes down)</div>
+              <div class="ex-cue">Start in a high plank with your toes on the floor. Keep elbows straight, push the floor away and shift your shoulders just a little past your wrists. Keep both feet down for the whole hold.</div>
+              <div class="ex-alt">If a high plank is still challenging, practise 3 × 15-30 seconds of high plank first. Once all three leans reach 8 seconds with steady form, build toward 3 × 15 seconds at the same lean. Then lean a little farther and return to 5-8-second holds. Later progressions: feet-assisted tuck → tuck → advanced tuck → straddle → full planche.</div>
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">3 × 5-8 sec</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </section>
+    <section class="workout-section">
+      <div class="block-header">
+        <h2 class="section-label">Push strength + shoulders</h2>
+        <span class="block-timing" aria-label="Rest: 90-120 s">90-120 s</span>
+      </div>
+      <div class="workout-block">
+        <div class="station-badge">Mat + dumbbell area</div>
+        <p class="block-note">Standalone sets. Finish each exercise before moving to the next. Rest 45-60 seconds between lateral-raise sets.</p>
+
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">1</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Push-up</div>
+              <div class="ex-cue">Keep ribs and hips in one line and use a consistent depth. Pick a variation that leaves about 1-2 clean reps in reserve.</div>
+              <div class="ex-alt">Progression: high incline → low incline → floor → pseudo-planche push-up. Advance after 3 × 10 clean reps. For pseudo-planche reps, retain a slight forward lean throughout.</div>
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">3 × 6-10 reps</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">2</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Pike push-up</div>
+              <div class="ex-cue">Keep hips high and lower your head slightly ahead of your hands between the arms.</div>
+              <div class="ex-alt">Progression: elevated pike hold with hands on a bench → hands-elevated pike push-up → floor pike push-up → feet-elevated pike push-up. Start holds at 2 × 10-20 sec. Build the hold to 2 × 20 sec and each push-up rung to 3 × 8 clean reps.</div>
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">3 × 5-8 reps</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">3</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Dumbbell lateral raise</div>
+              <div class="ex-cue">Raise the arms slightly forward of your sides. Add a little weight when both sets reach 15 with roughly 1-2 reps in reserve.</div>
+
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">2 × 12-15 reps</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </section>
+    <section class="workout-section">
+      <div class="block-header">
+        <h2 class="section-label">Core · L-sit practice</h2>
+        <span class="block-timing" aria-label="Rest: 45-60 s">45-60 s</span>
+      </div>
+      <div class="workout-block">
+        <div class="station-badge">Mat + dumbbell area</div>
+        <p class="block-note">Superset · 2 rounds. Do an easy L-sit hold, then a hollow-body hold on the same mat. Rest after both.</p>
+
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">1</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">L-sit hold</div>
+              <div class="ex-cue">Use your Day 3 rung for two easy technique sets.</div>
+              <div class="ex-alt">Progression: both heels supported → one heel supported (train both sides) → tuck hold with both feet up → one-leg L-sit (both sides) → full L-sit on parallettes → full floor L-sit. Move up after 3 × 15 seconds with straight arms and steady hips. Start the next rung with 5-8-second holds.</div>
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">2 × 8-12 sec</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">2</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Hollow-body hold</div>
+              <div class="ex-cue">Keep your low back against the floor as you breathe.</div>
+              <div class="ex-alt">Progression: dead bug → tucked hollow → one leg long → both legs long. Move up after two steady 25-second holds.</div>
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">2 × 15-25 sec</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </section>
+    <section class="workout-section">
+      <div class="block-header">
+        <h2 class="section-label">Optional conditioning finisher</h2>
+        <span class="block-timing" aria-label="Duration: 8 min">8 min</span>
+      </div>
+      <div class="workout-block">
+        <div class="station-badge">Cardio area · Stationary bike</div>
+
+
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">1</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Stationary bike intervals</div>
+              <div class="ex-cue">Ride easy for 1 minute. Do 6 rounds of 20 seconds hard (about 7-8 out of 10) and 40 seconds easy. Finish with 1 minute easy.</div>
+              <div class="ex-alt">Start with one finisher per week after either upper workout. Add the second upper-day finisher if you feel recovered for volleyball and your next workout.</div>
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">1 × 8 min</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </section>
+    </div>
+    <div data-day-panel="training-lateral" hidden>
+      <header class="day-header">
+        <h2 class="day-title">Lower lateral · Control + calves</h2>
+        <p class="day-sub">Lateral landings, loaded unilateral work and bent-knee calf strength.</p>
+      </header>
+      <div class="meta-row">
+        <div class="meta-card">
+          <div class="meta-label">Workout</div><div class="meta-val">40-50 min</div>
+        </div>
+      </div>
+
+    <section class="workout-section">
+      <div class="block-header">
+        <h2 class="section-label">Warm-up</h2>
+        <span class="block-timing" aria-label="Duration: 6-8 min">6-8 min</span>
+      </div>
+      <div class="workout-block">
+        <div class="station-badge">Turf / open floor near a wall</div>
+
+
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">1</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">World’s greatest stretch + dynamic runner’s lunge</div>
+              <div class="ex-cue">Rotate through the upper back, then gently drive the hips forward in the lunge.</div>
+
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">1 × 4 reps/side</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">2</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">90/90 switches with active external rotation</div>
+              <div class="ex-cue">Switch sides slowly and sit tall over the front shin for a breath.</div>
+
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">1 × 5 reps/side</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">3</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Supported hip-flexor march and lateral knee raise</div>
+              <div class="ex-cue">Lift the knee straight ahead, reset, then lift out and up. Use bodyweight first, then a light band or a secure foot-loaded kettlebell for the forward march.</div>
+
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">1 × 6 reps/side</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">4</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Wall tibialis raise</div>
+              <div class="ex-cue">Keep heels down and lift the toes. Move the feet slightly farther from the wall to progress.</div>
+
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">1 × 15-20 reps</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </section>
+    <section class="workout-section">
+      <div class="block-header">
+        <h2 class="section-label">Lateral power</h2>
+        <span class="block-timing" aria-label="Rest: 60-90 s">60-90 s</span>
+      </div>
+      <div class="workout-block">
+        <div class="station-badge">Turf / open floor near a wall</div>
+
+
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">1</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Side-to-side jump progression</div>
+              <div class="ex-cue">Pick one rung. Land quietly and reset between reps. Match your right and left landing control before increasing distance.</div>
+              <div class="ex-alt">Progression: lateral step-and-stick → low two-foot side-to-side jumps → short skater bound to a single-leg stick → repeated bounds. In a jump-heavy volleyball week, use the step-and-stick.</div>
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">2 × 4 reps/side</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </section>
+    <section class="workout-section">
+      <div class="block-header">
+        <h2 class="section-label">Single-leg strength</h2>
+        <span class="block-timing" aria-label="Rest: 90-120 s after both sides">90-120 s after both sides</span>
+      </div>
+      <div class="workout-block">
+        <div class="station-badge">Dumbbells + low box</div>
+        <p class="block-note">Standalone sets. Finish each exercise before moving on. Use the same box to sit for bent-knee calf raises.</p>
+
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">1</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Reverse lunge</div>
+              <div class="ex-cue">Start right. Drive through the front foot. Build to 3 × 10 per side before increasing dumbbell load.</div>
+              <div class="ex-alt">Optional swap: hack squat, 3 × 8-10 reps. Keep the step-ups for unilateral work.</div>
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">3 × 6-10 reps/side</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">2</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Dumbbell step-up</div>
+              <div class="ex-cue">Use a low, stable box. Keep your whole lead foot planted, use minimal push from the trailing foot and lower under control.</div>
+              <div class="ex-alt">Progression: bodyweight → light dumbbells → small load increases. Add weight once you can control both sets of 10 on each side.</div>
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">2 × 8-10 reps/side</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">3</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Bent-knee single-leg calf raise</div>
+              <div class="ex-cue">Use seated loading or a supported standing bend. Start right and match its clean range and reps on the left.</div>
+              <div class="ex-alt">Progression: bodyweight or assisted → full-height reps → small load increase. Optional hold: 2 × 20-30 seconds per side at mid-range in place of a calf-raise set block if you prefer isometrics that day.</div>
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">3 × 8-12 reps/side</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </section>
+    <section class="workout-section">
+      <div class="block-header">
+        <h2 class="section-label">Core · Side plank</h2>
+        <span class="block-timing" aria-label="Rest: 45-60 s after both sides">45-60 s after both sides</span>
+      </div>
+      <div class="workout-block">
+        <div class="station-badge">Mat beside the dumbbell area</div>
+
+
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">1</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Side plank</div>
+              <div class="ex-cue">Stack your hips and keep breathing. Move up once you hold 30 seconds on both sets per side.</div>
+              <div class="ex-alt">Progression: knees bent → straight legs → top-leg lift.</div>
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">2 × 20-30 sec/side</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </section>
+    </div>
+    <div data-day-panel="training-pull" hidden>
+      <header class="day-header">
+        <h2 class="day-title">Upper pull · Pull-up + L-sit</h2>
+        <p class="day-sub">L-sit holds, bodyweight pulling and upper-back accessories.</p>
+      </header>
+      <div class="meta-row">
+        <div class="meta-card">
+          <div class="meta-label">Workout</div><div class="meta-val">40-50 min</div>
+        </div>
+      </div>
+
+    <section class="workout-section">
+      <div class="block-header">
+        <h2 class="section-label">Warm-up</h2>
+        <span class="block-timing" aria-label="Duration: 3 min">3 min</span>
+      </div>
+      <div class="workout-block">
+        <div class="station-badge">Mat + parallettes or blocks</div>
+
+
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">1</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Wrist rocks</div>
+
+
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">1 × 8-10 reps</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">2</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Arm circles</div>
+
+
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">1 × 8-10 reps</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </section>
+    <section class="workout-section">
+      <div class="block-header">
+        <h2 class="section-label">Core · L-sit skill</h2>
+        <span class="block-timing" aria-label="Rest: 60-90 s">60-90 s</span>
+      </div>
+      <div class="workout-block">
+        <div class="station-badge">Mat + parallettes or blocks</div>
+        <p class="block-note">Standalone sets. Finish your L-sit hold sets, then do seated leg lifts at the same mat.</p>
+
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">1</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">L-sit hold</div>
+              <div class="ex-cue">Start on stable parallettes or blocks. Lock the elbows, press down to lift your hips, and keep your shoulders down.</div>
+              <div class="ex-alt">Progression: both heels supported → one heel supported (train both sides) → tuck hold with both feet up → one-leg L-sit (both sides) → full L-sit on parallettes → full floor L-sit. Move up after 3 × 15 seconds with straight arms and steady hips. Start the next rung with 5-8-second holds.</div>
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">3 × 8-15 sec</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">2</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Seated single-leg pike lift</div>
+              <div class="ex-cue">Sit on the floor, legs straight and hands beside the thighs. Lift one heel without leaning back. Pause briefly.</div>
+              <div class="ex-alt">Progression: one leg → both legs, starting at 2 × 5 reps. Walk hands toward the knees to increase difficulty.</div>
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">2 × 6-10 reps/side</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </section>
+    <section class="workout-section">
+      <div class="block-header">
+        <h2 class="section-label">Pull-up warm-up</h2>
+        <span class="block-timing" aria-label="Duration: 2 min">2 min</span>
+      </div>
+      <div class="workout-block">
+        <div class="station-badge">Pull-up rig + low bar</div>
+
+
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">1</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Dead hang</div>
+              <div class="ex-cue">Use a box for foot support as needed.</div>
+
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">1 × 15-25 sec</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">2</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Scapular pull-up</div>
+              <div class="ex-cue">Move the shoulders down with straight elbows.</div>
+
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">1 × 5-8 reps</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </section>
+    <section class="workout-section">
+      <div class="block-header">
+        <h2 class="section-label">Pull-up progression</h2>
+        <span class="block-timing" aria-label="Rest: 90-120 s">90-120 s</span>
+      </div>
+      <div class="workout-block">
+        <div class="station-badge">Pull-up rig + low bar</div>
+        <p class="block-note">Standalone sets. Use one rig for the bar work. If you use the pulldown and seated row swaps, finish those and face pulls together in the cable area.</p>
+
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">1</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Pull-up</div>
+              <div class="ex-cue">Use enough assistance to get full-range reps with about 1-2 clean reps in reserve. Use less assistance after 3 × 8 controlled reps.</div>
+              <div class="ex-alt">Progression: active hang + Australian bar row → foot-assisted pull-up → assisted reps with controlled negatives → strict singles → strict sets. Once you have a clean strict rep, do 3-5 singles and use assistance for extra full-range reps as needed. Use your usual lat pulldown for 3 × 8-10 when a pull-up bar is unavailable.</div>
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">3 × 4-8 reps</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">2</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Negative pull-up</div>
+              <div class="ex-cue">Step up until your chin is above the bar, remove foot support and lower for 3-5 seconds. Step back onto the box to reset.</div>
+              <div class="ex-alt">Use this alongside assisted reps. Keep one foot on the box if needed to control the descent. Drop negatives when you are practising strict singles or using the pulldown swap.</div>
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">2 × 2-3 reps</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">3</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Australian pull-up (inverted bar row)</div>
+              <div class="ex-cue">Pull your chest toward a low fixed bar. Progress from bent knees to straight legs to feet elevated.</div>
+              <div class="ex-alt">Equipment swap: single-arm seated cable row, 2 × 8-12 reps per side.</div>
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">2 × 8-12 reps</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </section>
+    <section class="workout-section">
+      <div class="block-header">
+        <h2 class="section-label">Upper-back accessory</h2>
+        <span class="block-timing" aria-label="Rest: 45-60 s">45-60 s</span>
+      </div>
+      <div class="workout-block">
+        <div class="station-badge">Cable area or band at the pull-up rig</div>
+
+
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">1</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Face pull</div>
+              <div class="ex-cue">Use a rope or band and pull toward your eyebrows.</div>
+              <div class="ex-alt">Alternative: dumbbell reverse fly, 2 × 12-15 reps.</div>
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">2 × 12-15 reps</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </section>
+    <section class="workout-section">
+      <div class="block-header">
+        <h2 class="section-label">Optional conditioning finisher</h2>
+        <span class="block-timing" aria-label="Duration: 8 min">8 min</span>
+      </div>
+      <div class="workout-block">
+        <div class="station-badge">Cardio area · Stationary bike</div>
+
+
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">1</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Stationary bike intervals</div>
+              <div class="ex-cue">Ride easy for 1 minute. Do 6 rounds of 20 seconds hard (about 7-8 out of 10) and 40 seconds easy. Finish with 1 minute easy.</div>
+              <div class="ex-alt">Start with one finisher per week after either upper workout. Add the second upper-day finisher if you feel recovered for volleyball and your next workout.</div>
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">1 × 8 min</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </section>
+    </div>
+    <div data-day-panel="training-vertical" hidden>
+      <header class="day-header">
+        <h2 class="day-title">Lower vertical · Hops + posterior chain</h2>
+        <p class="day-sub">Low-volume vertical power, then glute, hamstring and calf strength.</p>
+      </header>
+      <div class="meta-row">
+        <div class="meta-card">
+          <div class="meta-label">Workout</div><div class="meta-val">45-60 min</div>
+        </div>
+      </div>
+
+    <section class="workout-section">
+      <div class="block-header">
+        <h2 class="section-label">Warm-up</h2>
+        <span class="block-timing" aria-label="Duration: 6-8 min">6-8 min</span>
+      </div>
+      <div class="workout-block">
+        <div class="station-badge">Turf / open floor near a wall</div>
+
+
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">1</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">World’s greatest stretch + dynamic runner’s lunge</div>
+              <div class="ex-cue">Rotate through the upper back, then gently drive the hips forward in the lunge.</div>
+
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">1 × 4 reps/side</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">2</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">90/90 switches with active external rotation</div>
+              <div class="ex-cue">Switch sides slowly and sit tall over the front shin for a breath.</div>
+
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">1 × 5 reps/side</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">3</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Supported hip-flexor march and lateral knee raise</div>
+              <div class="ex-cue">Lift the knee straight ahead, reset, then lift out and up. Use bodyweight first, then a light band or a secure foot-loaded kettlebell for the forward march.</div>
+
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">1 × 6 reps/side</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">4</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Wall tibialis raise</div>
+              <div class="ex-cue">Keep heels down and lift the toes. Move the feet slightly farther from the wall to progress.</div>
+
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">1 × 15-20 reps</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </section>
+    <section class="workout-section">
+      <div class="block-header">
+        <h2 class="section-label">Vertical power</h2>
+        <span class="block-timing" aria-label="Rest: 60-90 s">60-90 s</span>
+      </div>
+      <div class="workout-block">
+        <div class="station-badge">Turf / open floor near a wall</div>
+
+
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">1</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Single-leg hop progression</div>
+              <div class="ex-cue">Progress from snap-down and stick to low two-foot pogos, then single-leg hop and stick. Use 2 × 5 total reps for the two-foot drills. Add single-leg hops when heel raises are consistent on both sides and two-foot landings are even.</div>
+              <div class="ex-alt">Pick one. Low box jump: 2 × 3 reps, land on two feet and step down. On a jump-heavy court week, use fast step-ups with knee drive, 2 × 4 reps per side. Keep the working foot on the box and drive the other knee up.</div>
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">2 × 3-5 reps/side</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </section>
+    <section class="workout-section">
+      <div class="block-header">
+        <h2 class="section-label">Glute strength</h2>
+        <span class="block-timing" aria-label="Rest: 90-120 s">90-120 s</span>
+      </div>
+      <div class="workout-block">
+        <div class="station-badge">Hip thrust machine / Smith machine</div>
+
+
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">1</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Hip thrust</div>
+              <div class="ex-cue">Use your usual machine, Smith machine or barbell. Pause at the top. Add load after 3 × 10 with about 2 reps in reserve.</div>
+
+            </div>
+            <div class="ex-dose">
+              <div class="ex-warmup"><span class="dose-label">Warm-up</span>2 × 5 reps</div>
+              <div class="ex-detail"><span class="dose-label">Working</span>3 × 6-10 reps</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </section>
+    <section class="workout-section">
+      <div class="block-header">
+        <h2 class="section-label">Single-leg strength</h2>
+        <span class="block-timing" aria-label="Rest: 90-120 s after both sides">90-120 s after both sides</span>
+      </div>
+      <div class="workout-block">
+        <div class="station-badge">Dumbbells + rack for support</div>
+        <p class="block-note">Standalone sets. Use the same support for the hinge and calf raise.</p>
+
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">1</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Single-leg Romanian deadlift</div>
+              <div class="ex-cue">Start right. Hold a rack for balance and a dumbbell for load. Hinge with a soft knee and keep hips square.</div>
+              <div class="ex-alt">Progression: kickstand → supported single-leg → more load. Use a bilateral dumbbell RDL for 3 × 6-10 when you want a heavier hinge.</div>
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">3 × 6-10 reps/side</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">2</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Straight-knee single-leg calf raise</div>
+              <div class="ex-cue">Use a hand for balance, rise to a consistent height and lower slowly. Start right and track heel height as well as reps.</div>
+              <div class="ex-alt">Progression: two legs up and one down → assisted single-leg raise → unassisted → lightly loaded.</div>
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">2 × 6-10 reps/side</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </section>
+    <section class="workout-section">
+      <div class="block-header">
+        <h2 class="section-label">Hamstring accessory</h2>
+        <span class="block-timing" aria-label="Rest: 60-90 s">60-90 s</span>
+      </div>
+      <div class="workout-block">
+        <div class="station-badge">Seated leg curl machine</div>
+
+
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">1</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Seated leg curl</div>
+              <div class="ex-cue">Lower slowly and add a small amount of weight once both sets reach 15.</div>
+              <div class="ex-alt">Alternative: sliding hamstring curl, 2 × 6-10 reps.</div>
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">2 × 10-15 reps</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </section>
+    <section class="workout-section">
+      <div class="block-header">
+        <h2 class="section-label">Core · Anti-rotation</h2>
+        <span class="block-timing" aria-label="Rest: 45-60 s after both sides">45-60 s after both sides</span>
+      </div>
+      <div class="workout-block">
+        <div class="station-badge">Cable area or band anchor by the mat</div>
+
+
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">1</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Pallof press</div>
+              <div class="ex-cue">Stand sideways to a cable or band. Press straight ahead and hold 2 seconds without letting your shoulders or hips turn.</div>
+              <div class="ex-alt">Add a little resistance once both sets reach 12 per side with a steady torso.</div>
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">2 × 8-12 reps/side</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </section>
+    </div></div><div data-panel="p1" hidden>
+    <div class="phase-bar">Weeks 1-4: strength base for an experienced lifter. Week 1: establish challenging loads with 2 good reps in reserve. Weeks 2-3: build reps before load. Week 4: review performance and recovery. Enter Phase 2 when the current movements are controlled and tolerated; retain individual Phase 1 variations when needed.</div>
+    <nav class="day-nav" aria-label="Workout day">
+      <button type="button" class="day-tab active" aria-pressed="true" data-day="p1d0">Mon - Push</button><button type="button" class="day-tab" aria-pressed="false" data-day="p1d1">Wed - Quads</button><button type="button" class="day-tab" aria-pressed="false" data-day="p1d2">Fri - Pull</button><button type="button" class="day-tab" aria-pressed="false" data-day="p1d3">Sat - Hamstrings &amp; Glutes</button>
+    </nav>
+
+    <div data-day-panel="p1d0">
+      <header class="day-header">
+        <h2 class="day-title">Upper • Push</h2>
+        <p class="day-sub">Cardio → dumbbells and bench → mat core finisher.</p>
+      </header>
+      <div class="meta-row">
+        <div class="meta-card">
+          <div class="meta-label">Session cap</div><div class="meta-val">60 min</div>
+        </div><div class="meta-card">
+          <div class="meta-label">Strength + warm-up</div><div class="meta-val">30 min</div>
+        </div><div class="meta-card">
+          <div class="meta-label">Core / cardio / buffer</div><div class="meta-val">5 / 20 / 5 min</div>
+        </div>
+      </div>
+
+    <section class="workout-note">
+      <div class="block-header">
+        <h2 class="section-label">Session notes</h2>
+
+      </div>
+      <div>
+
+        <p class="info-bar">Push/pull emphasis with a little overlap. Main lift: 3 working sets; supporting upper-body exercises: 2. This keeps strength work challenging with moderate upper-body volume. Allow the full rest; session times are estimates.</p>
+
+      </div>
+    </section>
+    <section class="workout-section">
+      <div class="block-header">
+        <h2 class="section-label">Cardio</h2>
+        <span class="block-timing" aria-label="Duration: 20 min">20 min</span>
+      </div>
+      <div class="workout-block">
+        <div class="station-badge">Cardio area</div>
+        <p class="block-note">20 minutes at a conversational pace, including an easy start and finish. Choose 15 minutes on an easier day. Start flat; use low incline only if comfortable during and the next day.</p>
+
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">1</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Treadmill walking</div>
+
+              <div class="ex-alt">Alternative: low-incline treadmill (comfortable, no limp) or rowing (hip/back comfortable), 1 × 20 min</div>
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">1 × 20 min</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </section>
+    <section class="workout-section">
+      <div class="block-header">
+        <h2 class="section-label">Strength Block A</h2>
+        <span class="block-timing" aria-label="Rest: 2-3 min">2-3 min</span>
+      </div>
+      <div class="workout-block">
+        <div class="station-badge">Dumbbells + adjustable bench</div>
+        <p class="block-note">Complete each exercise before moving on. Use the same bench: flat for chest presses, upright for shoulder presses, inclined for rows. Warm-up sets get gradually heavier without fatigue; add a short ramp-up set if needed before heavy work.</p>
+
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">A</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Dumbbell bench press</div>
+              <div class="ex-cue">Keep feet planted and wrists over elbows. Lower with control.</div>
+              <div class="ex-alt">Alternative: neutral-grip dumbbell bench press, 3 × 6-10 reps</div>
+            </div>
+            <div class="ex-dose">
+              <div class="ex-warmup"><span class="dose-label">Warm-up</span>2 × 5-8 reps</div>
+              <div class="ex-detail"><span class="dose-label">Working</span>3 × 6-10 reps</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">D</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Seated dumbbell shoulder press</div>
+              <div class="ex-cue">Use the backrest and keep ribs down. Press through a comfortable overhead range without leaning back.</div>
+              <div class="ex-alt">Alternative: neutral-grip dumbbell shoulder press, 2 × 8-10 reps</div>
+            </div>
+            <div class="ex-dose">
+              <div class="ex-warmup"><span class="dose-label">Warm-up</span>1 × 8 reps</div>
+              <div class="ex-detail"><span class="dose-label">Working</span>2 × 8-10 reps</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">B</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Chest-supported dumbbell row</div>
+              <div class="ex-cue">Keep your chest on the inclined bench; pull without lifting your torso.</div>
+              <div class="ex-alt">Alternative: bench-supported one-arm dumbbell row, 2 × 8-12 reps/side</div>
+            </div>
+            <div class="ex-dose">
+              <div class="ex-warmup"><span class="dose-label">Warm-up</span>1 × 10 reps</div>
+              <div class="ex-detail"><span class="dose-label">Working</span>2 × 8-12 reps</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </section>
+    <section class="workout-section">
+      <div class="block-header">
+        <h2 class="section-label">Core</h2>
+        <span class="block-timing" aria-label="Rest: 45 s">45 s</span>
+      </div>
+      <div class="workout-block">
+        <div class="station-badge">Grass / mat area</div>
+        <p class="block-note">Superset · 2 rounds: dead bug → side plank on both sides. Rest after each pair.</p>
+
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">C1</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Dead bug</div>
+              <div class="ex-cue">Shorten the reach if your back arches or your hip grips.</div>
+
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">2 × 6 reps/side</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">C2</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Side plank from knees</div>
+              <div class="ex-cue">Keep knees bent and lift hips without holding your breath.</div>
+              <div class="ex-alt">Alternative: wall side plank, 2 × 15-25 sec/side</div>
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">2 × 15-25 sec/side</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </section>
+    </div>
+    <div data-day-panel="p1d1" hidden>
+      <header class="day-header">
+        <h2 class="day-title">Lower • Quads</h2>
+        <p class="day-sub">Easy cardio → leg machines → supported free-weight strength.</p>
+      </header>
+      <div class="meta-row">
+        <div class="meta-card">
+          <div class="meta-label">Session cap</div><div class="meta-val">60 min</div>
+        </div><div class="meta-card">
+          <div class="meta-label">Warm-up / strength</div><div class="meta-val">10 / 43 min</div>
+        </div><div class="meta-card">
+          <div class="meta-label">Buffer</div><div class="meta-val">7 min</div>
+        </div>
+      </div>
+
+    <section class="workout-note">
+      <div class="block-header">
+        <h2 class="section-label">Session notes</h2>
+
+      </div>
+      <div>
+
+        <p class="info-bar">Start unilateral work on the right and match controlled reps on the left. Log load, reps and assistance, plus calf heel height. Mild side-to-side tightness does not require forcing equal depth. Progress with stable control and no new pain or next-day limp. Allow full rests between working sets.</p>
+
+      </div>
+    </section>
+    <section class="workout-section">
+      <div class="block-header">
+        <h2 class="section-label">Cardio</h2>
+        <span class="block-timing" aria-label="Duration: 5 min">5 min</span>
+      </div>
+      <div class="workout-block">
+        <div class="station-badge">Cardio area</div>
+        <p class="block-note">Easy treadmill walk, then move to the leg machines.</p>
+
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">1</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Treadmill walking</div>
+
+
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">1 × 5 min</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </section>
+    <section class="workout-section">
+      <div class="block-header">
+        <h2 class="section-label">Strength Block A</h2>
+        <span class="block-timing" aria-label="Rest: 60 s - 3 min">60 s - 3 min</span>
+      </div>
+      <div class="workout-block">
+        <div class="station-badge">Leg machine area</div>
+        <p class="block-note">Straight sets: complete each exercise before moving on. Rest 2-3 min for hack squats and 60 s - 1 min 30 s for accessories, after both sides where applicable.</p>
+
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">A</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Hack squat</div>
+              <div class="ex-cue">Keep heels down and pressure even. Use a depth without hip pinching; choose leg press if you shift away from the right leg.</div>
+              <div class="ex-alt">Alternative: leg press, 3 × 8-10 reps</div>
+            </div>
+            <div class="ex-dose">
+              <div class="ex-warmup"><span class="dose-label">Warm-up</span>2 × 5-8 reps</div>
+              <div class="ex-detail"><span class="dose-label">Working</span>3 × 8-10 reps</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">C</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Seated hamstring curl (Single-leg)</div>
+              <div class="ex-cue">Keep hips against the pad. Start on the right and match controlled reps on the left.</div>
+              <div class="ex-alt">Alternative: seated leg curl (both legs), 2 × 10-12 reps</div>
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">2 × 10-12 reps/side</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">D</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Leg extension (Single-leg)</div>
+              <div class="ex-cue">Start right and match controlled reps on the left. Keep hips against the pad and lower smoothly.</div>
+              <div class="ex-alt">Alternative: bilateral leg extension, 2 × 10-12 reps</div>
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">2 × 10-12 reps/side</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </section>
+    <section class="workout-section">
+      <div class="block-header">
+        <h2 class="section-label">Strength Block B</h2>
+        <span class="block-timing" aria-label="Rest: 1 min 30 s - 2 min">1 min 30 s - 2 min</span>
+      </div>
+      <div class="workout-block">
+        <div class="station-badge">Dumbbells + bench + sturdy support</div>
+        <p class="block-note">Use a low bench for the rear foot and hand support for balance. Rest after both sides for split squats. Calf raises stay on flat ground; stop when heel height drops. Use both legs for the calf warm-up.</p>
+
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">B</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Supported Bulgarian split squat</div>
+              <div class="ex-cue">Use a low rear-foot support and keep pressure through the front foot. Keep the rear foot on the floor if elevation restricts your hip. For step-ups, use a low stable platform and avoid pushing off the trailing leg.</div>
+              <div class="ex-alt">Alternative: supported low step-up, 3 × 8-10 reps/side</div>
+            </div>
+            <div class="ex-dose">
+              <div class="ex-warmup"><span class="dose-label">Warm-up</span>1 × 5 reps/side</div>
+              <div class="ex-detail"><span class="dose-label">Working</span>3 × 8-10 reps/side</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">E</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Supported calf raise (Single-leg)</div>
+              <div class="ex-cue">Start with bodyweight on flat ground and hand support for balance. Use your 3 × 5 baseline; stop or assist before heel height drops. Lower slowly and match controlled reps on the left.</div>
+              <div class="ex-alt">Alternative: assisted calf raise (Single-leg), 3 × 5 reps/side</div>
+            </div>
+            <div class="ex-dose">
+              <div class="ex-warmup"><span class="dose-label">Warm-up</span>1 × 5 reps</div>
+              <div class="ex-detail"><span class="dose-label">Working</span>3 × 5 reps/side</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </section>
+    </div>
+    <div data-day-panel="p1d2" hidden>
+      <header class="day-header">
+        <h2 class="day-title">Upper • Pull</h2>
+        <p class="day-sub">Cardio → cable strength and core → grass / mat superset.</p>
+      </header>
+      <div class="meta-row">
+        <div class="meta-card">
+          <div class="meta-label">Session cap</div><div class="meta-val">60 min</div>
+        </div><div class="meta-card">
+          <div class="meta-label">Cardio / strength + warm-up</div><div class="meta-val">20 / 30 min</div>
+        </div><div class="meta-card">
+          <div class="meta-label">Core / buffer</div><div class="meta-val">5 / 5 min</div>
+        </div>
+      </div>
+
+    <section class="workout-note">
+      <div class="block-header">
+        <h2 class="section-label">Session notes</h2>
+
+      </div>
+      <div>
+
+        <p class="info-bar">Push/pull emphasis with a little overlap. Main lift: 3 working sets; supporting upper-body exercises: 2. This keeps strength work challenging with moderate upper-body volume. Allow the full rest; session times are estimates.</p>
+
+      </div>
+    </section>
+    <section class="workout-section">
+      <div class="block-header">
+        <h2 class="section-label">Cardio</h2>
+        <span class="block-timing" aria-label="Duration: 20 min">20 min</span>
+      </div>
+      <div class="workout-block">
+        <div class="station-badge">Cardio area</div>
+        <p class="block-note">20 minutes at a conversational pace, including an easy start and finish. Choose 15 minutes on an easier day. Start flat; use low incline only if comfortable during and the next day.</p>
+
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">1</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Treadmill walking</div>
+
+              <div class="ex-alt">Alternative: low-incline treadmill (comfortable, no limp) or rowing (hip/back comfortable), 1 × 20 min</div>
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">1 × 20 min</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </section>
+    <section class="workout-section">
+      <div class="block-header">
+        <h2 class="section-label">Strength Block A</h2>
+        <span class="block-timing" aria-label="Rest: 30 s - 3 min">30 s - 3 min</span>
+      </div>
+      <div class="workout-block">
+        <div class="station-badge">Cable area</div>
+        <p class="block-note">Straight sets: complete each exercise before moving on. Rest 2-3 min for rows and pulldowns, 60 s for face pulls and 30-45 s for Pallof presses. Warm-up sets should prepare you without fatigue.</p>
+
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">A</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Neutral-grip lat pulldown</div>
+              <div class="ex-cue">Keep your torso steady and pull the handles toward your upper chest.</div>
+              <div class="ex-alt">Alternative: close-grip cable pulldown, 3 × 6-10 reps</div>
+            </div>
+            <div class="ex-dose">
+              <div class="ex-warmup"><span class="dose-label">Warm-up</span>2 × 5-8 reps</div>
+              <div class="ex-detail"><span class="dose-label">Working</span>3 × 6-10 reps</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">B</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Seated cable row</div>
+              <div class="ex-cue">Keep your torso still; pull toward the lower ribs without rocking.</div>
+              <div class="ex-alt">Alternative: standing cable row, 2 × 8-12 reps</div>
+            </div>
+            <div class="ex-dose">
+              <div class="ex-warmup"><span class="dose-label">Warm-up</span>1 × 10 reps</div>
+              <div class="ex-detail"><span class="dose-label">Working</span>2 × 8-12 reps</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">D</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Face pull</div>
+              <div class="ex-cue">Set the rope near eye level. Pull toward your face without leaning back or shrugging; keep the load controlled.</div>
+              <div class="ex-alt">Alternative: cable reverse fly, 2 × 12-15 reps</div>
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">2 × 12-15 reps</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">C1</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Pallof press</div>
+              <div class="ex-cue">Press forward at chest height without twisting.</div>
+
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">2 × 8 reps/side</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </section>
+    <section class="workout-section">
+      <div class="block-header">
+        <h2 class="section-label">Strength Block B</h2>
+        <span class="block-timing" aria-label="Rest: 1 min 30 s">1 min 30 s</span>
+      </div>
+      <div class="workout-block">
+        <div class="station-badge">Grass / mat area</div>
+        <p class="block-note">Superset · 2 rounds: incline push-up → bird-dog on both sides. Rest after each pair.</p>
+
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">C</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Incline push-up</div>
+              <div class="ex-cue">Use a sturdy raised surface and keep your body in one line.</div>
+              <div class="ex-alt">Alternative: kneeling push-up, 2 × 6-12 reps</div>
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">2 × 6-12 reps</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">C2</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Bird-dog</div>
+              <div class="ex-cue">Keep hips level; use a short reach if your lower back tightens.</div>
+
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">2 × 5 reps/side</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </section>
+    </div>
+    <div data-day-panel="p1d3" hidden>
+      <header class="day-header">
+        <h2 class="day-title">Lower • Hamstrings &amp; Glutes</h2>
+        <p class="day-sub">Easy cardio → hip thrust, curl and abduction machines → dumbbells and bench.</p>
+      </header>
+      <div class="meta-row">
+        <div class="meta-card">
+          <div class="meta-label">Session cap</div><div class="meta-val">60 min</div>
+        </div><div class="meta-card">
+          <div class="meta-label">Warm-up / strength</div><div class="meta-val">10 / 43 min</div>
+        </div><div class="meta-card">
+          <div class="meta-label">Buffer</div><div class="meta-val">7 min</div>
+        </div>
+      </div>
+
+    <section class="workout-note">
+      <div class="block-header">
+        <h2 class="section-label">Session notes</h2>
+
+      </div>
+      <div>
+
+        <p class="info-bar">Start unilateral work on the right and match controlled reps on the left. Log load, reps and assistance, plus calf heel height. Mild side-to-side tightness does not require forcing equal depth. Progress with stable control and no new pain or next-day limp. Allow full rests between working sets.</p>
+
+      </div>
+    </section>
+    <section class="workout-section">
+      <div class="block-header">
+        <h2 class="section-label">Cardio</h2>
+        <span class="block-timing" aria-label="Duration: 5 min">5 min</span>
+      </div>
+      <div class="workout-block">
+        <div class="station-badge">Cardio area</div>
+        <p class="block-note">Easy treadmill walk, then move to the lower-body machines.</p>
+
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">1</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Treadmill walking</div>
+
+
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">1 × 5 min</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </section>
+    <section class="workout-section">
+      <div class="block-header">
+        <h2 class="section-label">Strength Block A</h2>
+        <span class="block-timing" aria-label="Rest: 1 min 30 s - 3 min">1 min 30 s - 3 min</span>
+      </div>
+      <div class="workout-block">
+        <div class="station-badge">Lower-body machine area</div>
+        <p class="block-note">Straight sets: complete each exercise before moving on. Rest 2-3 min for hip thrusts, 1 min 30 s after both sides for curls and 60 s for abduction. If substituting back extensions for RDLs, complete them in this area before moving to calves.</p>
+
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">A</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Hip thrust machine</div>
+              <div class="ex-cue">Keep ribs down and finish by extending your hips without arching your back.</div>
+              <div class="ex-alt">Alternative: Smith machine hip thrust, 3 × 8-12 reps</div>
+            </div>
+            <div class="ex-dose">
+              <div class="ex-warmup"><span class="dose-label">Warm-up</span>2 × 5-8 reps</div>
+              <div class="ex-detail"><span class="dose-label">Working</span>3 × 8-12 reps</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">C</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Seated hamstring curl (Single-leg)</div>
+              <div class="ex-cue">Keep hips against the pad and avoid pulling at the outside of the knee.</div>
+              <div class="ex-alt">Alternative: seated leg curl (both legs), 3 × 10-12 reps</div>
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">3 × 10-12 reps/side</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">E</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Hip abductor machine</div>
+              <div class="ex-cue">Keep your pelvis still and avoid bouncing the weight.</div>
+              <div class="ex-alt">Alternative: seated band hip abduction, 2 × 12-15 reps</div>
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">2 × 12-15 reps</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </section>
+    <section class="workout-section">
+      <div class="block-header">
+        <h2 class="section-label">Strength Block B</h2>
+        <span class="block-timing" aria-label="Rest: 1 min 30 s - 3 min">1 min 30 s - 3 min</span>
+      </div>
+      <div class="workout-block">
+        <div class="station-badge">Dumbbells + bench</div>
+        <p class="block-note">Rest 2-3 min for RDLs and 1 min 30 s after both sides for calves. Keep dumbbells near the bench for RDLs and seated calf raises; rest after both sides for calves. Keep the forefoot on the floor for calves.</p>
+
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">B</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Dumbbell Romanian deadlift</div>
+              <div class="ex-cue">Push hips back with soft knees. Stop before your back rounds or hip pinches. For back extensions, hinge at the hips and finish in line with your legs without arching backward.</div>
+              <div class="ex-alt">Alternative: 45-degree back extension, 3 × 10-12 reps</div>
+            </div>
+            <div class="ex-dose">
+              <div class="ex-warmup"><span class="dose-label">Warm-up</span>2 × 5-8 reps</div>
+              <div class="ex-detail"><span class="dose-label">Working</span>3 × 8-10 reps</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">D</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Seated calf raise (Single-leg)</div>
+              <div class="ex-cue">Keep the forefoot on the floor; start unweighted and lower slowly.</div>
+              <div class="ex-alt">Alternative: seated dumbbell calf raise (both legs), 3 × 10-12 reps</div>
+            </div>
+            <div class="ex-dose">
+              <div class="ex-warmup"><span class="dose-label">Warm-up</span>1 × 8 reps</div>
+              <div class="ex-detail"><span class="dose-label">Working</span>3 × 10-12 reps/side</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </section>
+    </div></div><div data-panel="home" hidden>
+    <header class="day-header">
+      <h2 class="day-title">Daily home routine</h2>
+      <p class="day-sub">~12 minutes · One gentle round · Mat, chair and wall · Up to 2-3 times daily</p>
+    </header>
+    <p class="info-bar">Use these as comfortable movement breaks. One full round daily is enough to start; repeat up to 2-3 times if it leaves you feeling better, not fatigued. You can repeat just the desk and shoulder blocks between longer rounds. Use no weights or bands.</p><p class="info-bar">Every 30-60 minutes, change position and stand or walk briefly. Support your feet and forearms, keep the screen near eye level and avoid a low seat that crowds your hips. You do not need to hold one rigid upright posture all day.</p><p class="info-bar">Keep stretches mild. Do not push through front-of-hip pinching or force the right hip to match the left. 90/90s and the lunge stretch are optional if uncomfortable. Persistent pain or worsening restriction deserves a physiotherapy review.</p>
+
+      <section class="home-block">
+        <div class="home-block-header">
+          <div class="home-block-num">1</div>
+          <h3 class="home-block-title">Neck &amp; upper back</h3>
+          <div class="home-block-time">~2 min</div>
+        </div>
+
+          <div class="home-ex">
+            <div class="home-ex-num">1</div>
+            <div class="home-ex-copy">
+              <div class="home-ex-name">Seated chin tuck</div>
+              <div class="home-ex-detail">1 × 5 reps - Gently glide your head backward while looking level. Hold 3 seconds; avoid tipping your chin down or forcing the movement.</div>
+            </div>
+          </div>
+          <div class="home-ex">
+            <div class="home-ex-num">2</div>
+            <div class="home-ex-copy">
+              <div class="home-ex-name">Seated thoracic extension</div>
+              <div class="home-ex-detail">1 × 5 reps - Use a stable chair with a back below your shoulder blades. Gently extend your upper back over it with arms crossed; keep your neck comfortable and avoid arching the lower back.</div>
+            </div>
+          </div>
+      </section>
+      <section class="home-block">
+        <div class="home-block-header">
+          <div class="home-block-num">2</div>
+          <h3 class="home-block-title">Hip mobility</h3>
+          <div class="home-block-time">~3 min</div>
+        </div>
+
+          <div class="home-ex">
+            <div class="home-ex-num">3</div>
+            <div class="home-ex-copy">
+              <div class="home-ex-name">Half-kneeling hip-flexor stretch</div>
+              <div class="home-ex-detail">1 × 30 sec/side - Pad the back knee. Gently tuck the pelvis and squeeze the rear glute, then shift slightly forward without arching your back. A mild front-of-thigh stretch is enough. Use a standing split stance if kneeling is uncomfortable.</div>
+            </div>
+          </div>
+          <div class="home-ex">
+            <div class="home-ex-num">4</div>
+            <div class="home-ex-copy">
+              <div class="home-ex-name">90/90 hip switches</div>
+              <div class="home-ex-detail">1 × 4 reps/side - Support yourself with hands behind you and use cushions as needed. Switch within your available range; do not force either knee down. Skip if the front of the hip pinches.</div>
+            </div>
+          </div>
+          <div class="home-ex">
+            <div class="home-ex-num">5</div>
+            <div class="home-ex-copy">
+              <div class="home-ex-name">World's greatest stretch</div>
+              <div class="home-ex-detail">1 × 2 reps/side - Keep the back knee on padding and support your hand on a block or sturdy chair. Use a shallow lunge and gently turn your chest. No need to reach an elbow to the floor; skip if this pinches.</div>
+            </div>
+          </div>
+      </section>
+      <section class="home-block">
+        <div class="home-block-header">
+          <div class="home-block-num">3</div>
+          <h3 class="home-block-title">Spine &amp; trunk</h3>
+          <div class="home-block-time">~2 min</div>
+        </div>
+
+          <div class="home-ex">
+            <div class="home-ex-num">6</div>
+            <div class="home-ex-copy">
+              <div class="home-ex-name">Cat-cow</div>
+              <div class="home-ex-detail">1 × 6 reps - Move slowly through a comfortable range and breathe naturally.</div>
+            </div>
+          </div>
+          <div class="home-ex">
+            <div class="home-ex-num">7</div>
+            <div class="home-ex-copy">
+              <div class="home-ex-name">Bird dog</div>
+              <div class="home-ex-detail">1 × 4 reps/side - Keep hips level. Reach without arching your lower back, pause briefly and return. Keep this easier than gym core work.</div>
+            </div>
+          </div>
+      </section>
+      <section class="home-block">
+        <div class="home-block-header">
+          <div class="home-block-num">4</div>
+          <h3 class="home-block-title">Hip control</h3>
+          <div class="home-block-time">~2 min</div>
+        </div>
+
+          <div class="home-ex">
+            <div class="home-ex-num">8</div>
+            <div class="home-ex-copy">
+              <div class="home-ex-name">Clamshell</div>
+              <div class="home-ex-detail">1 × 6 reps/side - Lie on your side with knees bent and feet together. Open the top knee without rolling your pelvis back. No band; stop well before fatigue.</div>
+            </div>
+          </div>
+          <div class="home-ex">
+            <div class="home-ex-num">9</div>
+            <div class="home-ex-copy">
+              <div class="home-ex-name">Side-lying glute raise</div>
+              <div class="home-ex-detail">1 × 6 reps/side - Keep the top leg straight and pelvis stacked. Lift a little without turning toes upward. Start right and match reps on the left.</div>
+            </div>
+          </div>
+      </section>
+      <section class="home-block">
+        <div class="home-block-header">
+          <div class="home-block-num">5</div>
+          <h3 class="home-block-title">Chest &amp; shoulders</h3>
+          <div class="home-block-time">~3 min</div>
+        </div>
+
+          <div class="home-ex">
+            <div class="home-ex-num">10</div>
+            <div class="home-ex-copy">
+              <div class="home-ex-name">Doorway chest stretch</div>
+              <div class="home-ex-detail">1 × 30 sec/side - Place one forearm against the frame slightly below shoulder height. Turn away gently until you feel a mild chest stretch; avoid pressure at the front of the shoulder.</div>
+            </div>
+          </div>
+          <div class="home-ex">
+            <div class="home-ex-num">11</div>
+            <div class="home-ex-copy">
+              <div class="home-ex-name">Wall slides</div>
+              <div class="home-ex-detail">1 × 6 reps - Slide your arms upward within a comfortable range. Keep ribs relaxed; do not force your back or wrists against the wall.</div>
+            </div>
+          </div>
+          <div class="home-ex">
+            <div class="home-ex-num">12</div>
+            <div class="home-ex-copy">
+              <div class="home-ex-name">Standing Y, T, W</div>
+              <div class="home-ex-detail">1 × 3 reps - Each rep: gently reach into Y, T, then W. Use no weights, keep shoulders relaxed and avoid arching your back. Skip this move on a repeat round if shoulders feel tired.</div>
+            </div>
+          </div>
+      </section></div><div data-panel="p2" hidden>
+    <div class="phase-bar">Four-week progression cycle. Week 1: establish the new rep ranges and variations with 2 reps in reserve. Weeks 2-3: build reps, then load, leaving 1-2 reps in reserve. Week 4: recovery week - reduce 3 sets to 2 and 2 sets to 1, use 10-15% less load and leave 4 reps in reserve. For bodyweight work, use an easier variation if needed. Then repeat the cycle.</div>
+    <nav class="day-nav" aria-label="Workout day">
+      <button type="button" class="day-tab active" aria-pressed="true" data-day="p2d0">Mon - Push</button><button type="button" class="day-tab" aria-pressed="false" data-day="p2d1">Wed - Quads</button><button type="button" class="day-tab" aria-pressed="false" data-day="p2d2">Fri - Pull</button><button type="button" class="day-tab" aria-pressed="false" data-day="p2d3">Sat - Hamstrings &amp; Glutes</button>
+    </nav>
+
+    <div data-day-panel="p2d0">
+      <header class="day-header">
+        <h2 class="day-title">Upper • Push</h2>
+        <p class="day-sub">Cardio → dumbbells and bench → mat core finisher.</p>
+      </header>
+      <div class="meta-row">
+        <div class="meta-card">
+          <div class="meta-label">Session cap</div><div class="meta-val">60 min</div>
+        </div><div class="meta-card">
+          <div class="meta-label">Strength + warm-up</div><div class="meta-val">30 min</div>
+        </div><div class="meta-card">
+          <div class="meta-label">Core / cardio / buffer</div><div class="meta-val">5 / 20 / 5 min</div>
+        </div>
+      </div>
+
+    <section class="workout-note">
+      <div class="block-header">
+        <h2 class="section-label">Session notes</h2>
+
+      </div>
+      <div>
+
+        <p class="info-bar">Push/pull emphasis with a little overlap. Main lift: 3 working sets; supporting upper-body exercises: 2. This keeps strength work challenging with moderate upper-body volume. Allow the full rest; session times are estimates.</p>
+
+      </div>
+    </section>
+    <section class="workout-section">
+      <div class="block-header">
+        <h2 class="section-label">Cardio</h2>
+        <span class="block-timing" aria-label="Duration: 20 min">20 min</span>
+      </div>
+      <div class="workout-block">
+        <div class="station-badge">Cardio area</div>
+        <p class="block-note">20 minutes at a conversational pace, including an easy start and finish. Choose 15 minutes on an easier day. Start flat; use low incline only if comfortable during and the next day.</p>
+
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">1</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Treadmill walking</div>
+
+              <div class="ex-alt">Alternative: low-incline treadmill (comfortable, no limp) or rowing (hip/back comfortable), 1 × 20 min</div>
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">1 × 20 min</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </section>
+    <section class="workout-section">
+      <div class="block-header">
+        <h2 class="section-label">Strength Block A</h2>
+        <span class="block-timing" aria-label="Rest: 2-3 min">2-3 min</span>
+      </div>
+      <div class="workout-block">
+        <div class="station-badge">Dumbbells + adjustable bench</div>
+        <p class="block-note">Complete each exercise before moving on. Use the same bench: flat for chest presses, upright for shoulder presses, inclined for rows. Warm-up sets get gradually heavier without fatigue; add a short ramp-up set if needed before heavy work.</p>
+
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">A</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Dumbbell bench press</div>
+              <div class="ex-cue">Keep feet planted and wrists over elbows. Lower with control.</div>
+              <div class="ex-alt">Alternative: neutral-grip dumbbell bench press, 3 × 5-8 reps</div>
+            </div>
+            <div class="ex-dose">
+              <div class="ex-warmup"><span class="dose-label">Warm-up</span>2 × 5-8 reps</div>
+              <div class="ex-detail"><span class="dose-label">Working</span>3 × 5-8 reps</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">D</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Seated dumbbell shoulder press</div>
+              <div class="ex-cue">Use the backrest and keep ribs down. Press through a comfortable overhead range without leaning back.</div>
+              <div class="ex-alt">Alternative: neutral-grip dumbbell shoulder press, 2 × 8-10 reps</div>
+            </div>
+            <div class="ex-dose">
+              <div class="ex-warmup"><span class="dose-label">Warm-up</span>1 × 8 reps</div>
+              <div class="ex-detail"><span class="dose-label">Working</span>2 × 8-10 reps</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">B</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Chest-supported dumbbell row</div>
+              <div class="ex-cue">Keep your chest on the inclined bench; pull without lifting your torso.</div>
+              <div class="ex-alt">Alternative: bench-supported one-arm dumbbell row, 2 × 8-12 reps/side</div>
+            </div>
+            <div class="ex-dose">
+              <div class="ex-warmup"><span class="dose-label">Warm-up</span>1 × 10 reps</div>
+              <div class="ex-detail"><span class="dose-label">Working</span>2 × 8-12 reps</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </section>
+    <section class="workout-section">
+      <div class="block-header">
+        <h2 class="section-label">Core</h2>
+        <span class="block-timing" aria-label="Rest: 45 s">45 s</span>
+      </div>
+      <div class="workout-block">
+        <div class="station-badge">Grass / mat area</div>
+        <p class="block-note">Superset · 2 rounds: dead bug → side plank on both sides. Rest after each pair. During recovery week, do 1 round.</p>
+
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">C1</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Dead bug</div>
+              <div class="ex-cue">Extend the leg farther than in Phase 1 while keeping your back and pelvis still. Shorten the reach if your hip grips.</div>
+
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">2 × 6 reps/side</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">C2</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Side plank</div>
+              <div class="ex-cue">Progress to straight legs only when both Phase 1 sets reach 25 seconds without sagging. Otherwise retain the knee version.</div>
+              <div class="ex-alt">Alternative: side plank from knees, 2 × 20-30 sec/side</div>
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">2 × 20-30 sec/side</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </section>
+    </div>
+    <div data-day-panel="p2d1" hidden>
+      <header class="day-header">
+        <h2 class="day-title">Lower • Quads</h2>
+        <p class="day-sub">Easy cardio → leg machines → supported free-weight strength.</p>
+      </header>
+      <div class="meta-row">
+        <div class="meta-card">
+          <div class="meta-label">Session cap</div><div class="meta-val">60 min</div>
+        </div><div class="meta-card">
+          <div class="meta-label">Warm-up / strength</div><div class="meta-val">10 / 43 min</div>
+        </div><div class="meta-card">
+          <div class="meta-label">Buffer</div><div class="meta-val">7 min</div>
+        </div>
+      </div>
+
+    <section class="workout-note">
+      <div class="block-header">
+        <h2 class="section-label">Session notes</h2>
+
+      </div>
+      <div>
+
+        <p class="info-bar">Start unilateral work on the right and match controlled reps on the left. Log load, reps and assistance, plus calf heel height. Mild side-to-side tightness does not require forcing equal depth. Progress with stable control and no new pain or next-day limp. Allow full rests between working sets.</p>
+
+      </div>
+    </section>
+    <section class="workout-section">
+      <div class="block-header">
+        <h2 class="section-label">Cardio</h2>
+        <span class="block-timing" aria-label="Duration: 5 min">5 min</span>
+      </div>
+      <div class="workout-block">
+        <div class="station-badge">Cardio area</div>
+        <p class="block-note">Easy treadmill walk, then move to the leg machines.</p>
+
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">1</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Treadmill walking</div>
+
+
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">1 × 5 min</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </section>
+    <section class="workout-section">
+      <div class="block-header">
+        <h2 class="section-label">Strength Block A</h2>
+        <span class="block-timing" aria-label="Rest: 60 s - 3 min">60 s - 3 min</span>
+      </div>
+      <div class="workout-block">
+        <div class="station-badge">Leg machine area</div>
+        <p class="block-note">Straight sets: complete each exercise before moving on. Rest 2-3 min for hack squats and 60 s - 1 min 30 s for accessories, after both sides where applicable.</p>
+
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">A</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Hack squat</div>
+              <div class="ex-cue">Keep heels down and pressure even. Use a depth without hip pinching; choose leg press if you shift away from the right leg.</div>
+              <div class="ex-alt">Alternative: leg press, 3 × 6-8 reps</div>
+            </div>
+            <div class="ex-dose">
+              <div class="ex-warmup"><span class="dose-label">Warm-up</span>2 × 5-8 reps</div>
+              <div class="ex-detail"><span class="dose-label">Working</span>3 × 6-8 reps</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">C</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Seated hamstring curl (Single-leg)</div>
+              <div class="ex-cue">Keep hips against the pad. Start on the right and match controlled reps on the left.</div>
+              <div class="ex-alt">Alternative: seated leg curl (both legs), 2 × 10-12 reps</div>
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">2 × 10-12 reps/side</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">D</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Leg extension (Single-leg)</div>
+              <div class="ex-cue">Start right and match controlled reps on the left. Keep hips against the pad and lower smoothly.</div>
+              <div class="ex-alt">Alternative: bilateral leg extension, 2 × 10-12 reps</div>
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">2 × 10-12 reps/side</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </section>
+    <section class="workout-section">
+      <div class="block-header">
+        <h2 class="section-label">Strength Block B</h2>
+        <span class="block-timing" aria-label="Rest: 1 min 30 s - 2 min">1 min 30 s - 2 min</span>
+      </div>
+      <div class="workout-block">
+        <div class="station-badge">Dumbbells + bench + sturdy support</div>
+        <p class="block-note">Use the same dumbbells, low bench and sturdy support for split squats and calf raises. Rest 1 min 30 s - 2 min after both sides. Warm up calves with both legs; keep all calf work on flat ground.</p>
+
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">B</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Supported Bulgarian split squat</div>
+              <div class="ex-cue">Pause for 1 second at the bottom without relaxing or forcing depth. Establish control at the Phase 1 load before increasing weight. Retain the rear foot on the floor if elevation restricts your hip.</div>
+              <div class="ex-alt">Alternative: supported low step-up, 3 × 8-10 reps/side</div>
+            </div>
+            <div class="ex-dose">
+              <div class="ex-warmup"><span class="dose-label">Warm-up</span>1 × 5 reps/side</div>
+              <div class="ex-detail"><span class="dose-label">Working</span>3 × 6-8 reps/side</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">E</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Supported calf raise (Single-leg)</div>
+              <div class="ex-cue">Keep hand support. Build from 3 × 5 toward 3 × 8 with consistent heel height and slow lowering. After two successful sessions with no next-day symptoms, add a small load and return to 5 reps. Do not add load and reps together.</div>
+              <div class="ex-alt">Alternative: assisted calf raise (Single-leg), 3 × 5-8 reps/side</div>
+            </div>
+            <div class="ex-dose">
+              <div class="ex-warmup"><span class="dose-label">Warm-up</span>1 × 5 reps</div>
+              <div class="ex-detail"><span class="dose-label">Working</span>3 × 5-8 reps/side</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </section>
+    </div>
+    <div data-day-panel="p2d2" hidden>
+      <header class="day-header">
+        <h2 class="day-title">Upper • Pull</h2>
+        <p class="day-sub">Cardio → cable strength and core → grass / mat superset.</p>
+      </header>
+      <div class="meta-row">
+        <div class="meta-card">
+          <div class="meta-label">Session cap</div><div class="meta-val">60 min</div>
+        </div><div class="meta-card">
+          <div class="meta-label">Cardio / strength + warm-up</div><div class="meta-val">20 / 30 min</div>
+        </div><div class="meta-card">
+          <div class="meta-label">Core / buffer</div><div class="meta-val">5 / 5 min</div>
+        </div>
+      </div>
+
+    <section class="workout-note">
+      <div class="block-header">
+        <h2 class="section-label">Session notes</h2>
+
+      </div>
+      <div>
+
+        <p class="info-bar">Push/pull emphasis with a little overlap. Main lift: 3 working sets; supporting upper-body exercises: 2. This keeps strength work challenging with moderate upper-body volume. Allow the full rest; session times are estimates.</p>
+
+      </div>
+    </section>
+    <section class="workout-section">
+      <div class="block-header">
+        <h2 class="section-label">Cardio</h2>
+        <span class="block-timing" aria-label="Duration: 20 min">20 min</span>
+      </div>
+      <div class="workout-block">
+        <div class="station-badge">Cardio area</div>
+        <p class="block-note">20 minutes at a conversational pace, including an easy start and finish. Choose 15 minutes on an easier day. Start flat; use low incline only if comfortable during and the next day.</p>
+
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">1</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Treadmill walking</div>
+
+              <div class="ex-alt">Alternative: low-incline treadmill (comfortable, no limp) or rowing (hip/back comfortable), 1 × 20 min</div>
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">1 × 20 min</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </section>
+    <section class="workout-section">
+      <div class="block-header">
+        <h2 class="section-label">Strength Block A</h2>
+        <span class="block-timing" aria-label="Rest: 30 s - 3 min">30 s - 3 min</span>
+      </div>
+      <div class="workout-block">
+        <div class="station-badge">Cable area</div>
+        <p class="block-note">Straight sets: complete each exercise before moving on. Rest 2-3 min for rows and pulldowns, 60 s for face pulls and 30-45 s for Pallof presses. Warm-up sets should prepare you without fatigue.</p>
+
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">A</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Neutral-grip lat pulldown</div>
+              <div class="ex-cue">Keep your torso steady and pull the handles toward your upper chest.</div>
+              <div class="ex-alt">Alternative: close-grip cable pulldown, 3 × 5-8 reps</div>
+            </div>
+            <div class="ex-dose">
+              <div class="ex-warmup"><span class="dose-label">Warm-up</span>2 × 5-8 reps</div>
+              <div class="ex-detail"><span class="dose-label">Working</span>3 × 5-8 reps</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">B</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Seated cable row</div>
+              <div class="ex-cue">Keep your torso still; pull toward the lower ribs without rocking.</div>
+              <div class="ex-alt">Alternative: standing cable row, 2 × 8-12 reps</div>
+            </div>
+            <div class="ex-dose">
+              <div class="ex-warmup"><span class="dose-label">Warm-up</span>1 × 10 reps</div>
+              <div class="ex-detail"><span class="dose-label">Working</span>2 × 8-12 reps</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">D</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Face pull</div>
+              <div class="ex-cue">Set the rope near eye level. Pull toward your face without leaning back or shrugging; keep the load controlled.</div>
+              <div class="ex-alt">Alternative: cable reverse fly, 2 × 12-15 reps</div>
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">2 × 12-15 reps</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">C1</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Pallof press</div>
+              <div class="ex-cue">Hold each press at full reach for 3 seconds without twisting. Keep the Phase 1 load initially; increase it only after both sets stay controlled.</div>
+
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">2 × 8 reps/side</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </section>
+    <section class="workout-section">
+      <div class="block-header">
+        <h2 class="section-label">Strength Block B</h2>
+        <span class="block-timing" aria-label="Rest: 1 min 30 s">1 min 30 s</span>
+      </div>
+      <div class="workout-block">
+        <div class="station-badge">Grass / mat area</div>
+        <p class="block-note">Superset · 2 rounds: push-up → bird-dog on both sides. Rest after each pair. During recovery week, do 1 round.</p>
+
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">C</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Push-up</div>
+              <div class="ex-cue">Move to the floor after two sessions of 2 × 12 clean incline reps. If needed, lower the hand support gradually instead. Keep your whole body in one line.</div>
+              <div class="ex-alt">Alternative: incline push-up, 2 × 6-12 reps</div>
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">2 × 6-10 reps</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">C2</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Bird-dog</div>
+              <div class="ex-cue">Hold each reach for 5 seconds without tilting your pelvis or arching your back. Keep the Phase 1 reach if the longer hold changes your form.</div>
+
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">2 × 5 reps/side</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </section>
+    </div>
+    <div data-day-panel="p2d3" hidden>
+      <header class="day-header">
+        <h2 class="day-title">Lower • Hamstrings &amp; Glutes</h2>
+        <p class="day-sub">Easy cardio → hip thrust, curl and abduction machines → dumbbells and bench.</p>
+      </header>
+      <div class="meta-row">
+        <div class="meta-card">
+          <div class="meta-label">Session cap</div><div class="meta-val">60 min</div>
+        </div><div class="meta-card">
+          <div class="meta-label">Warm-up / strength</div><div class="meta-val">10 / 43 min</div>
+        </div><div class="meta-card">
+          <div class="meta-label">Buffer</div><div class="meta-val">7 min</div>
+        </div>
+      </div>
+
+    <section class="workout-note">
+      <div class="block-header">
+        <h2 class="section-label">Session notes</h2>
+
+      </div>
+      <div>
+
+        <p class="info-bar">Start unilateral work on the right and match controlled reps on the left. Log load, reps and assistance, plus calf heel height. Mild side-to-side tightness does not require forcing equal depth. Progress with stable control and no new pain or next-day limp. Allow full rests between working sets.</p>
+
+      </div>
+    </section>
+    <section class="workout-section">
+      <div class="block-header">
+        <h2 class="section-label">Cardio</h2>
+        <span class="block-timing" aria-label="Duration: 5 min">5 min</span>
+      </div>
+      <div class="workout-block">
+        <div class="station-badge">Cardio area</div>
+        <p class="block-note">Easy treadmill walk, then move to the lower-body machines.</p>
+
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">1</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Treadmill walking</div>
+
+
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">1 × 5 min</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </section>
+    <section class="workout-section">
+      <div class="block-header">
+        <h2 class="section-label">Strength Block A</h2>
+        <span class="block-timing" aria-label="Rest: 1 min 30 s - 3 min">1 min 30 s - 3 min</span>
+      </div>
+      <div class="workout-block">
+        <div class="station-badge">Lower-body machine area</div>
+        <p class="block-note">Straight sets: complete each exercise before moving on. Rest 2-3 min for hip thrusts, 1 min 30 s after both sides for curls and 60 s for abduction. If substituting back extensions for RDLs, complete them in this area before moving to calves.</p>
+
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">A</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Hip thrust machine</div>
+              <div class="ex-cue">Pause for 2 seconds at the top without arching your back. Establish the pause before adding weight; keep the ribs down.</div>
+              <div class="ex-alt">Alternative: Smith machine hip thrust, 3 × 6-10 reps</div>
+            </div>
+            <div class="ex-dose">
+              <div class="ex-warmup"><span class="dose-label">Warm-up</span>2 × 5-8 reps</div>
+              <div class="ex-detail"><span class="dose-label">Working</span>3 × 6-10 reps</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">C</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Seated hamstring curl (Single-leg)</div>
+              <div class="ex-cue">Keep hips against the pad and avoid pulling at the outside of the knee.</div>
+              <div class="ex-alt">Alternative: seated leg curl (both legs), 3 × 10-12 reps</div>
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">3 × 10-12 reps/side</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">E</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Hip abductor machine</div>
+              <div class="ex-cue">Keep your pelvis still and avoid bouncing the weight.</div>
+              <div class="ex-alt">Alternative: seated band hip abduction, 2 × 12-15 reps</div>
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">2 × 12-15 reps</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </section>
+    <section class="workout-section">
+      <div class="block-header">
+        <h2 class="section-label">Strength Block B</h2>
+        <span class="block-timing" aria-label="Rest: 1 min 30 s - 3 min">1 min 30 s - 3 min</span>
+      </div>
+      <div class="workout-block">
+        <div class="station-badge">Dumbbells + bench</div>
+        <p class="block-note">Rest 2-3 min for RDLs and 1 min 30 s after both sides for calves. Keep dumbbells near the bench for RDLs and seated calf raises; rest after both sides for calves. Keep the forefoot on the floor for calves.</p>
+
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">B</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Dumbbell Romanian deadlift</div>
+              <div class="ex-cue">Use the same controlled hip hinge with a heavier strength range. Increase load only after all sets meet the target; do not chase extra depth. For back extensions, hinge at the hips and stop in line with the legs.</div>
+              <div class="ex-alt">Alternative: 45-degree back extension, 3 × 10-12 reps</div>
+            </div>
+            <div class="ex-dose">
+              <div class="ex-warmup"><span class="dose-label">Warm-up</span>2 × 5-8 reps</div>
+              <div class="ex-detail"><span class="dose-label">Working</span>3 × 6-8 reps</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">D</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Seated calf raise (Single-leg)</div>
+              <div class="ex-cue">Keep the forefoot on the floor; start unweighted and lower slowly.</div>
+              <div class="ex-alt">Alternative: seated dumbbell calf raise (both legs), 3 × 10-12 reps</div>
+            </div>
+            <div class="ex-dose">
+              <div class="ex-warmup"><span class="dose-label">Warm-up</span>1 × 8 reps</div>
+              <div class="ex-detail"><span class="dose-label">Working</span>3 × 10-12 reps/side</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </section>
+    </div></div></main>
+  <script>
+(() => {
+  const storageKey = 'lean-and-strong.workout-view';
+  const tabs = [...document.querySelectorAll('[data-tab]')];
+  const panels = [...document.querySelectorAll('[data-panel]')];
+  let saved = {};
+
+  try {
+    saved = JSON.parse(localStorage.getItem(storageKey)) || {};
+  } catch {
+    // The URL still restores the view if storage is unavailable.
+  }
+
+  function select(button, active) {
+    button.classList.toggle('active', active);
+    button.setAttribute('aria-pressed', String(active));
+  }
+
+  function showView() {
+    const route = new URLSearchParams(location.hash.slice(1));
+    const tab = tabs.find(button => button.dataset.tab === route.get('tab'))
+      ?? tabs.find(button => button.dataset.tab === saved.tab)
+      ?? tabs[0];
+    const tabId = tab.dataset.tab;
+    const panel = panels.find(candidate => candidate.dataset.panel === tabId);
+    const days = [...panel.querySelectorAll('[data-day]')];
+    const day = days.find(button => button.dataset.day === route.get('day'))
+      ?? days.find(button => button.dataset.day === saved.days?.[tabId])
+      ?? days[0];
+
+    for (const button of tabs) select(button, button === tab);
+    for (const candidate of panels) candidate.hidden = candidate !== panel;
+    for (const button of days) select(button, button === day);
+    for (const view of panel.querySelectorAll('[data-day-panel]')) {
+      view.hidden = view.dataset.dayPanel !== day?.dataset.day;
+    }
+
+    saved = { tab: tabId, days: { ...saved.days } };
+    if (day) saved.days[tabId] = day.dataset.day;
+    try {
+      localStorage.setItem(storageKey, JSON.stringify(saved));
+    } catch {
+      // Storage is optional for file previews and private browsing.
+    }
+  }
+
+  document.addEventListener('click', event => {
+    const button = event.target.closest('button[data-tab], button[data-day]');
+    if (!button) return;
+
+    const tabId = button.dataset.tab ?? button.closest('[data-panel]').dataset.panel;
+    const route = new URLSearchParams({ tab: tabId });
+    const dayId = button.dataset.day ?? saved.days?.[tabId];
+    if (dayId) route.set('day', dayId);
+    location.hash = route.toString();
+    showView();
+  });
+  window.addEventListener('hashchange', showView);
+  showView();
+})();
+
+  </script>
 </body>
 </html>

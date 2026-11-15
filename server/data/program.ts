@@ -1,5 +1,5 @@
 import type { Day, Exercise, PhaseTab, Program } from '../types';
-import { calisthenics } from './calisthenics';
+import { routine } from './calisthenics';
 
 const upperA: Day = {
   id: "p1d0", eyebrow: "Monday | Upper Push", title: "Upper • Push",
@@ -260,8 +260,9 @@ function makePhase(id: 'p1' | 'p2'): PhaseTab {
 
 export const program: Program = {
   title: 'Lean & Strong - Upper / Lower',
-  sub: 'Mon / Wed / Fri / Sat · 60-minute gym cap after dynamic stretching · Daily home routine',
+  sub: 'Calisthenics and Conditioning · Strength workouts · Daily Home',
   tabs: [
+    routine,
     makePhase('p1'),
     {
       id: 'home', label: 'Daily Home', kind: 'home',
@@ -316,6 +317,5 @@ export const program: Program = {
       },
     },
     makePhase('p2'),
-    calisthenics,
   ],
 };

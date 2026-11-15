@@ -4,7 +4,6 @@
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "moduleResolution": "bundler",
-    "jsx": "react-jsx",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
@@ -12,5 +11,5 @@
     "forceConsistentCasingInFileNames": true,
     "types": ["node"]
   },
-  "include": ["server", "client/src", "client/vite.config.ts", "vitest.config.ts"]
+  "include": ["server", "scripts/**/*.ts", "vitest.config.ts"]
 }
