@@ -9,6 +9,8 @@ export type Exercise = {
   warmup?: string;
   cue?: string;
   alt?: string;
+  demo?: string;
+  progression?: [variation: string, dose: string, advance: string, demo: string][];
   why?: string;
   tags?: Tag[];
 };

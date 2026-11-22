@@ -8,7 +8,7 @@ const escape = (value: string | number) => String(value)
   .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
 function renderExercise(exercise: Exercise) {
-  const { num, name, cue, alt, warmup, detail } = exercise;
+  const { num, name, cue, alt, warmup, detail, demo, progression } = exercise;
   return `
     <div class="exercise">
       <div class="ex-row">
@@ -19,12 +19,21 @@ function renderExercise(exercise: Exercise) {
               <div class="ex-name">${escape(name)}</div>
               ${cue ? `<div class="ex-cue">${escape(cue)}</div>` : ''}
               ${alt ? `<div class="ex-alt">${alt.split('\n').map(escape).join('<br>')}</div>` : ''}
+              ${demo ? `<a class="ex-demo" href="${escape(demo)}" target="_blank" rel="noopener" aria-label="Demo: ${escape(name)}">View demo</a>` : ''}
             </div>
             <div class="ex-dose">
               ${warmup ? `<div class="ex-warmup"><span class="dose-label">Warm-up</span>${escape(warmup)}</div>` : ''}
               <div class="ex-detail">${warmup ? '<span class="dose-label">Working</span>' : ''}${escape(detail)}</div>
             </div>
           </div>
+          ${progression?.length ? `<details class="ex-progression">
+            <summary>Progression</summary>
+            <ol>${progression.map(([variation, dose, advance, demo]) => `<li>
+              <strong>${escape(variation)}</strong> · ${escape(dose)}
+              <div>${escape(advance)}</div>
+              <a class="ex-demo" href="${escape(demo)}" target="_blank" rel="noopener" aria-label="Demo: ${escape(variation)}">View demo</a>
+            </li>`).join('')}</ol>
+          </details>` : ''}
         </div>
       </div>
     </div>`;

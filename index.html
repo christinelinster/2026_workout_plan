@@ -281,6 +281,12 @@
     .ex-dose .dose-label { display: block; margin-right: 0; }
   }
   .ex-alt { font-size: 12px; color: var(--text-secondary); margin-top: 2px; line-height: 1.45; }
+  .ex-progression { margin-top: 8px; font-size: 13px; line-height: 1.5; }
+  .ex-progression summary { cursor: pointer; width: fit-content; font-weight: 600; }
+  .ex-progression ol { margin: 6px 0 0; padding-inline-start: 24px; }
+  .ex-progression li + li { margin-top: 6px; }
+  .ex-progression li div { color: var(--text-secondary); }
+  .ex-demo { display: inline-block; margin-top: 2px; font-size: 12px; color: var(--text-primary); text-underline-offset: 2px; }
   .ex-why {
     font-size: 11px;
     color: var(--accent-text);
@@ -528,7 +534,7 @@
   <main class="content-area"><div data-panel="calisthenics">
 
     <nav class="day-nav" aria-label="Workout day">
-      <button type="button" class="day-tab active" aria-pressed="true" data-day="training-push">Day 1 · Upper Push</button><button type="button" class="day-tab" aria-pressed="false" data-day="training-lateral">Day 2 · Lower Lateral</button><button type="button" class="day-tab" aria-pressed="false" data-day="training-pull">Day 3 · Upper Pull</button><button type="button" class="day-tab" aria-pressed="false" data-day="training-vertical">Day 4 · Lower Vertical</button>
+      <button type="button" class="day-tab active" aria-pressed="true" data-day="training-push">Day 1 · Upper Push</button><button type="button" class="day-tab" aria-pressed="false" data-day="training-lateral">Day 2 · Lower Lateral</button><button type="button" class="day-tab" aria-pressed="false" data-day="training-pull">Day 3 · Upper Pull</button><button type="button" class="day-tab" aria-pressed="false" data-day="training-vertical">Day 4 · Lower Vertical</button><button type="button" class="day-tab" aria-pressed="false" data-day="training-athletic">Optional · Volleyball Athletic Day</button>
     </nav>
 
     <div data-day-panel="training-push">
@@ -560,12 +566,14 @@
               <div class="ex-name">Wrist rocks</div>
               <div class="ex-cue">Shift pressure from fingertips to palms and back.</div>
 
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">1 × 8-10 reps</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -578,12 +586,14 @@
               <div class="ex-name">Scapular push-up</div>
               <div class="ex-cue">Keep elbows straight and push the floor away.</div>
 
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">1 × 8-10 reps</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -596,12 +606,14 @@
               <div class="ex-name">Arm circles</div>
               <div class="ex-cue">Gradually widen the circles. Change direction halfway through.</div>
 
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">1 × 8-10 reps</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -624,13 +636,46 @@
             <div class="ex-copy">
               <div class="ex-name">Planche lean (toes down)</div>
               <div class="ex-cue">Start in a high plank with your toes on the floor. Keep elbows straight, push the floor away and shift your shoulders just a little past your wrists. Keep both feet down for the whole hold.</div>
-              <div class="ex-alt">If a high plank is still challenging, practise 3 × 15-30 seconds of high plank first. Once all three leans reach 8 seconds with steady form, build toward 3 × 15 seconds at the same lean. Then lean a little farther and return to 5-8-second holds. Later progressions: feet-assisted tuck → tuck → advanced tuck → straddle → full planche.</div>
+
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">3 × 5-8 sec</div>
             </div>
           </div>
+          <details class="ex-progression">
+            <summary>Progression</summary>
+            <ol><li>
+              <strong>High plank</strong> · 3 × 15-30 sec
+              <div>Advance at 3 × 30 sec with straight arms and steady hips.</div>
+              <a class="ex-demo" href="https://www.youtube.com/watch?v=e5xlpFCLojE" target="_blank" rel="noopener" aria-label="Demo: High plank">View demo</a>
+            </li><li>
+              <strong>Planche lean, toes down</strong> · 3 × 5-15 sec
+              <div>At 3 × 15 sec, lean a little farther and reset to 5-8 seconds. Try the assisted tuck once you can hold the deeper lean for 3 × 15 sec.</div>
+              <a class="ex-demo" href="https://gmb.io/planche/#:~:text=Straddle%20Planche%20Lean" target="_blank" rel="noopener" aria-label="Demo: Planche lean, toes down">View demo</a>
+            </li><li>
+              <strong>Feet-assisted tuck planche</strong> · 3 × 5-15 sec
+              <div>Advance at 3 × 15 sec with straight arms, hips up and light foot support.</div>
+              <a class="ex-demo" href="https://chrisheria.com/blogs/news/2-1" target="_blank" rel="noopener" aria-label="Demo: Feet-assisted tuck planche">View demo</a>
+            </li><li>
+              <strong>Tuck planche</strong> · 3 × 5-15 sec
+              <div>Advance at 3 × 15 sec with steady hips and both feet floating.</div>
+              <a class="ex-demo" href="https://gmb.io/planche/#:~:text=Floating%20Crane" target="_blank" rel="noopener" aria-label="Demo: Tuck planche">View demo</a>
+            </li><li>
+              <strong>Advanced tuck planche</strong> · 3 × 5-15 sec
+              <div>Advance at 3 × 15 sec with a flatter back and hips near shoulder height.</div>
+              <a class="ex-demo" href="https://gmb.io/planche/#:~:text=Tuck%20Push%20Back%20to%20Open%20Tuck%20Planche" target="_blank" rel="noopener" aria-label="Demo: Advanced tuck planche">View demo</a>
+            </li><li>
+              <strong>Straddle planche</strong> · 3 × 5-15 sec
+              <div>Advance at 3 × 15 sec with straight arms and legs.</div>
+              <a class="ex-demo" href="https://gmb.io/planche/#:~:text=Tuck%20Push%20Back%20to%20Straddle%20Planche" target="_blank" rel="noopener" aria-label="Demo: Straddle planche">View demo</a>
+            </li><li>
+              <strong>Full planche</strong> · 3 × 5-15 sec
+              <div>Build to 3 × 15 sec with a steady straight body.</div>
+              <a class="ex-demo" href="https://calisthenics.com/exercise/planche/" target="_blank" rel="noopener" aria-label="Demo: Full planche">View demo</a>
+            </li></ol>
+          </details>
         </div>
       </div>
     </div>
@@ -653,13 +698,34 @@
             <div class="ex-copy">
               <div class="ex-name">Push-up</div>
               <div class="ex-cue">Keep ribs and hips in one line and use a consistent depth. Pick a variation that leaves about 1-2 clean reps in reserve.</div>
-              <div class="ex-alt">Progression: high incline → low incline → floor → pseudo-planche push-up. Advance after 3 × 10 clean reps. For pseudo-planche reps, retain a slight forward lean throughout.</div>
+
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">3 × 6-10 reps</div>
             </div>
           </div>
+          <details class="ex-progression">
+            <summary>Progression</summary>
+            <ol><li>
+              <strong>High incline push-up</strong> · 3 × 6-10 reps
+              <div>Lower the support after 3 × 10 clean reps.</div>
+              <a class="ex-demo" href="https://www.trainfulldepth.com/library/incline-push-up" target="_blank" rel="noopener" aria-label="Demo: High incline push-up">View demo</a>
+            </li><li>
+              <strong>Low incline push-up</strong> · 3 × 6-10 reps
+              <div>Try floor reps after 3 × 10 clean reps.</div>
+              <a class="ex-demo" href="https://www.trainfulldepth.com/library/incline-push-up" target="_blank" rel="noopener" aria-label="Demo: Low incline push-up">View demo</a>
+            </li><li>
+              <strong>Floor push-up</strong> · 3 × 6-10 reps
+              <div>Try a slight forward lean after 3 × 10 clean reps.</div>
+              <a class="ex-demo" href="https://www.youtube.com/watch?v=e5xlpFCLojE" target="_blank" rel="noopener" aria-label="Demo: Floor push-up">View demo</a>
+            </li><li>
+              <strong>Pseudo-planche push-up</strong> · 3 × 6-10 reps
+              <div>At 3 × 10 with a steady lean, lean a little farther and reset to 6 reps.</div>
+              <a class="ex-demo" href="https://www.trainfulldepth.com/library/pseudo-planche-push-up" target="_blank" rel="noopener" aria-label="Demo: Pseudo-planche push-up">View demo</a>
+            </li></ol>
+          </details>
         </div>
       </div>
     </div>
@@ -671,13 +737,34 @@
             <div class="ex-copy">
               <div class="ex-name">Pike push-up</div>
               <div class="ex-cue">Keep hips high and lower your head slightly ahead of your hands between the arms.</div>
-              <div class="ex-alt">Progression: elevated pike hold with hands on a bench → hands-elevated pike push-up → floor pike push-up → feet-elevated pike push-up. Start holds at 2 × 10-20 sec. Build the hold to 2 × 20 sec and each push-up rung to 3 × 8 clean reps.</div>
+
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">3 × 5-8 reps</div>
             </div>
           </div>
+          <details class="ex-progression">
+            <summary>Progression</summary>
+            <ol><li>
+              <strong>Hands-elevated pike hold</strong> · 2 × 10-20 sec
+              <div>Advance at 2 × 20 sec with hips high.</div>
+              <a class="ex-demo" href="https://www.trainfulldepth.com/library/incline-pike-push-up" target="_blank" rel="noopener" aria-label="Demo: Hands-elevated pike hold">View demo</a>
+            </li><li>
+              <strong>Hands-elevated pike push-up</strong> · 3 × 5-8 reps
+              <div>Advance at 3 × 8 clean reps.</div>
+              <a class="ex-demo" href="https://www.trainfulldepth.com/library/incline-pike-push-up" target="_blank" rel="noopener" aria-label="Demo: Hands-elevated pike push-up">View demo</a>
+            </li><li>
+              <strong>Floor pike push-up</strong> · 3 × 5-8 reps
+              <div>Elevate the feet after 3 × 8 clean reps.</div>
+              <a class="ex-demo" href="https://www.devinpkelley.co/action-instruction/pike-pushup-tutorial" target="_blank" rel="noopener" aria-label="Demo: Floor pike push-up">View demo</a>
+            </li><li>
+              <strong>Feet-elevated pike push-up</strong> · 3 × 5-8 reps
+              <div>At 3 × 8 clean reps, build control at slightly greater depth if comfortable.</div>
+              <a class="ex-demo" href="https://www.youtube.com/watch?v=whTTE5e0fNo" target="_blank" rel="noopener" aria-label="Demo: Feet-elevated pike push-up">View demo</a>
+            </li></ol>
+          </details>
         </div>
       </div>
     </div>
@@ -688,7 +775,8 @@
           <div class="exercise-line">
             <div class="ex-copy">
               <div class="ex-name">Dumbbell lateral raise</div>
-              <div class="ex-cue">Raise the arms slightly forward of your sides. Add a little weight when both sets reach 15 with roughly 1-2 reps in reserve.</div>
+              <div class="ex-cue">Raise the arms slightly forward of your sides.</div>
+
 
             </div>
             <div class="ex-dose">
@@ -696,6 +784,14 @@
               <div class="ex-detail">2 × 12-15 reps</div>
             </div>
           </div>
+          <details class="ex-progression">
+            <summary>Progression</summary>
+            <ol><li>
+              <strong>Dumbbell lateral raise</strong> · 2 × 12-15 reps
+              <div>At 2 × 15 with 1-2 clean reps in reserve, add a little weight and reset to 12 reps.</div>
+              <a class="ex-demo" href="https://www.erikakehrwaldfitness.com/exercise-library/dumbbell-lateral-raise" target="_blank" rel="noopener" aria-label="Demo: Dumbbell lateral raise">View demo</a>
+            </li></ol>
+          </details>
         </div>
       </div>
     </div>
@@ -717,14 +813,43 @@
           <div class="exercise-line">
             <div class="ex-copy">
               <div class="ex-name">L-sit hold</div>
-              <div class="ex-cue">Use your Day 3 rung for two easy technique sets.</div>
-              <div class="ex-alt">Progression: both heels supported → one heel supported (train both sides) → tuck hold with both feet up → one-leg L-sit (both sides) → full L-sit on parallettes → full floor L-sit. Move up after 3 × 15 seconds with straight arms and steady hips. Start the next rung with 5-8-second holds.</div>
+              <div class="ex-cue">Use your Day 3 rung for two easy technique sets. The progression below shows your Day 3 targets.</div>
+
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">2 × 8-12 sec</div>
             </div>
           </div>
+          <details class="ex-progression">
+            <summary>Progression</summary>
+            <ol><li>
+              <strong>Both heels supported</strong> · 3 × 8-15 sec
+              <div>Advance at 3 × 15 sec with straight arms and hips off the floor.</div>
+              <a class="ex-demo" href="https://gmb.io/l-sit/#:~:text=Both%20Feet%20on%20the%20Ground" target="_blank" rel="noopener" aria-label="Demo: Both heels supported">View demo</a>
+            </li><li>
+              <strong>One heel supported</strong> · 3 × 5-15 sec/side
+              <div>Advance at 3 × 15 sec per side with level hips.</div>
+              <a class="ex-demo" href="https://gmb.io/l-sit/#:~:text=Bringing%20One%20Foot%20off%20the%20Ground" target="_blank" rel="noopener" aria-label="Demo: One heel supported">View demo</a>
+            </li><li>
+              <strong>Tuck L-sit, both feet up</strong> · 3 × 5-15 sec
+              <div>Advance at 3 × 15 sec with straight arms and no foot contact.</div>
+              <a class="ex-demo" href="https://gmb.io/l-sit/#:~:text=Tuck%20Position" target="_blank" rel="noopener" aria-label="Demo: Tuck L-sit, both feet up">View demo</a>
+            </li><li>
+              <strong>One-leg L-sit, other knee tucked</strong> · 3 × 5-15 sec/side
+              <div>Advance at 3 × 15 sec per side with the extended leg straight.</div>
+              <a class="ex-demo" href="https://gmb.io/l-sit/#:~:text=Single%20Leg%20Extension" target="_blank" rel="noopener" aria-label="Demo: One-leg L-sit, other knee tucked">View demo</a>
+            </li><li>
+              <strong>Full L-sit on parallettes</strong> · 3 × 5-15 sec
+              <div>For the floor version, advance at 3 × 15 sec with both legs straight and steady.</div>
+              <a class="ex-demo" href="https://gmb.io/l-sit/#:~:text=Full%20L-Sit" target="_blank" rel="noopener" aria-label="Demo: Full L-sit on parallettes">View demo</a>
+            </li><li>
+              <strong>Floor L-sit</strong> · 3 × 5-15 sec
+              <div>Build to 3 × 15 sec with both feet clear and knees straight.</div>
+              <a class="ex-demo" href="https://thenx.com/blogs/news/how-to-l-sit-on-the-floor-2018" target="_blank" rel="noopener" aria-label="Demo: Floor L-sit">View demo</a>
+            </li></ol>
+          </details>
         </div>
       </div>
     </div>
@@ -736,13 +861,34 @@
             <div class="ex-copy">
               <div class="ex-name">Hollow-body hold</div>
               <div class="ex-cue">Keep your low back against the floor as you breathe.</div>
-              <div class="ex-alt">Progression: dead bug → tucked hollow → one leg long → both legs long. Move up after two steady 25-second holds.</div>
+
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">2 × 15-25 sec</div>
             </div>
           </div>
+          <details class="ex-progression">
+            <summary>Progression</summary>
+            <ol><li>
+              <strong>Dead bug</strong> · 2 × 6-10 reps/side
+              <div>Advance at 2 × 10 per side with your low back against the floor.</div>
+              <a class="ex-demo" href="https://prepmobility.app/exercises/dead-bug/" target="_blank" rel="noopener" aria-label="Demo: Dead bug">View demo</a>
+            </li><li>
+              <strong>Tucked hollow hold</strong> · 2 × 15-25 sec
+              <div>Advance at 2 × 25 sec with steady breathing and your low back down.</div>
+              <a class="ex-demo" href="https://coreboundfit.com/technique/hollow-hold/" target="_blank" rel="noopener" aria-label="Demo: Tucked hollow hold">View demo</a>
+            </li><li>
+              <strong>One-leg hollow hold</strong> · 2 × 15-25 sec/side
+              <div>Advance at 2 × 25 sec per side with your low back down.</div>
+              <a class="ex-demo" href="https://www.notbroken.io/videos/hollow-body-hold/" target="_blank" rel="noopener" aria-label="Demo: One-leg hollow hold">View demo</a>
+            </li><li>
+              <strong>Full hollow hold, both legs long</strong> · 2 × 15-25 sec
+              <div>At 2 × 25 sec, reach the arms overhead if you can keep your low back down.</div>
+              <a class="ex-demo" href="https://gmb.io/hollow-body/" target="_blank" rel="noopener" aria-label="Demo: Full hollow hold, both legs long">View demo</a>
+            </li></ol>
+          </details>
         </div>
       </div>
     </div>
@@ -765,13 +911,26 @@
             <div class="ex-copy">
               <div class="ex-name">Stationary bike intervals</div>
               <div class="ex-cue">Ride easy for 1 minute. Do 6 rounds of 20 seconds hard (about 7-8 out of 10) and 40 seconds easy. Finish with 1 minute easy.</div>
-              <div class="ex-alt">Start with one finisher per week after either upper workout. Add the second upper-day finisher if you feel recovered for volleyball and your next workout.</div>
+
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">1 × 8 min</div>
             </div>
           </div>
+          <details class="ex-progression">
+            <summary>Progression</summary>
+            <ol><li>
+              <strong>One upper-day finisher</strong> · 1 × 8 min per week
+              <div>Add a second finisher if you are recovering for volleyball and your next workout.</div>
+              <a class="ex-demo" href="https://ie.physitrack.com/home-exercise-video/stationary-cycling---intervals" target="_blank" rel="noopener" aria-label="Demo: One upper-day finisher">View demo</a>
+            </li><li>
+              <strong>Two upper-day finishers</strong> · 1 × 8 min after each upper workout
+              <div>Keep both while recovery stays steady. Return to one when volleyball load rises.</div>
+              <a class="ex-demo" href="https://ie.physitrack.com/home-exercise-video/stationary-cycling---intervals" target="_blank" rel="noopener" aria-label="Demo: Two upper-day finishers">View demo</a>
+            </li></ol>
+          </details>
         </div>
       </div>
     </div>
@@ -781,7 +940,7 @@
     <div data-day-panel="training-lateral" hidden>
       <header class="day-header">
         <h2 class="day-title">Lower lateral · Control + calves</h2>
-        <p class="day-sub">Lateral landings, loaded unilateral work and bent-knee calf strength.</p>
+        <p class="day-sub">Loaded unilateral work and bent-knee calf strength. Swap for Volleyball Athletic Day when you want court-focused training.</p>
       </header>
       <div class="meta-row">
         <div class="meta-card">
@@ -807,12 +966,14 @@
               <div class="ex-name">World’s greatest stretch + dynamic runner’s lunge</div>
               <div class="ex-cue">Rotate through the upper back, then gently drive the hips forward in the lunge.</div>
 
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">1 × 4 reps/side</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -825,12 +986,14 @@
               <div class="ex-name">90/90 switches with active external rotation</div>
               <div class="ex-cue">Switch sides slowly and sit tall over the front shin for a breath.</div>
 
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">1 × 5 reps/side</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -841,7 +1004,8 @@
           <div class="exercise-line">
             <div class="ex-copy">
               <div class="ex-name">Supported hip-flexor march and lateral knee raise</div>
-              <div class="ex-cue">Lift the knee straight ahead, reset, then lift out and up. Use bodyweight first, then a light band or a secure foot-loaded kettlebell for the forward march.</div>
+              <div class="ex-cue">Lift the knee straight ahead, reset, then lift out and up.</div>
+
 
             </div>
             <div class="ex-dose">
@@ -849,6 +1013,18 @@
               <div class="ex-detail">1 × 6 reps/side</div>
             </div>
           </div>
+          <details class="ex-progression">
+            <summary>Progression</summary>
+            <ol><li>
+              <strong>Bodyweight march and lateral knee raise</strong> · 1 × 6 reps/side
+              <div>Add resistance to the forward march after 6 steady reps per side without leaning.</div>
+              <a class="ex-demo" href="https://www.youtube.com/watch?v=InCaYXDhjpc" target="_blank" rel="noopener" aria-label="Demo: Bodyweight march and lateral knee raise">View demo</a>
+            </li><li>
+              <strong>Resisted forward march</strong> · 1 × 6 reps/side
+              <div>Use a light band or a secure foot-loaded kettlebell. Increase only after 6 clean reps per side with the same range.</div>
+              <a class="ex-demo" href="https://www.cbhscorporatehealth.com.au/docs/librariesprovider2/events-and-resources/1907_health-hub_resistance-band_a6-fold-print-v3.pdf" target="_blank" rel="noopener" aria-label="Demo: Resisted forward march">View demo</a>
+            </li></ol>
+          </details>
         </div>
       </div>
     </div>
@@ -859,7 +1035,8 @@
           <div class="exercise-line">
             <div class="ex-copy">
               <div class="ex-name">Wall tibialis raise</div>
-              <div class="ex-cue">Keep heels down and lift the toes. Move the feet slightly farther from the wall to progress.</div>
+              <div class="ex-cue">Keep heels down and lift the toes.</div>
+
 
             </div>
             <div class="ex-dose">
@@ -867,35 +1044,14 @@
               <div class="ex-detail">1 × 15-20 reps</div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-      </div>
-    </section>
-    <section class="workout-section">
-      <div class="block-header">
-        <h2 class="section-label">Lateral power</h2>
-        <span class="block-timing" aria-label="Rest: 60-90 s">60-90 s</span>
-      </div>
-      <div class="workout-block">
-        <div class="station-badge">Turf / open floor near a wall</div>
-
-
-    <div class="exercise">
-      <div class="ex-row">
-        <div class="ex-num">1</div>
-        <div class="ex-body">
-          <div class="exercise-line">
-            <div class="ex-copy">
-              <div class="ex-name">Side-to-side jump progression</div>
-              <div class="ex-cue">Pick one rung. Land quietly and reset between reps. Match your right and left landing control before increasing distance.</div>
-              <div class="ex-alt">Progression: lateral step-and-stick → low two-foot side-to-side jumps → short skater bound to a single-leg stick → repeated bounds. In a jump-heavy volleyball week, use the step-and-stick.</div>
-            </div>
-            <div class="ex-dose">
-
-              <div class="ex-detail">2 × 4 reps/side</div>
-            </div>
-          </div>
+          <details class="ex-progression">
+            <summary>Progression</summary>
+            <ol><li>
+              <strong>Wall tibialis raise</strong> · 1 × 15-20 reps
+              <div>After 20 clean reps, move your feet slightly farther from the wall and reset to 15 reps.</div>
+              <a class="ex-demo" href="https://www.trainfulldepth.com/library/tibialis-raise" target="_blank" rel="noopener" aria-label="Demo: Wall tibialis raise">View demo</a>
+            </li></ol>
+          </details>
         </div>
       </div>
     </div>
@@ -917,14 +1073,23 @@
           <div class="exercise-line">
             <div class="ex-copy">
               <div class="ex-name">Reverse lunge</div>
-              <div class="ex-cue">Start right. Drive through the front foot. Build to 3 × 10 per side before increasing dumbbell load.</div>
+              <div class="ex-cue">Start right and drive through the front foot.</div>
               <div class="ex-alt">Optional swap: hack squat, 3 × 8-10 reps. Keep the step-ups for unilateral work.</div>
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">3 × 6-10 reps/side</div>
             </div>
           </div>
+          <details class="ex-progression">
+            <summary>Progression</summary>
+            <ol><li>
+              <strong>Loaded reverse lunge</strong> · 3 × 6-10 reps/side
+              <div>At 3 × 10 per side with steady balance, add a little load and reset to 6 reps.</div>
+              <a class="ex-demo" href="https://na.physitrack.com/home-exercise-video/lunge-reverse---with-dumbbells" target="_blank" rel="noopener" aria-label="Demo: Loaded reverse lunge">View demo</a>
+            </li></ol>
+          </details>
         </div>
       </div>
     </div>
@@ -936,13 +1101,26 @@
             <div class="ex-copy">
               <div class="ex-name">Dumbbell step-up</div>
               <div class="ex-cue">Use a low, stable box. Keep your whole lead foot planted, use minimal push from the trailing foot and lower under control.</div>
-              <div class="ex-alt">Progression: bodyweight → light dumbbells → small load increases. Add weight once you can control both sets of 10 on each side.</div>
+
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">2 × 8-10 reps/side</div>
             </div>
           </div>
+          <details class="ex-progression">
+            <summary>Progression</summary>
+            <ol><li>
+              <strong>Bodyweight step-up</strong> · 2 × 8-10 reps/side
+              <div>Add light dumbbells after 2 × 10 per side without pushing off the trailing foot.</div>
+              <a class="ex-demo" href="https://www.acefitness.org/resources/everyone/exercise-library/28/step-up/" target="_blank" rel="noopener" aria-label="Demo: Bodyweight step-up">View demo</a>
+            </li><li>
+              <strong>Dumbbell step-up</strong> · 2 × 8-10 reps/side
+              <div>At 2 × 10 per side with a controlled lowering, add a little load and reset to 8 reps.</div>
+              <a class="ex-demo" href="https://na.physitrack.com/home-exercise-video/step-up" target="_blank" rel="noopener" aria-label="Demo: Dumbbell step-up">View demo</a>
+            </li></ol>
+          </details>
         </div>
       </div>
     </div>
@@ -954,13 +1132,30 @@
             <div class="ex-copy">
               <div class="ex-name">Bent-knee single-leg calf raise</div>
               <div class="ex-cue">Use seated loading or a supported standing bend. Start right and match its clean range and reps on the left.</div>
-              <div class="ex-alt">Progression: bodyweight or assisted → full-height reps → small load increase. Optional hold: 2 × 20-30 seconds per side at mid-range in place of a calf-raise set block if you prefer isometrics that day.</div>
+              <div class="ex-alt">Optional hold: 2 × 20-30 seconds per side at mid-range in place of a calf-raise set block if you prefer isometrics that day.</div>
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">3 × 8-12 reps/side</div>
             </div>
           </div>
+          <details class="ex-progression">
+            <summary>Progression</summary>
+            <ol><li>
+              <strong>Assisted bent-knee calf raise</strong> · 3 × 8-12 reps/side
+              <div>Reduce assistance after 3 × 12 per side at a consistent heel height.</div>
+              <a class="ex-demo" href="https://hawkesphysiotherapy.co.uk/exercise/single-leg-calf-raises-with-bent-knee-on-a-step/" target="_blank" rel="noopener" aria-label="Demo: Assisted bent-knee calf raise">View demo</a>
+            </li><li>
+              <strong>Unassisted bent-knee calf raise</strong> · 3 × 8-12 reps/side
+              <div>Add light load after 3 × 12 per side at a consistent heel height.</div>
+              <a class="ex-demo" href="https://hawkesphysiotherapy.co.uk/exercise/single-leg-calf-raises-with-bent-knee-on-a-step/" target="_blank" rel="noopener" aria-label="Demo: Unassisted bent-knee calf raise">View demo</a>
+            </li><li>
+              <strong>Loaded bent-knee calf raise</strong> · 3 × 8-12 reps/side
+              <div>At 3 × 12 per side with steady height, add a little load and reset to 8 reps.</div>
+              <a class="ex-demo" href="https://hawkesphysiotherapy.co.uk/exercise/single-leg-calf-raises-with-bent-knee-on-a-step/" target="_blank" rel="noopener" aria-label="Demo: Loaded bent-knee calf raise">View demo</a>
+            </li></ol>
+          </details>
         </div>
       </div>
     </div>
@@ -982,14 +1177,31 @@
           <div class="exercise-line">
             <div class="ex-copy">
               <div class="ex-name">Side plank</div>
-              <div class="ex-cue">Stack your hips and keep breathing. Move up once you hold 30 seconds on both sets per side.</div>
-              <div class="ex-alt">Progression: knees bent → straight legs → top-leg lift.</div>
+              <div class="ex-cue">Stack your hips and keep breathing.</div>
+
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">2 × 20-30 sec/side</div>
             </div>
           </div>
+          <details class="ex-progression">
+            <summary>Progression</summary>
+            <ol><li>
+              <strong>Side plank from knees</strong> · 2 × 20-30 sec/side
+              <div>Advance at 2 × 30 sec per side with hips stacked.</div>
+              <a class="ex-demo" href="https://us.physitrack.com/home-exercise-video/side-plank%2C-bent-knee" target="_blank" rel="noopener" aria-label="Demo: Side plank from knees">View demo</a>
+            </li><li>
+              <strong>Straight-leg side plank</strong> · 2 × 20-30 sec/side
+              <div>Advance at 2 × 30 sec per side with level hips.</div>
+              <a class="ex-demo" href="https://www.acefitness.org/resources/pros/expert-articles/5313/side-plank-alternatives-5-exercises-to-try/" target="_blank" rel="noopener" aria-label="Demo: Straight-leg side plank">View demo</a>
+            </li><li>
+              <strong>Side plank with top-leg lift</strong> · 2 × 20-30 sec/side
+              <div>Build to 2 × 30 sec per side without rotating.</div>
+              <a class="ex-demo" href="https://us.physitrack.com/home-exercise-video/side-plank-with-hip-abduction" target="_blank" rel="noopener" aria-label="Demo: Side plank with top-leg lift">View demo</a>
+            </li></ol>
+          </details>
         </div>
       </div>
     </div>
@@ -1025,12 +1237,14 @@
               <div class="ex-name">Wrist rocks</div>
 
 
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">1 × 8-10 reps</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -1043,12 +1257,14 @@
               <div class="ex-name">Arm circles</div>
 
 
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">1 × 8-10 reps</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -1071,13 +1287,42 @@
             <div class="ex-copy">
               <div class="ex-name">L-sit hold</div>
               <div class="ex-cue">Start on stable parallettes or blocks. Lock the elbows, press down to lift your hips, and keep your shoulders down.</div>
-              <div class="ex-alt">Progression: both heels supported → one heel supported (train both sides) → tuck hold with both feet up → one-leg L-sit (both sides) → full L-sit on parallettes → full floor L-sit. Move up after 3 × 15 seconds with straight arms and steady hips. Start the next rung with 5-8-second holds.</div>
+
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">3 × 8-15 sec</div>
             </div>
           </div>
+          <details class="ex-progression">
+            <summary>Progression</summary>
+            <ol><li>
+              <strong>Both heels supported</strong> · 3 × 8-15 sec
+              <div>Advance at 3 × 15 sec with straight arms and hips off the floor.</div>
+              <a class="ex-demo" href="https://gmb.io/l-sit/#:~:text=Both%20Feet%20on%20the%20Ground" target="_blank" rel="noopener" aria-label="Demo: Both heels supported">View demo</a>
+            </li><li>
+              <strong>One heel supported</strong> · 3 × 5-15 sec/side
+              <div>Advance at 3 × 15 sec per side with level hips.</div>
+              <a class="ex-demo" href="https://gmb.io/l-sit/#:~:text=Bringing%20One%20Foot%20off%20the%20Ground" target="_blank" rel="noopener" aria-label="Demo: One heel supported">View demo</a>
+            </li><li>
+              <strong>Tuck L-sit, both feet up</strong> · 3 × 5-15 sec
+              <div>Advance at 3 × 15 sec with straight arms and no foot contact.</div>
+              <a class="ex-demo" href="https://gmb.io/l-sit/#:~:text=Tuck%20Position" target="_blank" rel="noopener" aria-label="Demo: Tuck L-sit, both feet up">View demo</a>
+            </li><li>
+              <strong>One-leg L-sit, other knee tucked</strong> · 3 × 5-15 sec/side
+              <div>Advance at 3 × 15 sec per side with the extended leg straight.</div>
+              <a class="ex-demo" href="https://gmb.io/l-sit/#:~:text=Single%20Leg%20Extension" target="_blank" rel="noopener" aria-label="Demo: One-leg L-sit, other knee tucked">View demo</a>
+            </li><li>
+              <strong>Full L-sit on parallettes</strong> · 3 × 5-15 sec
+              <div>For the floor version, advance at 3 × 15 sec with both legs straight and steady.</div>
+              <a class="ex-demo" href="https://gmb.io/l-sit/#:~:text=Full%20L-Sit" target="_blank" rel="noopener" aria-label="Demo: Full L-sit on parallettes">View demo</a>
+            </li><li>
+              <strong>Floor L-sit</strong> · 3 × 5-15 sec
+              <div>Build to 3 × 15 sec with both feet clear and knees straight.</div>
+              <a class="ex-demo" href="https://thenx.com/blogs/news/how-to-l-sit-on-the-floor-2018" target="_blank" rel="noopener" aria-label="Demo: Floor L-sit">View demo</a>
+            </li></ol>
+          </details>
         </div>
       </div>
     </div>
@@ -1089,13 +1334,26 @@
             <div class="ex-copy">
               <div class="ex-name">Seated single-leg pike lift</div>
               <div class="ex-cue">Sit on the floor, legs straight and hands beside the thighs. Lift one heel without leaning back. Pause briefly.</div>
-              <div class="ex-alt">Progression: one leg → both legs, starting at 2 × 5 reps. Walk hands toward the knees to increase difficulty.</div>
+
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">2 × 6-10 reps/side</div>
             </div>
           </div>
+          <details class="ex-progression">
+            <summary>Progression</summary>
+            <ol><li>
+              <strong>Single-leg pike lift</strong> · 2 × 6-10 reps/side
+              <div>Advance at 2 × 10 per side without leaning back.</div>
+              <a class="ex-demo" href="https://vimeo.com/509296195" target="_blank" rel="noopener" aria-label="Demo: Single-leg pike lift">View demo</a>
+            </li><li>
+              <strong>Two-leg pike lift</strong> · 2 × 5-10 reps
+              <div>At 2 × 10 without leaning back, move your hands a little closer to your knees and reset to 5 reps.</div>
+              <a class="ex-demo" href="https://www.trainfulldepth.com/library/pike-compression" target="_blank" rel="noopener" aria-label="Demo: Two-leg pike lift">View demo</a>
+            </li></ol>
+          </details>
         </div>
       </div>
     </div>
@@ -1119,12 +1377,14 @@
               <div class="ex-name">Dead hang</div>
               <div class="ex-cue">Use a box for foot support as needed.</div>
 
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">1 × 15-25 sec</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -1137,12 +1397,14 @@
               <div class="ex-name">Scapular pull-up</div>
               <div class="ex-cue">Move the shoulders down with straight elbows.</div>
 
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">1 × 5-8 reps</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -1155,7 +1417,7 @@
       </div>
       <div class="workout-block">
         <div class="station-badge">Pull-up rig + low bar</div>
-        <p class="block-note">Standalone sets. Use one rig for the bar work. If you use the pulldown and seated row swaps, finish those and face pulls together in the cable area.</p>
+        <p class="block-note">Standalone sets. Use one rig for the bar work. If you use the pulldown and seated row swaps, finish both in the cable area.</p>
 
     <div class="exercise">
       <div class="ex-row">
@@ -1164,14 +1426,39 @@
           <div class="exercise-line">
             <div class="ex-copy">
               <div class="ex-name">Pull-up</div>
-              <div class="ex-cue">Use enough assistance to get full-range reps with about 1-2 clean reps in reserve. Use less assistance after 3 × 8 controlled reps.</div>
-              <div class="ex-alt">Progression: active hang + Australian bar row → foot-assisted pull-up → assisted reps with controlled negatives → strict singles → strict sets. Once you have a clean strict rep, do 3-5 singles and use assistance for extra full-range reps as needed. Use your usual lat pulldown for 3 × 8-10 when a pull-up bar is unavailable.</div>
+              <div class="ex-cue">Start at the rung that gives you controlled reps without swinging.</div>
+              <div class="ex-alt">Lat pulldown swap: 3 × 8-10 when a pull-up bar is unavailable.</div>
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">3 × 4-8 reps</div>
             </div>
           </div>
+          <details class="ex-progression">
+            <summary>Progression</summary>
+            <ol><li>
+              <strong>Active hang + Australian bar row</strong> · 2 × 15-25 sec hang + 2 × 8-12 rows
+              <div>Advance at 2 × 25 sec and 2 × 12 controlled rows.</div>
+              <a class="ex-demo" href="https://www.youtube.com/watch?v=syS4M1G-rII" target="_blank" rel="noopener" aria-label="Demo: Active hang + Australian bar row">View demo</a>
+            </li><li>
+              <strong>Foot-assisted pull-up</strong> · 3 × 4-8 reps
+              <div>Advance at 3 × 8 full-range reps with light foot assistance.</div>
+              <a class="ex-demo" href="https://www.youtube.com/watch?v=B7H0OixV4Gs" target="_blank" rel="noopener" aria-label="Demo: Foot-assisted pull-up">View demo</a>
+            </li><li>
+              <strong>Band- or machine-assisted pull-up</strong> · 3 × 4-8 reps
+              <div>Reduce assistance at 3 × 8 with a controlled lowering. Start singles once you can do one clean unassisted rep.</div>
+              <a class="ex-demo" href="https://www.youtube.com/watch?v=q0wGtLi0-K8" target="_blank" rel="noopener" aria-label="Demo: Band- or machine-assisted pull-up">View demo</a>
+            </li><li>
+              <strong>Strict pull-up singles</strong> · 3-5 × 1 rep
+              <div>Use assistance for extra volume. Start doubles when all 5 singles are clean and you can do 2 clean reps in a row.</div>
+              <a class="ex-demo" href="https://www.youtube.com/watch?v=HRV5YKKaeVw" target="_blank" rel="noopener" aria-label="Demo: Strict pull-up singles">View demo</a>
+            </li><li>
+              <strong>Strict pull-up sets</strong> · 3 × 2-8 reps
+              <div>Add reps as you can repeat them without swinging. Build to 3 × 8.</div>
+              <a class="ex-demo" href="https://www.youtube.com/watch?v=HRV5YKKaeVw" target="_blank" rel="noopener" aria-label="Demo: Strict pull-up sets">View demo</a>
+            </li></ol>
+          </details>
         </div>
       </div>
     </div>
@@ -1184,12 +1471,14 @@
               <div class="ex-name">Negative pull-up</div>
               <div class="ex-cue">Step up until your chin is above the bar, remove foot support and lower for 3-5 seconds. Step back onto the box to reset.</div>
               <div class="ex-alt">Use this alongside assisted reps. Keep one foot on the box if needed to control the descent. Drop negatives when you are practising strict singles or using the pulldown swap.</div>
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">2 × 2-3 reps</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -1200,14 +1489,31 @@
           <div class="exercise-line">
             <div class="ex-copy">
               <div class="ex-name">Australian pull-up (inverted bar row)</div>
-              <div class="ex-cue">Pull your chest toward a low fixed bar. Progress from bent knees to straight legs to feet elevated.</div>
+              <div class="ex-cue">Pull your chest toward a low fixed bar.</div>
               <div class="ex-alt">Equipment swap: single-arm seated cable row, 2 × 8-12 reps per side.</div>
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">2 × 8-12 reps</div>
             </div>
           </div>
+          <details class="ex-progression">
+            <summary>Progression</summary>
+            <ol><li>
+              <strong>Bent-knee inverted row</strong> · 2 × 8-12 reps
+              <div>Advance at 2 × 12 with your torso steady.</div>
+              <a class="ex-demo" href="https://vimeo.com/758463706" target="_blank" rel="noopener" aria-label="Demo: Bent-knee inverted row">View demo</a>
+            </li><li>
+              <strong>Straight-leg inverted row</strong> · 2 × 8-12 reps
+              <div>Elevate the feet after 2 × 12 controlled reps.</div>
+              <a class="ex-demo" href="https://notbroken.io/videos/tech-inverted-row/index.html" target="_blank" rel="noopener" aria-label="Demo: Straight-leg inverted row">View demo</a>
+            </li><li>
+              <strong>Feet-elevated inverted row</strong> · 2 × 8-12 reps
+              <div>Build to 2 × 12 without dropping your hips.</div>
+              <a class="ex-demo" href="https://www.youtube.com/watch?v=7GYfJuoEsbQ" target="_blank" rel="noopener" aria-label="Demo: Feet-elevated inverted row">View demo</a>
+            </li></ol>
+          </details>
         </div>
       </div>
     </div>
@@ -1215,11 +1521,11 @@
     </section>
     <section class="workout-section">
       <div class="block-header">
-        <h2 class="section-label">Upper-back accessory</h2>
+        <h2 class="section-label">Shoulder blades + rear delts</h2>
         <span class="block-timing" aria-label="Rest: 45-60 s">45-60 s</span>
       </div>
       <div class="workout-block">
-        <div class="station-badge">Cable area or band at the pull-up rig</div>
+        <div class="station-badge">Incline bench + light dumbbells</div>
 
 
     <div class="exercise">
@@ -1228,15 +1534,37 @@
         <div class="ex-body">
           <div class="exercise-line">
             <div class="ex-copy">
-              <div class="ex-name">Face pull</div>
-              <div class="ex-cue">Use a rope or band and pull toward your eyebrows.</div>
-              <div class="ex-alt">Alternative: dumbbell reverse fly, 2 × 12-15 reps.</div>
+              <div class="ex-name">Chest-supported Y raise</div>
+              <div class="ex-cue">Start unloaded. With thumbs up, reach your arms into a Y and lower slowly. Keep your chest supported.</div>
+              <div class="ex-alt">Forearm wall slide: 2 × 8-12 reps if the overhead Y is uncomfortable.</div>
+
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">2 × 8-12 reps</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">2</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Chest-supported reverse fly</div>
+              <div class="ex-cue">Keep a soft bend in the elbows and lift your arms out to the sides. Lower slowly with your chest on the bench.</div>
+
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">2 × 12-15 reps</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -1259,13 +1587,26 @@
             <div class="ex-copy">
               <div class="ex-name">Stationary bike intervals</div>
               <div class="ex-cue">Ride easy for 1 minute. Do 6 rounds of 20 seconds hard (about 7-8 out of 10) and 40 seconds easy. Finish with 1 minute easy.</div>
-              <div class="ex-alt">Start with one finisher per week after either upper workout. Add the second upper-day finisher if you feel recovered for volleyball and your next workout.</div>
+
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">1 × 8 min</div>
             </div>
           </div>
+          <details class="ex-progression">
+            <summary>Progression</summary>
+            <ol><li>
+              <strong>One upper-day finisher</strong> · 1 × 8 min per week
+              <div>Add a second finisher if you are recovering for volleyball and your next workout.</div>
+              <a class="ex-demo" href="https://ie.physitrack.com/home-exercise-video/stationary-cycling---intervals" target="_blank" rel="noopener" aria-label="Demo: One upper-day finisher">View demo</a>
+            </li><li>
+              <strong>Two upper-day finishers</strong> · 1 × 8 min after each upper workout
+              <div>Keep both while recovery stays steady. Return to one when volleyball load rises.</div>
+              <a class="ex-demo" href="https://ie.physitrack.com/home-exercise-video/stationary-cycling---intervals" target="_blank" rel="noopener" aria-label="Demo: Two upper-day finishers">View demo</a>
+            </li></ol>
+          </details>
         </div>
       </div>
     </div>
@@ -1274,8 +1615,8 @@
     </div>
     <div data-day-panel="training-vertical" hidden>
       <header class="day-header">
-        <h2 class="day-title">Lower vertical · Hops + posterior chain</h2>
-        <p class="day-sub">Low-volume vertical power, then glute, hamstring and calf strength.</p>
+        <h2 class="day-title">Lower vertical · Posterior chain</h2>
+        <p class="day-sub">Glute, hamstring and calf strength. Use Volleyball Athletic Day for jump practice.</p>
       </header>
       <div class="meta-row">
         <div class="meta-card">
@@ -1301,12 +1642,14 @@
               <div class="ex-name">World’s greatest stretch + dynamic runner’s lunge</div>
               <div class="ex-cue">Rotate through the upper back, then gently drive the hips forward in the lunge.</div>
 
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">1 × 4 reps/side</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -1319,12 +1662,14 @@
               <div class="ex-name">90/90 switches with active external rotation</div>
               <div class="ex-cue">Switch sides slowly and sit tall over the front shin for a breath.</div>
 
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">1 × 5 reps/side</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -1335,7 +1680,8 @@
           <div class="exercise-line">
             <div class="ex-copy">
               <div class="ex-name">Supported hip-flexor march and lateral knee raise</div>
-              <div class="ex-cue">Lift the knee straight ahead, reset, then lift out and up. Use bodyweight first, then a light band or a secure foot-loaded kettlebell for the forward march.</div>
+              <div class="ex-cue">Lift the knee straight ahead, reset, then lift out and up.</div>
+
 
             </div>
             <div class="ex-dose">
@@ -1343,6 +1689,18 @@
               <div class="ex-detail">1 × 6 reps/side</div>
             </div>
           </div>
+          <details class="ex-progression">
+            <summary>Progression</summary>
+            <ol><li>
+              <strong>Bodyweight march and lateral knee raise</strong> · 1 × 6 reps/side
+              <div>Add resistance to the forward march after 6 steady reps per side without leaning.</div>
+              <a class="ex-demo" href="https://www.youtube.com/watch?v=InCaYXDhjpc" target="_blank" rel="noopener" aria-label="Demo: Bodyweight march and lateral knee raise">View demo</a>
+            </li><li>
+              <strong>Resisted forward march</strong> · 1 × 6 reps/side
+              <div>Use a light band or a secure foot-loaded kettlebell. Increase only after 6 clean reps per side with the same range.</div>
+              <a class="ex-demo" href="https://www.cbhscorporatehealth.com.au/docs/librariesprovider2/events-and-resources/1907_health-hub_resistance-band_a6-fold-print-v3.pdf" target="_blank" rel="noopener" aria-label="Demo: Resisted forward march">View demo</a>
+            </li></ol>
+          </details>
         </div>
       </div>
     </div>
@@ -1353,7 +1711,8 @@
           <div class="exercise-line">
             <div class="ex-copy">
               <div class="ex-name">Wall tibialis raise</div>
-              <div class="ex-cue">Keep heels down and lift the toes. Move the feet slightly farther from the wall to progress.</div>
+              <div class="ex-cue">Keep heels down and lift the toes.</div>
+
 
             </div>
             <div class="ex-dose">
@@ -1361,35 +1720,14 @@
               <div class="ex-detail">1 × 15-20 reps</div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-      </div>
-    </section>
-    <section class="workout-section">
-      <div class="block-header">
-        <h2 class="section-label">Vertical power</h2>
-        <span class="block-timing" aria-label="Rest: 60-90 s">60-90 s</span>
-      </div>
-      <div class="workout-block">
-        <div class="station-badge">Turf / open floor near a wall</div>
-
-
-    <div class="exercise">
-      <div class="ex-row">
-        <div class="ex-num">1</div>
-        <div class="ex-body">
-          <div class="exercise-line">
-            <div class="ex-copy">
-              <div class="ex-name">Single-leg hop progression</div>
-              <div class="ex-cue">Progress from snap-down and stick to low two-foot pogos, then single-leg hop and stick. Use 2 × 5 total reps for the two-foot drills. Add single-leg hops when heel raises are consistent on both sides and two-foot landings are even.</div>
-              <div class="ex-alt">Pick one. Low box jump: 2 × 3 reps, land on two feet and step down. On a jump-heavy court week, use fast step-ups with knee drive, 2 × 4 reps per side. Keep the working foot on the box and drive the other knee up.</div>
-            </div>
-            <div class="ex-dose">
-
-              <div class="ex-detail">2 × 3-5 reps/side</div>
-            </div>
-          </div>
+          <details class="ex-progression">
+            <summary>Progression</summary>
+            <ol><li>
+              <strong>Wall tibialis raise</strong> · 1 × 15-20 reps
+              <div>After 20 clean reps, move your feet slightly farther from the wall and reset to 15 reps.</div>
+              <a class="ex-demo" href="https://www.trainfulldepth.com/library/tibialis-raise" target="_blank" rel="noopener" aria-label="Demo: Wall tibialis raise">View demo</a>
+            </li></ol>
+          </details>
         </div>
       </div>
     </div>
@@ -1411,7 +1749,8 @@
           <div class="exercise-line">
             <div class="ex-copy">
               <div class="ex-name">Hip thrust</div>
-              <div class="ex-cue">Use your usual machine, Smith machine or barbell. Pause at the top. Add load after 3 × 10 with about 2 reps in reserve.</div>
+              <div class="ex-cue">Use your usual machine, Smith machine or barbell. Pause at the top.</div>
+
 
             </div>
             <div class="ex-dose">
@@ -1419,6 +1758,14 @@
               <div class="ex-detail"><span class="dose-label">Working</span>3 × 6-10 reps</div>
             </div>
           </div>
+          <details class="ex-progression">
+            <summary>Progression</summary>
+            <ol><li>
+              <strong>Hip thrust</strong> · 3 × 6-10 reps
+              <div>At 3 × 10 with about 2 reps in reserve, add load and reset to 6 reps.</div>
+              <a class="ex-demo" href="https://bretcontreras.com/hipthrust/" target="_blank" rel="noopener" aria-label="Demo: Hip thrust">View demo</a>
+            </li></ol>
+          </details>
         </div>
       </div>
     </div>
@@ -1441,13 +1788,26 @@
             <div class="ex-copy">
               <div class="ex-name">Single-leg Romanian deadlift</div>
               <div class="ex-cue">Start right. Hold a rack for balance and a dumbbell for load. Hinge with a soft knee and keep hips square.</div>
-              <div class="ex-alt">Progression: kickstand → supported single-leg → more load. Use a bilateral dumbbell RDL for 3 × 6-10 when you want a heavier hinge.</div>
+              <div class="ex-alt">Two-leg dumbbell RDL swap: 3 × 6-10 reps.</div>
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">3 × 6-10 reps/side</div>
             </div>
           </div>
+          <details class="ex-progression">
+            <summary>Progression</summary>
+            <ol><li>
+              <strong>Kickstand RDL</strong> · 3 × 6-10 reps/side
+              <div>Advance at 3 × 10 per side with hips square and light pressure on the back foot.</div>
+              <a class="ex-demo" href="https://www.youtube.com/watch?v=WOal21Uk6CU" target="_blank" rel="noopener" aria-label="Demo: Kickstand RDL">View demo</a>
+            </li><li>
+              <strong>Supported single-leg RDL</strong> · 3 × 6-10 reps/side
+              <div>At 3 × 10 per side with hips square and good balance, add a little load and reset to 6 reps.</div>
+              <a class="ex-demo" href="https://vimeo.com/703009907" target="_blank" rel="noopener" aria-label="Demo: Supported single-leg RDL">View demo</a>
+            </li></ol>
+          </details>
         </div>
       </div>
     </div>
@@ -1459,13 +1819,34 @@
             <div class="ex-copy">
               <div class="ex-name">Straight-knee single-leg calf raise</div>
               <div class="ex-cue">Use a hand for balance, rise to a consistent height and lower slowly. Start right and track heel height as well as reps.</div>
-              <div class="ex-alt">Progression: two legs up and one down → assisted single-leg raise → unassisted → lightly loaded.</div>
+
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">2 × 6-10 reps/side</div>
             </div>
           </div>
+          <details class="ex-progression">
+            <summary>Progression</summary>
+            <ol><li>
+              <strong>Two legs up, one leg down</strong> · 2 × 6-10 reps/side
+              <div>Advance at 2 × 10 per side with a slow, controlled lowering.</div>
+              <a class="ex-demo" href="https://www.southtees.nhs.uk/resources/eccentric-calf-exercises/" target="_blank" rel="noopener" aria-label="Demo: Two legs up, one leg down">View demo</a>
+            </li><li>
+              <strong>Assisted single-leg calf raise</strong> · 2 × 6-10 reps/side
+              <div>Advance at 2 × 10 per side with consistent heel height and minimal assistance.</div>
+              <a class="ex-demo" href="https://us.physitrack.com/home-exercise-video/dynamic-single-leg-calf-raise-standing" target="_blank" rel="noopener" aria-label="Demo: Assisted single-leg calf raise">View demo</a>
+            </li><li>
+              <strong>Unassisted single-leg calf raise</strong> · 2 × 6-10 reps/side
+              <div>Add light load at 2 × 10 per side without losing heel height.</div>
+              <a class="ex-demo" href="https://us.physitrack.com/home-exercise-video/dynamic-single-leg-calf-raise-standing" target="_blank" rel="noopener" aria-label="Demo: Unassisted single-leg calf raise">View demo</a>
+            </li><li>
+              <strong>Loaded single-leg calf raise</strong> · 2 × 6-10 reps/side
+              <div>At 2 × 10 per side with steady height, add a little load and reset to 6 reps.</div>
+              <a class="ex-demo" href="https://us.physitrack.com/home-exercise-video/dynamic-single-leg-calf-raise-standing" target="_blank" rel="noopener" aria-label="Demo: Loaded single-leg calf raise">View demo</a>
+            </li></ol>
+          </details>
         </div>
       </div>
     </div>
@@ -1487,14 +1868,23 @@
           <div class="exercise-line">
             <div class="ex-copy">
               <div class="ex-name">Seated leg curl</div>
-              <div class="ex-cue">Lower slowly and add a small amount of weight once both sets reach 15.</div>
+              <div class="ex-cue">Lower slowly.</div>
               <div class="ex-alt">Alternative: sliding hamstring curl, 2 × 6-10 reps.</div>
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">2 × 10-15 reps</div>
             </div>
           </div>
+          <details class="ex-progression">
+            <summary>Progression</summary>
+            <ol><li>
+              <strong>Seated leg curl</strong> · 2 × 10-15 reps
+              <div>At 2 × 15 with a controlled lowering, add a little weight and reset to 10 reps.</div>
+              <a class="ex-demo" href="https://www.youtube.com/watch?v=6aFuzQMYE00" target="_blank" rel="noopener" aria-label="Demo: Seated leg curl">View demo</a>
+            </li></ol>
+          </details>
         </div>
       </div>
     </div>
@@ -1517,13 +1907,390 @@
             <div class="ex-copy">
               <div class="ex-name">Pallof press</div>
               <div class="ex-cue">Stand sideways to a cable or band. Press straight ahead and hold 2 seconds without letting your shoulders or hips turn.</div>
-              <div class="ex-alt">Add a little resistance once both sets reach 12 per side with a steady torso.</div>
+
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">2 × 8-12 reps/side</div>
             </div>
           </div>
+          <details class="ex-progression">
+            <summary>Progression</summary>
+            <ol><li>
+              <strong>Pallof press</strong> · 2 × 8-12 reps/side
+              <div>At 2 × 12 per side with a steady torso, add a little resistance and reset to 8 reps.</div>
+              <a class="ex-demo" href="https://us.physitrack.com/home-exercise-video/pallof-press-with-exercise-band" target="_blank" rel="noopener" aria-label="Demo: Pallof press">View demo</a>
+            </li></ol>
+          </details>
+        </div>
+      </div>
+    </div>
+      </div>
+    </section>
+    </div>
+    <div data-day-panel="training-athletic" hidden>
+      <header class="day-header">
+        <h2 class="day-title">Volleyball athletic day</h2>
+        <p class="day-sub">Swap for Day 2. Use the biggest gap between hard volleyball sessions and count court jumps toward your weekly load.</p>
+      </header>
+      <div class="meta-row">
+        <div class="meta-card">
+          <div class="meta-label">Workout</div><div class="meta-val">60 min</div>
+        </div>
+      </div>
+
+    <section class="workout-section">
+      <div class="block-header">
+        <h2 class="section-label">Warm-up</h2>
+        <span class="block-timing" aria-label="Duration: 10 min">10 min</span>
+      </div>
+      <div class="workout-block">
+        <div class="station-badge">Cardio area + open floor</div>
+
+
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">1</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Easy bike or row</div>
+              <div class="ex-cue">Keep the pace conversational. Choose the machine that feels comfortable.</div>
+
+
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">1 × 5 min</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">2</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Reverse lunge with rotation</div>
+              <div class="ex-cue">Step back and rotate your upper body toward the front leg.</div>
+
+
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">2 × 4 reps/side</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">3</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">A-skips</div>
+              <div class="ex-cue">Keep these relaxed. Rotate in B-skips or C-skips if you like. On the no-jump version, use A-marches instead.</div>
+
+
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">2 × 8 reps/side</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+      </div>
+    </section>
+    <section class="workout-section">
+      <div class="block-header">
+        <h2 class="section-label">Plyometrics · Build in stages</h2>
+        <span class="block-timing" aria-label="Rest: 90-120 s between sets">90-120 s between sets</span>
+      </div>
+      <div class="workout-block">
+        <div class="station-badge">Open floor + stable low box + floor tape</div>
+        <p class="block-note">Stage 1: pogos + box jumps (16 landings). Stage 2: add skater hops (22 landings). Stage 3: add one set to box jumps or skater hops (25 or 28 landings). Finish all sets of each drill before moving on. Advance after at least two sessions at the current stage with controlled landings and no increase in next-morning Achilles pain or stiffness. Increase one thing at a time. If symptoms rise, go back a stage. Before your physio clears added jumping, or after a jump-heavy court week, use lateral step-and-stick (2 × 5 per side, pause on the outside foot) and move any unused jump time to easy cardio.</p>
+
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">1</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Low two-foot pogo jumps</div>
+              <div class="ex-cue">Bounce lightly through the ankles and keep the jumps low. Every landing counts as one rep.</div>
+
+              <a class="ex-demo" href="https://au.physitrack.com/home-exercise-video/pogo-jumps-on-the-spot" target="_blank" rel="noopener" aria-label="Demo: Low two-foot pogo jumps">View demo</a>
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">2 × 5 reps</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">2</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Low box jump</div>
+              <div class="ex-cue">Jump onto a stable box, land on both feet, step down and reset.</div>
+
+
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">2 × 3 reps</div>
+            </div>
+          </div>
+          <details class="ex-progression">
+            <summary>Progression</summary>
+            <ol><li>
+              <strong>Stages 1 and 2 · Low box jump</strong> · 2 × 3 reps
+              <div>Once you meet the block’s Stage 3 criteria, choose one jump exercise to add a set to.</div>
+              <a class="ex-demo" href="https://brownbears.com/showcase/embed.aspx?Archive=108&amp;autoplay=false" target="_blank" rel="noopener" aria-label="Demo: Stages 1 and 2 · Low box jump">View demo</a>
+            </li><li>
+              <strong>Stage 3 option · Low box jump</strong> · 3 × 3 reps
+              <div>Keep the same height and hold skater hops at one set.</div>
+              <a class="ex-demo" href="https://brownbears.com/showcase/embed.aspx?Archive=108&amp;autoplay=false" target="_blank" rel="noopener" aria-label="Demo: Stage 3 option · Low box jump">View demo</a>
+            </li></ol>
+          </details>
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">3</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Skater hop-and-stick</div>
+              <div class="ex-cue">Start at Stage 2. Hop sideways onto the opposite foot, hold the landing briefly and reset.</div>
+              <div class="ex-alt">Save raised-platform hops, jumping lunges and depth jumps for later. If you progress to a raised target, use a low, stable platform that cannot shift.</div>
+
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">1 × 3 reps/side</div>
+            </div>
+          </div>
+          <details class="ex-progression">
+            <summary>Progression</summary>
+            <ol><li>
+              <strong>Stage 2 · Short skater hop-and-stick</strong> · 1 × 3 reps/side
+              <div>Once you meet the block’s Stage 3 criteria, choose one jump exercise to add a set to.</div>
+              <a class="ex-demo" href="https://uk.physitrack.com/home-exercise-video/lateral-hop-and-stick" target="_blank" rel="noopener" aria-label="Demo: Stage 2 · Short skater hop-and-stick">View demo</a>
+            </li><li>
+              <strong>Stage 3 option · Short skater hop-and-stick</strong> · 2 × 3 reps/side
+              <div>Keep the same distance and hold box jumps at two sets.</div>
+              <a class="ex-demo" href="https://uk.physitrack.com/home-exercise-video/lateral-hop-and-stick" target="_blank" rel="noopener" aria-label="Demo: Stage 3 option · Short skater hop-and-stick">View demo</a>
+            </li><li>
+              <strong>Later swap · Two-foot lateral line hops</strong> · 1 × 3 reps/direction
+              <div>After Stage 3 is consistently tolerated, use floor tape to practise the plate-hop direction change. Replace skater hops for the session.</div>
+              <a class="ex-demo" href="https://brownbears.com/showcase/embed.aspx?Archive=114&amp;autoplay=false" target="_blank" rel="noopener" aria-label="Demo: Later swap · Two-foot lateral line hops">View demo</a>
+            </li><li>
+              <strong>Later swap · Same-leg lateral line hops</strong> · 1 × 3 reps/side
+              <div>After two-foot line hops are consistently tolerated, use one foot for takeoff and landing. Keep the hop low and replace skater hops for the session.</div>
+              <a class="ex-demo" href="https://us.physitrack.com/home-exercise-video/single-leg-medio-lateral-hops" target="_blank" rel="noopener" aria-label="Demo: Later swap · Same-leg lateral line hops">View demo</a>
+            </li></ol>
+          </details>
+        </div>
+      </div>
+    </div>
+      </div>
+    </section>
+    <section class="workout-section">
+      <div class="block-header">
+        <h2 class="section-label">Athletic strength</h2>
+        <span class="block-timing" aria-label="Rest: 90 s">90 s</span>
+      </div>
+      <div class="workout-block">
+        <div class="station-badge">Dumbbells + low box + kettlebell or landmine</div>
+        <p class="block-note">Complete each exercise before moving on. Once tolerated, do one power option first and finish every set with crisp reps.</p>
+
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">1</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Goblet squat</div>
+              <div class="ex-cue">Use this as your two-leg strength lift. Keep the weight close to your chest and lower under control.</div>
+              <div class="ex-alt">When ready for power work, swap for kettlebell swings or a landmine squat to press, 3 × 6 reps.</div>
+              <a class="ex-demo" href="https://www.notbroken.io/videos/goblet-squat-kettlebell/" target="_blank" rel="noopener" aria-label="Demo: Goblet squat">View demo</a>
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">3 × 6 reps</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">2</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Cossack squat</div>
+              <div class="ex-cue">Use this for lateral control. Shift onto one leg and sit back only as far as you can control. Start with bodyweight.</div>
+
+              <a class="ex-demo" href="https://www.catalystathletics.com/exercise/584/Cossack-Squat/" target="_blank" rel="noopener" aria-label="Demo: Cossack squat">View demo</a>
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">2 × 6 reps/side</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">3</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Dumbbell step-up</div>
+              <div class="ex-cue">Push through the lead foot and lower under control. Aim to finish with about two clean reps in reserve.</div>
+
+
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">2 × 6-8 reps/side</div>
+            </div>
+          </div>
+          <details class="ex-progression">
+            <summary>Progression</summary>
+            <ol><li>
+              <strong>Dumbbell step-up</strong> · 2 × 6-8 reps/side
+              <div>Keep this as your default strength option. Build to 2 × 8 per side with a controlled descent.</div>
+              <a class="ex-demo" href="https://na.physitrack.com/home-exercise-video/step-up" target="_blank" rel="noopener" aria-label="Demo: Dumbbell step-up">View demo</a>
+            </li><li>
+              <strong>Optional swap · Step-up to knee drive</strong> · 2 × 6-8 reps/side
+              <div>Use bodyweight and drive the free knee up while the lead foot stays planted. Swap this in when you want to practise balance and coordination.</div>
+              <a class="ex-demo" href="https://www.youtube.com/watch?v=7T4_faGQhpM" target="_blank" rel="noopener" aria-label="Demo: Optional swap · Step-up to knee drive">View demo</a>
+            </li></ol>
+          </details>
+        </div>
+      </div>
+    </div>
+      </div>
+    </section>
+    <section class="workout-section">
+      <div class="block-header">
+        <h2 class="section-label">Core circuit</h2>
+        <span class="block-timing" aria-label="Rest: 45-60 s after each round">45-60 s after each round</span>
+      </div>
+      <div class="workout-block">
+        <div class="station-badge">Mat + stable bench + cable or band</div>
+        <p class="block-note">Do two rounds in order. For a second weekly session, use this circuit in place of the Day 4 core block.</p>
+
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">1</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Front plank</div>
+              <div class="ex-cue">Keep ribs and hips in line and breathe through the hold.</div>
+
+
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">2 × 20-40 sec</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">2</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Short-lever Copenhagen plank</div>
+              <div class="ex-cue">Put your top knee on a stable bench and lift your hips. Keep the bottom foot down for assistance if needed.</div>
+              <div class="ex-alt">Regular side plank: 2 × 20-30 seconds per side.</div>
+
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">2 × 10-20 sec/side</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">3</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Pallof press</div>
+              <div class="ex-cue">Press straight ahead and pause without letting your torso turn.</div>
+
+
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">2 × 8-10 reps/side</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+      </div>
+    </section>
+    <section class="workout-section">
+      <div class="block-header">
+        <h2 class="section-label">Easy conditioning</h2>
+        <span class="block-timing" aria-label="Duration: 5 min">5 min</span>
+      </div>
+      <div class="workout-block">
+        <div class="station-badge">Cardio area</div>
+
+
+    <div class="exercise">
+      <div class="ex-row">
+        <div class="ex-num">1</div>
+        <div class="ex-body">
+          <div class="exercise-line">
+            <div class="ex-copy">
+              <div class="ex-name">Easy rowing or cycling</div>
+              <div class="ex-cue">Use a comfortable pace you could hold while talking. Extend this block if you used the no-jump option.</div>
+
+
+            </div>
+            <div class="ex-dose">
+
+              <div class="ex-detail">1 × 5 min</div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
@@ -1579,12 +2346,14 @@
               <div class="ex-name">Treadmill walking</div>
 
               <div class="ex-alt">Alternative: low-incline treadmill (comfortable, no limp) or rowing (hip/back comfortable), 1 × 20 min</div>
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">1 × 20 min</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -1608,12 +2377,14 @@
               <div class="ex-name">Dumbbell bench press</div>
               <div class="ex-cue">Keep feet planted and wrists over elbows. Lower with control.</div>
               <div class="ex-alt">Alternative: neutral-grip dumbbell bench press, 3 × 6-10 reps</div>
+
             </div>
             <div class="ex-dose">
               <div class="ex-warmup"><span class="dose-label">Warm-up</span>2 × 5-8 reps</div>
               <div class="ex-detail"><span class="dose-label">Working</span>3 × 6-10 reps</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -1626,12 +2397,14 @@
               <div class="ex-name">Seated dumbbell shoulder press</div>
               <div class="ex-cue">Use the backrest and keep ribs down. Press through a comfortable overhead range without leaning back.</div>
               <div class="ex-alt">Alternative: neutral-grip dumbbell shoulder press, 2 × 8-10 reps</div>
+
             </div>
             <div class="ex-dose">
               <div class="ex-warmup"><span class="dose-label">Warm-up</span>1 × 8 reps</div>
               <div class="ex-detail"><span class="dose-label">Working</span>2 × 8-10 reps</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -1644,12 +2417,14 @@
               <div class="ex-name">Chest-supported dumbbell row</div>
               <div class="ex-cue">Keep your chest on the inclined bench; pull without lifting your torso.</div>
               <div class="ex-alt">Alternative: bench-supported one-arm dumbbell row, 2 × 8-12 reps/side</div>
+
             </div>
             <div class="ex-dose">
               <div class="ex-warmup"><span class="dose-label">Warm-up</span>1 × 10 reps</div>
               <div class="ex-detail"><span class="dose-label">Working</span>2 × 8-12 reps</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -1673,12 +2448,14 @@
               <div class="ex-name">Dead bug</div>
               <div class="ex-cue">Shorten the reach if your back arches or your hip grips.</div>
 
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">2 × 6 reps/side</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -1691,12 +2468,14 @@
               <div class="ex-name">Side plank from knees</div>
               <div class="ex-cue">Keep knees bent and lift hips without holding your breath.</div>
               <div class="ex-alt">Alternative: wall side plank, 2 × 15-25 sec/side</div>
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">2 × 15-25 sec/side</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -1747,12 +2526,14 @@
               <div class="ex-name">Treadmill walking</div>
 
 
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">1 × 5 min</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -1776,12 +2557,14 @@
               <div class="ex-name">Hack squat</div>
               <div class="ex-cue">Keep heels down and pressure even. Use a depth without hip pinching; choose leg press if you shift away from the right leg.</div>
               <div class="ex-alt">Alternative: leg press, 3 × 8-10 reps</div>
+
             </div>
             <div class="ex-dose">
               <div class="ex-warmup"><span class="dose-label">Warm-up</span>2 × 5-8 reps</div>
               <div class="ex-detail"><span class="dose-label">Working</span>3 × 8-10 reps</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -1794,12 +2577,14 @@
               <div class="ex-name">Seated hamstring curl (Single-leg)</div>
               <div class="ex-cue">Keep hips against the pad. Start on the right and match controlled reps on the left.</div>
               <div class="ex-alt">Alternative: seated leg curl (both legs), 2 × 10-12 reps</div>
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">2 × 10-12 reps/side</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -1812,12 +2597,14 @@
               <div class="ex-name">Leg extension (Single-leg)</div>
               <div class="ex-cue">Start right and match controlled reps on the left. Keep hips against the pad and lower smoothly.</div>
               <div class="ex-alt">Alternative: bilateral leg extension, 2 × 10-12 reps</div>
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">2 × 10-12 reps/side</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -1841,12 +2628,14 @@
               <div class="ex-name">Supported Bulgarian split squat</div>
               <div class="ex-cue">Use a low rear-foot support and keep pressure through the front foot. Keep the rear foot on the floor if elevation restricts your hip. For step-ups, use a low stable platform and avoid pushing off the trailing leg.</div>
               <div class="ex-alt">Alternative: supported low step-up, 3 × 8-10 reps/side</div>
+
             </div>
             <div class="ex-dose">
               <div class="ex-warmup"><span class="dose-label">Warm-up</span>1 × 5 reps/side</div>
               <div class="ex-detail"><span class="dose-label">Working</span>3 × 8-10 reps/side</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -1859,12 +2648,14 @@
               <div class="ex-name">Supported calf raise (Single-leg)</div>
               <div class="ex-cue">Start with bodyweight on flat ground and hand support for balance. Use your 3 × 5 baseline; stop or assist before heel height drops. Lower slowly and match controlled reps on the left.</div>
               <div class="ex-alt">Alternative: assisted calf raise (Single-leg), 3 × 5 reps/side</div>
+
             </div>
             <div class="ex-dose">
               <div class="ex-warmup"><span class="dose-label">Warm-up</span>1 × 5 reps</div>
               <div class="ex-detail"><span class="dose-label">Working</span>3 × 5 reps/side</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -1915,12 +2706,14 @@
               <div class="ex-name">Treadmill walking</div>
 
               <div class="ex-alt">Alternative: low-incline treadmill (comfortable, no limp) or rowing (hip/back comfortable), 1 × 20 min</div>
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">1 × 20 min</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -1944,12 +2737,14 @@
               <div class="ex-name">Neutral-grip lat pulldown</div>
               <div class="ex-cue">Keep your torso steady and pull the handles toward your upper chest.</div>
               <div class="ex-alt">Alternative: close-grip cable pulldown, 3 × 6-10 reps</div>
+
             </div>
             <div class="ex-dose">
               <div class="ex-warmup"><span class="dose-label">Warm-up</span>2 × 5-8 reps</div>
               <div class="ex-detail"><span class="dose-label">Working</span>3 × 6-10 reps</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -1962,12 +2757,14 @@
               <div class="ex-name">Seated cable row</div>
               <div class="ex-cue">Keep your torso still; pull toward the lower ribs without rocking.</div>
               <div class="ex-alt">Alternative: standing cable row, 2 × 8-12 reps</div>
+
             </div>
             <div class="ex-dose">
               <div class="ex-warmup"><span class="dose-label">Warm-up</span>1 × 10 reps</div>
               <div class="ex-detail"><span class="dose-label">Working</span>2 × 8-12 reps</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -1980,12 +2777,14 @@
               <div class="ex-name">Face pull</div>
               <div class="ex-cue">Set the rope near eye level. Pull toward your face without leaning back or shrugging; keep the load controlled.</div>
               <div class="ex-alt">Alternative: cable reverse fly, 2 × 12-15 reps</div>
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">2 × 12-15 reps</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -1998,12 +2797,14 @@
               <div class="ex-name">Pallof press</div>
               <div class="ex-cue">Press forward at chest height without twisting.</div>
 
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">2 × 8 reps/side</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -2027,12 +2828,14 @@
               <div class="ex-name">Incline push-up</div>
               <div class="ex-cue">Use a sturdy raised surface and keep your body in one line.</div>
               <div class="ex-alt">Alternative: kneeling push-up, 2 × 6-12 reps</div>
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">2 × 6-12 reps</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -2045,12 +2848,14 @@
               <div class="ex-name">Bird-dog</div>
               <div class="ex-cue">Keep hips level; use a short reach if your lower back tightens.</div>
 
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">2 × 5 reps/side</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -2101,12 +2906,14 @@
               <div class="ex-name">Treadmill walking</div>
 
 
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">1 × 5 min</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -2130,12 +2937,14 @@
               <div class="ex-name">Hip thrust machine</div>
               <div class="ex-cue">Keep ribs down and finish by extending your hips without arching your back.</div>
               <div class="ex-alt">Alternative: Smith machine hip thrust, 3 × 8-12 reps</div>
+
             </div>
             <div class="ex-dose">
               <div class="ex-warmup"><span class="dose-label">Warm-up</span>2 × 5-8 reps</div>
               <div class="ex-detail"><span class="dose-label">Working</span>3 × 8-12 reps</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -2148,12 +2957,14 @@
               <div class="ex-name">Seated hamstring curl (Single-leg)</div>
               <div class="ex-cue">Keep hips against the pad and avoid pulling at the outside of the knee.</div>
               <div class="ex-alt">Alternative: seated leg curl (both legs), 3 × 10-12 reps</div>
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">3 × 10-12 reps/side</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -2166,12 +2977,14 @@
               <div class="ex-name">Hip abductor machine</div>
               <div class="ex-cue">Keep your pelvis still and avoid bouncing the weight.</div>
               <div class="ex-alt">Alternative: seated band hip abduction, 2 × 12-15 reps</div>
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">2 × 12-15 reps</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -2195,12 +3008,14 @@
               <div class="ex-name">Dumbbell Romanian deadlift</div>
               <div class="ex-cue">Push hips back with soft knees. Stop before your back rounds or hip pinches. For back extensions, hinge at the hips and finish in line with your legs without arching backward.</div>
               <div class="ex-alt">Alternative: 45-degree back extension, 3 × 10-12 reps</div>
+
             </div>
             <div class="ex-dose">
               <div class="ex-warmup"><span class="dose-label">Warm-up</span>2 × 5-8 reps</div>
               <div class="ex-detail"><span class="dose-label">Working</span>3 × 8-10 reps</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -2213,12 +3028,14 @@
               <div class="ex-name">Seated calf raise (Single-leg)</div>
               <div class="ex-cue">Keep the forefoot on the floor; start unweighted and lower slowly.</div>
               <div class="ex-alt">Alternative: seated dumbbell calf raise (both legs), 3 × 10-12 reps</div>
+
             </div>
             <div class="ex-dose">
               <div class="ex-warmup"><span class="dose-label">Warm-up</span>1 × 8 reps</div>
               <div class="ex-detail"><span class="dose-label">Working</span>3 × 10-12 reps/side</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -2404,12 +3221,14 @@
               <div class="ex-name">Treadmill walking</div>
 
               <div class="ex-alt">Alternative: low-incline treadmill (comfortable, no limp) or rowing (hip/back comfortable), 1 × 20 min</div>
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">1 × 20 min</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -2433,12 +3252,14 @@
               <div class="ex-name">Dumbbell bench press</div>
               <div class="ex-cue">Keep feet planted and wrists over elbows. Lower with control.</div>
               <div class="ex-alt">Alternative: neutral-grip dumbbell bench press, 3 × 5-8 reps</div>
+
             </div>
             <div class="ex-dose">
               <div class="ex-warmup"><span class="dose-label">Warm-up</span>2 × 5-8 reps</div>
               <div class="ex-detail"><span class="dose-label">Working</span>3 × 5-8 reps</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -2451,12 +3272,14 @@
               <div class="ex-name">Seated dumbbell shoulder press</div>
               <div class="ex-cue">Use the backrest and keep ribs down. Press through a comfortable overhead range without leaning back.</div>
               <div class="ex-alt">Alternative: neutral-grip dumbbell shoulder press, 2 × 8-10 reps</div>
+
             </div>
             <div class="ex-dose">
               <div class="ex-warmup"><span class="dose-label">Warm-up</span>1 × 8 reps</div>
               <div class="ex-detail"><span class="dose-label">Working</span>2 × 8-10 reps</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -2469,12 +3292,14 @@
               <div class="ex-name">Chest-supported dumbbell row</div>
               <div class="ex-cue">Keep your chest on the inclined bench; pull without lifting your torso.</div>
               <div class="ex-alt">Alternative: bench-supported one-arm dumbbell row, 2 × 8-12 reps/side</div>
+
             </div>
             <div class="ex-dose">
               <div class="ex-warmup"><span class="dose-label">Warm-up</span>1 × 10 reps</div>
               <div class="ex-detail"><span class="dose-label">Working</span>2 × 8-12 reps</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -2498,12 +3323,14 @@
               <div class="ex-name">Dead bug</div>
               <div class="ex-cue">Extend the leg farther than in Phase 1 while keeping your back and pelvis still. Shorten the reach if your hip grips.</div>
 
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">2 × 6 reps/side</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -2516,12 +3343,14 @@
               <div class="ex-name">Side plank</div>
               <div class="ex-cue">Progress to straight legs only when both Phase 1 sets reach 25 seconds without sagging. Otherwise retain the knee version.</div>
               <div class="ex-alt">Alternative: side plank from knees, 2 × 20-30 sec/side</div>
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">2 × 20-30 sec/side</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -2572,12 +3401,14 @@
               <div class="ex-name">Treadmill walking</div>
 
 
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">1 × 5 min</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -2601,12 +3432,14 @@
               <div class="ex-name">Hack squat</div>
               <div class="ex-cue">Keep heels down and pressure even. Use a depth without hip pinching; choose leg press if you shift away from the right leg.</div>
               <div class="ex-alt">Alternative: leg press, 3 × 6-8 reps</div>
+
             </div>
             <div class="ex-dose">
               <div class="ex-warmup"><span class="dose-label">Warm-up</span>2 × 5-8 reps</div>
               <div class="ex-detail"><span class="dose-label">Working</span>3 × 6-8 reps</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -2619,12 +3452,14 @@
               <div class="ex-name">Seated hamstring curl (Single-leg)</div>
               <div class="ex-cue">Keep hips against the pad. Start on the right and match controlled reps on the left.</div>
               <div class="ex-alt">Alternative: seated leg curl (both legs), 2 × 10-12 reps</div>
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">2 × 10-12 reps/side</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -2637,12 +3472,14 @@
               <div class="ex-name">Leg extension (Single-leg)</div>
               <div class="ex-cue">Start right and match controlled reps on the left. Keep hips against the pad and lower smoothly.</div>
               <div class="ex-alt">Alternative: bilateral leg extension, 2 × 10-12 reps</div>
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">2 × 10-12 reps/side</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -2666,12 +3503,14 @@
               <div class="ex-name">Supported Bulgarian split squat</div>
               <div class="ex-cue">Pause for 1 second at the bottom without relaxing or forcing depth. Establish control at the Phase 1 load before increasing weight. Retain the rear foot on the floor if elevation restricts your hip.</div>
               <div class="ex-alt">Alternative: supported low step-up, 3 × 8-10 reps/side</div>
+
             </div>
             <div class="ex-dose">
               <div class="ex-warmup"><span class="dose-label">Warm-up</span>1 × 5 reps/side</div>
               <div class="ex-detail"><span class="dose-label">Working</span>3 × 6-8 reps/side</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -2684,12 +3523,14 @@
               <div class="ex-name">Supported calf raise (Single-leg)</div>
               <div class="ex-cue">Keep hand support. Build from 3 × 5 toward 3 × 8 with consistent heel height and slow lowering. After two successful sessions with no next-day symptoms, add a small load and return to 5 reps. Do not add load and reps together.</div>
               <div class="ex-alt">Alternative: assisted calf raise (Single-leg), 3 × 5-8 reps/side</div>
+
             </div>
             <div class="ex-dose">
               <div class="ex-warmup"><span class="dose-label">Warm-up</span>1 × 5 reps</div>
               <div class="ex-detail"><span class="dose-label">Working</span>3 × 5-8 reps/side</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -2740,12 +3581,14 @@
               <div class="ex-name">Treadmill walking</div>
 
               <div class="ex-alt">Alternative: low-incline treadmill (comfortable, no limp) or rowing (hip/back comfortable), 1 × 20 min</div>
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">1 × 20 min</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -2769,12 +3612,14 @@
               <div class="ex-name">Neutral-grip lat pulldown</div>
               <div class="ex-cue">Keep your torso steady and pull the handles toward your upper chest.</div>
               <div class="ex-alt">Alternative: close-grip cable pulldown, 3 × 5-8 reps</div>
+
             </div>
             <div class="ex-dose">
               <div class="ex-warmup"><span class="dose-label">Warm-up</span>2 × 5-8 reps</div>
               <div class="ex-detail"><span class="dose-label">Working</span>3 × 5-8 reps</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -2787,12 +3632,14 @@
               <div class="ex-name">Seated cable row</div>
               <div class="ex-cue">Keep your torso still; pull toward the lower ribs without rocking.</div>
               <div class="ex-alt">Alternative: standing cable row, 2 × 8-12 reps</div>
+
             </div>
             <div class="ex-dose">
               <div class="ex-warmup"><span class="dose-label">Warm-up</span>1 × 10 reps</div>
               <div class="ex-detail"><span class="dose-label">Working</span>2 × 8-12 reps</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -2805,12 +3652,14 @@
               <div class="ex-name">Face pull</div>
               <div class="ex-cue">Set the rope near eye level. Pull toward your face without leaning back or shrugging; keep the load controlled.</div>
               <div class="ex-alt">Alternative: cable reverse fly, 2 × 12-15 reps</div>
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">2 × 12-15 reps</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -2823,12 +3672,14 @@
               <div class="ex-name">Pallof press</div>
               <div class="ex-cue">Hold each press at full reach for 3 seconds without twisting. Keep the Phase 1 load initially; increase it only after both sets stay controlled.</div>
 
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">2 × 8 reps/side</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -2852,12 +3703,14 @@
               <div class="ex-name">Push-up</div>
               <div class="ex-cue">Move to the floor after two sessions of 2 × 12 clean incline reps. If needed, lower the hand support gradually instead. Keep your whole body in one line.</div>
               <div class="ex-alt">Alternative: incline push-up, 2 × 6-12 reps</div>
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">2 × 6-10 reps</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -2870,12 +3723,14 @@
               <div class="ex-name">Bird-dog</div>
               <div class="ex-cue">Hold each reach for 5 seconds without tilting your pelvis or arching your back. Keep the Phase 1 reach if the longer hold changes your form.</div>
 
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">2 × 5 reps/side</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -2926,12 +3781,14 @@
               <div class="ex-name">Treadmill walking</div>
 
 
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">1 × 5 min</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -2955,12 +3812,14 @@
               <div class="ex-name">Hip thrust machine</div>
               <div class="ex-cue">Pause for 2 seconds at the top without arching your back. Establish the pause before adding weight; keep the ribs down.</div>
               <div class="ex-alt">Alternative: Smith machine hip thrust, 3 × 6-10 reps</div>
+
             </div>
             <div class="ex-dose">
               <div class="ex-warmup"><span class="dose-label">Warm-up</span>2 × 5-8 reps</div>
               <div class="ex-detail"><span class="dose-label">Working</span>3 × 6-10 reps</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -2973,12 +3832,14 @@
               <div class="ex-name">Seated hamstring curl (Single-leg)</div>
               <div class="ex-cue">Keep hips against the pad and avoid pulling at the outside of the knee.</div>
               <div class="ex-alt">Alternative: seated leg curl (both legs), 3 × 10-12 reps</div>
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">3 × 10-12 reps/side</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -2991,12 +3852,14 @@
               <div class="ex-name">Hip abductor machine</div>
               <div class="ex-cue">Keep your pelvis still and avoid bouncing the weight.</div>
               <div class="ex-alt">Alternative: seated band hip abduction, 2 × 12-15 reps</div>
+
             </div>
             <div class="ex-dose">
 
               <div class="ex-detail">2 × 12-15 reps</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -3020,12 +3883,14 @@
               <div class="ex-name">Dumbbell Romanian deadlift</div>
               <div class="ex-cue">Use the same controlled hip hinge with a heavier strength range. Increase load only after all sets meet the target; do not chase extra depth. For back extensions, hinge at the hips and stop in line with the legs.</div>
               <div class="ex-alt">Alternative: 45-degree back extension, 3 × 10-12 reps</div>
+
             </div>
             <div class="ex-dose">
               <div class="ex-warmup"><span class="dose-label">Warm-up</span>2 × 5-8 reps</div>
               <div class="ex-detail"><span class="dose-label">Working</span>3 × 6-8 reps</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -3038,12 +3903,14 @@
               <div class="ex-name">Seated calf raise (Single-leg)</div>
               <div class="ex-cue">Keep the forefoot on the floor; start unweighted and lower slowly.</div>
               <div class="ex-alt">Alternative: seated dumbbell calf raise (both legs), 3 × 10-12 reps</div>
+
             </div>
             <div class="ex-dose">
               <div class="ex-warmup"><span class="dose-label">Warm-up</span>1 × 8 reps</div>
               <div class="ex-detail"><span class="dose-label">Working</span>3 × 10-12 reps/side</div>
             </div>
           </div>
+
         </div>
       </div>
     </div>

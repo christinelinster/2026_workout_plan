@@ -145,16 +145,17 @@ describe('GET /api/program', () => {
 });
 
 describe('workout data', () => {
-  it('pairs upper-body skills with accessories and lower-body power with strength', () => {
+  it('includes upper-body accessories and a separate athletic day', () => {
     const [tab] = program.tabs;
-    if (tab.kind !== 'calisthenics') throw new Error('Missing four-day routine');
-    expect(tab.days).toHaveLength(4);
+    if (tab.kind !== 'calisthenics') throw new Error('Missing calisthenics routine');
+    expect(tab.days).toHaveLength(5);
     expect(tab.dayTabs.map((day) => day.id)).toEqual(tab.days.map((day) => day.id));
     const expectedDays = [
       ['Planche lean (toes down)', 'Pike push-up', 'Dumbbell lateral raise', 'Hollow-body hold', 'Stationary bike intervals'],
-      ['Side-to-side jump progression', 'Reverse lunge', 'Dumbbell step-up', 'Bent-knee single-leg calf raise', 'Side plank'],
-      ['L-sit hold', 'Pull-up', 'Negative pull-up', 'Face pull', 'Stationary bike intervals'],
-      ['Single-leg hop progression', 'Hip thrust', 'Single-leg Romanian deadlift', 'Seated leg curl', 'Straight-knee single-leg calf raise', 'Pallof press'],
+      ['Reverse lunge', 'Dumbbell step-up', 'Bent-knee single-leg calf raise', 'Side plank'],
+      ['L-sit hold', 'Pull-up', 'Negative pull-up', 'Chest-supported Y raise', 'Chest-supported reverse fly', 'Stationary bike intervals'],
+      ['Hip thrust', 'Single-leg Romanian deadlift', 'Seated leg curl', 'Straight-knee single-leg calf raise', 'Pallof press'],
+      ['A-skips', 'Low two-foot pogo jumps', 'Low box jump', 'Skater hop-and-stick', 'Goblet squat', 'Cossack squat', 'Front plank', 'Short-lever Copenhagen plank', 'Pallof press', 'Easy rowing or cycling'],
     ];
     const dose = /^\d+ × \d+(?:-\d+)? (?:reps|sec|min)(?:\/side)?$/;
     for (const [index, day] of tab.days.entries()) {
@@ -172,7 +173,21 @@ describe('workout data', () => {
     expect(tab.days[0].sections.find((section) => section.label === 'Core · L-sit practice')?.info).toMatch(/Superset/);
     expect(tab.days[1].sections.find((section) => section.label === 'Core · Side plank')?.exercises?.map((exercise) => exercise.name)).toEqual(['Side plank']);
     for (const index of [0, 2]) expect(tab.days[index].sections.at(-1)?.label).toBe('Optional conditioning finisher');
-    expect(JSON.stringify(tab)).not.toMatch(/landmine|leg extension|Session notes|Injury-aware notes/i);
+    const athleticDay = tab.days[4];
+    expect(athleticDay.id).toBe('training-athletic');
+    expect(athleticDay.sub).toContain('Swap for Day 2');
+    expect(athleticDay.sections.reduce((minutes, section) => minutes + Number.parseInt(section.duration ?? '', 10), 0)).toBe(60);
+    const plyometrics = athleticDay.sections.find((section) => section.label?.startsWith('Plyometrics'));
+    expect(plyometrics?.duration).toBe('20 min');
+    expect(plyometrics?.exercises?.map((exercise) => exercise.detail)).toEqual(['2 × 5 reps', '2 × 3 reps', '1 × 3 reps/side']);
+    expect(plyometrics?.info).toContain('Stage 2: add skater hops');
+    expect(plyometrics?.info).toContain('next-morning Achilles pain or stiffness');
+    expect(plyometrics?.info).toContain('physio clears added jumping');
+    expect(plyometrics?.info).toContain('lateral step-and-stick');
+    for (const index of [1, 3]) {
+      expect(tab.days[index].sections.map((section) => section.label).join(' ')).not.toMatch(/power|jump/i);
+    }
+    expect(JSON.stringify(tab)).not.toMatch(/leg extension|Session notes|Injury-aware notes/i);
   });
 });
 
