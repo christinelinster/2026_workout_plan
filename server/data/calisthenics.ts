@@ -26,7 +26,7 @@ const lowerWarmup: Section = {
 };
 
 const bentKneeCalf: Exercise = {
-  num: '3', name: 'Bent-knee single-leg calf raise', detail: '3 × 8-12 reps/side',
+  num: '2', name: 'Bent-knee single-leg calf raise', detail: '3 × 8-12 reps/side',
   cue: 'Use seated loading or a supported standing bend. Start right and match its clean range and reps on the left.',
   progression: [
     ['Assisted bent-knee calf raise', '3 × 8-12 reps/side', 'Reduce assistance after 3 × 12 per side at a consistent heel height.', 'https://hawkesphysiotherapy.co.uk/exercise/single-leg-calf-raises-with-bent-knee-on-a-step/'],
@@ -166,7 +166,7 @@ export const routine: CalisthenicsTab = {
     },
     {
       id: trainingDays[1].id, eyebrow: 'Day 2', title: 'Lower lateral · Control + calves',
-      sub: 'Loaded unilateral work and bent-knee calf strength. Swap for Volleyball Athletic Day when you want court-focused training.',
+      sub: 'Single-leg strength, hamstring curls and bent-knee calf work. Swap for Volleyball Athletic Day when you want court-focused training.',
       meta: [{ label: 'Workout', value: '40-50 min' }],
       sections: [
         lowerWarmup,
@@ -174,12 +174,14 @@ export const routine: CalisthenicsTab = {
           info: 'Standalone sets. Finish each exercise before moving on. Use the same box to sit for bent-knee calf raises.', exercises: [
           { num: '1', name: 'Reverse lunge', detail: '3 × 6-10 reps/side', cue: 'Start right and drive through the front foot.', progression: [
             ['Loaded reverse lunge', '3 × 6-10 reps/side', 'At 3 × 10 per side with steady balance, add a little load and reset to 6 reps.', 'https://na.physitrack.com/home-exercise-video/lunge-reverse---with-dumbbells'],
-          ], alt: 'Optional swap: hack squat, 3 × 8-10 reps. Keep the step-ups for unilateral work.' },
-          { num: '2', name: 'Dumbbell step-up', detail: '2 × 8-10 reps/side', cue: 'Use a low, stable box. Keep your whole lead foot planted, use minimal push from the trailing foot and lower under control.', progression: [
-            ['Bodyweight step-up', '2 × 8-10 reps/side', 'Add light dumbbells after 2 × 10 per side without pushing off the trailing foot.', 'https://www.acefitness.org/resources/everyone/exercise-library/28/step-up/'],
-            ['Dumbbell step-up', '2 × 8-10 reps/side', 'At 2 × 10 per side with a controlled lowering, add a little load and reset to 8 reps.', 'https://na.physitrack.com/home-exercise-video/step-up'],
-          ] },
+            ['Optional swap · Dumbbell step-up', '2 × 8-10 reps/side', 'Use in place of lunges on weeks without Athletic Day. Start with bodyweight if needed. Add load at 2 × 10 per side with a controlled descent.', 'https://na.physitrack.com/home-exercise-video/step-up'],
+          ], alt: 'Optional hack squat swap: 3 × 8-10 reps.' },
           bentKneeCalf,
+        ] },
+        { label: 'Hamstring strength', station: 'Seated leg curl machine', rest: '60-90 s after both sides', exercises: [
+          { num: '1', name: 'Single-leg seated hamstring curl', detail: '2 × 10-15 reps/side', cue: 'Start on the right. Use a load you can lower slowly and log each side separately. Work within your current rehab limits and use a pad position that is comfortable around the Achilles.', progression: [
+            ['Single-leg seated hamstring curl', '2 × 10-15 reps/side', 'When a side reaches 2 × 15 through a controlled, comfortable range, add a little load for that side and reset to 10 reps.', 'https://www.youtube.com/watch?v=ZZT55X35sgo'],
+          ] },
         ] },
         { label: 'Core · Side plank', station: 'Mat beside the dumbbell area', rest: '45-60 s after both sides', exercises: [
           { num: '1', name: 'Side plank', detail: '2 × 20-30 sec/side', cue: 'Stack your hips and keep breathing.', progression: [
@@ -241,10 +243,11 @@ export const routine: CalisthenicsTab = {
           ], alt: 'Two-leg dumbbell RDL swap: 3 × 6-10 reps.' },
           straightKneeCalf,
         ] },
-        { label: 'Hamstring accessory', station: 'Seated leg curl machine', rest: '60-90 s', exercises: [
+        { label: 'Hamstring accessory', station: 'Seated leg curl machine or mat + sliders', rest: '60-90 s', exercises: [
           { num: '1', name: 'Seated leg curl', detail: '2 × 10-15 reps', cue: 'Lower slowly.', progression: [
             ['Seated leg curl', '2 × 10-15 reps', 'At 2 × 15 with a controlled lowering, add a little weight and reset to 10 reps.', 'https://www.youtube.com/watch?v=6aFuzQMYE00'],
-          ], alt: 'Alternative: sliding hamstring curl, 2 × 6-10 reps.' },
+            ['Optional swap · Two-leg sliding hamstring curl', '2 × 6-10 reps', 'Lie on your back with your heels on sliders. Lift your hips and slide both heels out and back. Start with 2 × 6 in a comfortable range. Build to 2 × 10 while keeping your hips steady.', 'https://www.youtube.com/watch?v=AlTI3igOaLw'],
+          ] },
         ] },
         { label: 'Core · Anti-rotation', station: 'Cable area or band anchor by the mat', rest: '45-60 s after both sides', exercises: [
           { num: '1', name: 'Pallof press', detail: '2 × 8-12 reps/side', cue: 'Stand sideways to a cable or band. Press straight ahead and hold 2 seconds without letting your shoulders or hips turn.', progression: [

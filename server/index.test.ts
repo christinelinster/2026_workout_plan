@@ -152,10 +152,10 @@ describe('workout data', () => {
     expect(tab.dayTabs.map((day) => day.id)).toEqual(tab.days.map((day) => day.id));
     const expectedDays = [
       ['Planche lean (toes down)', 'Pike push-up', 'Dumbbell lateral raise', 'Hollow-body hold', 'Stationary bike intervals'],
-      ['Reverse lunge', 'Dumbbell step-up', 'Bent-knee single-leg calf raise', 'Side plank'],
+      ['Reverse lunge', 'Single-leg seated hamstring curl', 'Bent-knee single-leg calf raise', 'Side plank'],
       ['L-sit hold', 'Pull-up', 'Negative pull-up', 'Chest-supported Y raise', 'Chest-supported reverse fly', 'Stationary bike intervals'],
       ['Hip thrust', 'Single-leg Romanian deadlift', 'Seated leg curl', 'Straight-knee single-leg calf raise', 'Pallof press'],
-      ['A-skips', 'Low two-foot pogo jumps', 'Low box jump', 'Skater hop-and-stick', 'Goblet squat', 'Cossack squat', 'Front plank', 'Short-lever Copenhagen plank', 'Pallof press', 'Easy rowing or cycling'],
+      ['A-skips', 'Low two-foot pogo jumps', 'Low box jump', 'Skater hop-and-stick', 'Goblet squat', 'Cossack squat', 'Dumbbell step-up', 'Front plank', 'Short-lever Copenhagen plank', 'Pallof press', 'Easy rowing or cycling'],
     ];
     const dose = /^\d+ × \d+(?:-\d+)? (?:reps|sec|min)(?:\/side)?$/;
     for (const [index, day] of tab.days.entries()) {
@@ -172,6 +172,9 @@ describe('workout data', () => {
     expect(tab.days[0].sections.find((section) => section.label === 'Planche skill')?.exercises?.[0].detail).toBe('3 × 5-8 sec');
     expect(tab.days[0].sections.find((section) => section.label === 'Core · L-sit practice')?.info).toMatch(/Superset/);
     expect(tab.days[1].sections.find((section) => section.label === 'Core · Side plank')?.exercises?.map((exercise) => exercise.name)).toEqual(['Side plank']);
+    const lowerLateral = tab.days[1].sections.flatMap((section) => section.exercises ?? []);
+    expect(lowerLateral.find((exercise) => exercise.name === 'Single-leg seated hamstring curl')?.detail).toBe('2 × 10-15 reps/side');
+    expect(lowerLateral.find((exercise) => exercise.name === 'Reverse lunge')?.progression?.some(([name]) => name.includes('Dumbbell step-up'))).toBe(true);
     for (const index of [0, 2]) expect(tab.days[index].sections.at(-1)?.label).toBe('Optional conditioning finisher');
     const athleticDay = tab.days[4];
     expect(athleticDay.id).toBe('training-athletic');
